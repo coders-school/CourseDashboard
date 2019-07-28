@@ -29,9 +29,9 @@ build/CourseDashboard
 
 ## Słownik
 
-User Story - wymaganie użytkownika
-Użytkownik - osoba korzystająca z aplikacji (trener lub kursant)
-Dane kursanów - imię, nick na Discordzie, link do GitHuba, link do Firecode, grupa.
+- User Story - wymaganie użytkownika.
+- Użytkownik - osoba korzystająca z aplikacji (trener lub kursant).
+- Dane kursanów - imię, nick na Discordzie, link do GitHuba, link do Firecode, grupa.
 
 ## User Stories
 
