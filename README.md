@@ -96,3 +96,7 @@ build/CourseDashboard
         int &i = b;  // right
         int & i = b;  // center
         ```
+## Grupa
+    Kamil Waszkiewicz
+    Piotrek H
+    Marcin Bury
