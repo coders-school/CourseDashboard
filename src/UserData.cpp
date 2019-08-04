@@ -2,42 +2,42 @@
 #include <string>
 #include "UserData.hpp"
 
-void UserData::setName(std::string name_)
+void UserData::setName(std::string name)
 {
-    name = name_;
+    name_ = name;
 }
 
-const std::string UserData::getName()
+std::string UserData::getName() const
 {
-    return name;
+    return name_;
 }
 
-void UserData::setNick(std::string nick_)
+void UserData::setNick(std::string nick) 
 {
-    nick = nick_;
+    nick_ = nick;
 }
 
-const std::string UserData::getNick()
+std::string UserData::getNick() const
 {
-    return nick;
+    return nick_;
 }
 
-void UserData::setFirecodeLink(std::string firecodeLink_)
+void UserData::setFirecodeLink(std::string firecodeLink)
 {
-    firecodeLink = firecodeLink_;
+    firecodeLink_ = firecodeLink;
 }
 
-const std::string UserData::getFirecodeLink()
+std::string UserData::getFirecodeLink() const
 {
-    return firecodeLink;
+    return firecodeLink_;
 }
 
-void UserData::setGithubLink(std::string githubLink_)
+void UserData::setGithubLink(std::string githubLink)
 {
-    githubLink = githubLink_;
+    githubLink_ = githubLink;
 }
 
-const std::string UserData::getGithubLink()
+std::string UserData::getGithubLink() const
 {
-    return githubLink;
+    return githubLink_;
 }

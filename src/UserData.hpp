@@ -1,24 +1,24 @@
 #include <string>
 class UserData
 {
-    std::string name;
-    std::string nick;
-    std::string firecodeLink;
-    std::string githubLink;
+    std::string name_;
+    std::string nick_;
+    std::string firecodeLink_;
+    std::string githubLink_;
     
     public:
     
     UserData(){};
     
-    const std::string getName();
+    std::string getName() const;
     void setName(std::string);
 
-    const std::string getNick();
+    std::string getNick() const;
     void setNick(std::string);
 
-    const std::string getFirecodeLink();
+    std::string getFirecodeLink() const;
     void setFirecodeLink(std::string);
 
-    const std::string getGithubLink();
+    std::string getGithubLink() const;
     void setGithubLink(std::string);
 };

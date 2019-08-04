@@ -20,7 +20,7 @@ int main()
                 
     }
 
-   // sleep(3000);
+    sleep(1);
     std::cout << "Obecni uczestnicy kursu: " << std::endl;
     std::cout << "Imie: " << user.getName() << std::endl;
     std::cout << "Nick: " << user.getNick() << std::endl;
