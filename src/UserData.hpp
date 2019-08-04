@@ -10,15 +10,15 @@ class UserData
     
     UserData(){};
     
-    std::string getName();
+    const std::string getName();
     void setName(std::string);
 
-    std::string getNick();
+    const std::string getNick();
     void setNick(std::string);
 
-    std::string getFirecodeLink();
+    const std::string getFirecodeLink();
     void setFirecodeLink(std::string);
 
-    std::string getGithubLink();
+    const std::string getGithubLink();
     void setGithubLink(std::string);
 };
