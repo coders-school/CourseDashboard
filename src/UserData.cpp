@@ -2,11 +2,12 @@
 #include <string>
 #include "UserData.hpp"
 
-UserData::UserData(std::string name, std::string nick, std::string firecodeLink, std::string githubLink) 
+UserData::UserData(std::string name, std::string nick, std::string firecodeLink, std::string githubLink, Group group) 
     : name_(name)
     , nick_(nick)
     , firecodeLink_(firecodeLink)
     , githubLink_(githubLink)
+    , group_(group)
     {}
 
 void UserData::setName(std::string name)
