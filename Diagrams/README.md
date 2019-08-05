@@ -1,6 +1,6 @@
-## UML Diagram description
+# UML Diagram description
 
-# Warstwa połączenia
+## Warstwa połączenia
 
 IConnector[Pattern: facade]  -> Interface po którym dziedziczą takie klasy jak MockConnector, FileConnector oraz DBConnector. Ukrywa połączenie do warstwu danych(plik, DB) co ułatwia implementację poprawek.
 
@@ -15,7 +15,7 @@ notes:
 -- Warstwa połączenia do warstwu danych może być pominięta jeśli zaimplementujemy ją bezpośrednio w implementacji Reposytorium.
 ```
 
-# Warstwa dostępu do do danych
+## Warstwa dostępu do do danych
 
 IRepository[Pattern: Repository]  -> Główny interface określający podstawowe operacje na warstwie danych.
 
@@ -24,7 +24,7 @@ IUserRepository  -> specjalizacja IRepository dla pobierania danych użytkownika
 UserRepositoryImp -> Implementacja IUserRepository dla wybranego dostępu typu połączenia (DB, file)
 
 
-# Warstwa API
+## Warstwa API
 
 CRUUser ->  Klasa posiadająca zbiór funkcji dla dodawania użytkownika, usuwania użytkownia i modyfikacji użytkownika
 -- addUser() - dodaje użytkownika do listy m_Users
@@ -44,14 +44,11 @@ RemoveUser -> API Spacjalizacja CRUUser dla usuwania użytkowników
 UpdateUser -> API Spacjalizacja CRUUser dla aktualizacji danych użytkowników
 -- Save() aktualizuje użytkownika/ów
 
-
-
-
-# contenery danych
+## contenery danych
 
 User - posiada informacje o danych użytkownika i weryfikuje ich poprawność.
 
-# Diagram Bugs: 
+## Diagram Bugs: 
 -- searchUser powinien powiązany z UserRepositoryImp a nie jak jest na diagramie z CRUUser
 -- Brak IUserRepository
 -- UserRepositoryImp w diagramie nazuwa się UserRepository
