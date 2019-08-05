@@ -56,14 +56,3 @@ UpdateUser -> API Spacjalizacja CRUUser dla aktualizacji danych użytkowników.
 ## contenery danych
 
 User - posiada informacje o danych użytkownika i weryfikuje ich poprawność.
-
-## Diagram Bugs: 
-
--- searchUser powinien powiązany z UserRepositoryImp a nie jak jest na diagramie z CRUUser.
-
--- Brak IUserRepository.
-
--- UserRepositoryImp w diagramie nazuwa się UserRepository.
-
--- Brak IConnector. 
-
