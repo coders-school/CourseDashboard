@@ -27,12 +27,17 @@ UserRepositoryImp -> Implementacja IUserRepository dla wybranego dostępu typu p
 ## Warstwa API
 
 CRUUser ->  Klasa posiadająca zbiór funkcji dla dodawania użytkownika, usuwania użytkownia i modyfikacji użytkownika.
+
 -- addUser() - dodaje użytkownika do listy m_Users.
+
 -- reniveUser() - usuwa użytkownika z listy m_Users.
+
 -- getUser i GetAll - wyświetla wszystkich użytkowników na z listy m_Users.
 
 searchUser -> Klasa posiadająca zbiór funkcji dla dodawania użytkowników, usuwania użytkowników i modyfikacji użytkowników.
+
 -- Users wyświetla wszystkich użytkowników spełniających kryteria.
+
 -- allUsers - wyświelta wszystkich użytkowników na bazie.
 
 CreateUser -> API Spacjalizacja CRUUser dla tworzenia użytkowników.
