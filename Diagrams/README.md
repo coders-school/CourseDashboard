@@ -36,12 +36,15 @@ searchUser -> Klasa posiadająca zbiór funkcji dla dodawania użytkowników, us
 -- allUsers - wyświelta wszystkich użytkowników na bazie.
 
 CreateUser -> API Spacjalizacja CRUUser dla tworzenia użytkowników.
+
 -- Save() zapisuje użytkownika/ów do bazy.
  
 RemoveUser -> API Spacjalizacja CRUUser dla usuwania użytkowników.
+
 -- Save() usuwa użytkownika/ów z bazy.
 
 UpdateUser -> API Spacjalizacja CRUUser dla aktualizacji danych użytkowników.
+
 -- Save() aktualizuje użytkownika/ów.
 
 
