@@ -26,27 +26,23 @@ UserRepositoryImp -> Implementacja IUserRepository dla wybranego dostępu typu p
 
 ## Warstwa API
 
-CRUUser ->  Klasa posiadająca zbiór funkcji dla dodawania użytkownika, usuwania użytkownia i modyfikacji użytkownika
--- addUser() - dodaje użytkownika do listy m_Users
--- reniveUser() - usuwa użytkownika z listy m_Users
+CRUUser ->  Klasa posiadająca zbiór funkcji dla dodawania użytkownika, usuwania użytkownia i modyfikacji użytkownika.
+-- addUser() - dodaje użytkownika do listy m_Users.
+-- reniveUser() - usuwa użytkownika z listy m_Users.
 -- getUser i GetAll - wyświetla wszystkich użytkowników na z listy m_Users.
 
-searchUser -> Klasa posiadająca zbiór funkcji dla dodawania użytkowników, usuwania użytkowników i modyfikacji użytkowników
--- Users wyświetla wszystkich użytkowników spełniających kryteria
--- allUsers - wyświelta wszystkich użytkowników na bazie
+searchUser -> Klasa posiadająca zbiór funkcji dla dodawania użytkowników, usuwania użytkowników i modyfikacji użytkowników.
+-- Users wyświetla wszystkich użytkowników spełniających kryteria.
+-- allUsers - wyświelta wszystkich użytkowników na bazie.
 
-CreateUser -> API Spacjalizacja CRUUser dla tworzenia użytkowników
- -- Save() zapisuje użytkownika/ów do bazy
+CreateUser -> API Spacjalizacja CRUUser dla tworzenia użytkowników.
+-- Save() zapisuje użytkownika/ów do bazy.
  
- 
+RemoveUser -> API Spacjalizacja CRUUser dla usuwania użytkowników.
+-- Save() usuwa użytkownika/ów z bazy.
 
-RemoveUser -> API Spacjalizacja CRUUser dla usuwania użytkowników
- -- Save() usuwa użytkownika/ów z bazy
-
-
-
-UpdateUser -> API Spacjalizacja CRUUser dla aktualizacji danych użytkowników
--- Save() aktualizuje użytkownika/ów
+UpdateUser -> API Spacjalizacja CRUUser dla aktualizacji danych użytkowników.
+-- Save() aktualizuje użytkownika/ów.
 
 
 ## contenery danych
@@ -55,8 +51,8 @@ User - posiada informacje o danych użytkownika i weryfikuje ich poprawność.
 
 ## Diagram Bugs: 
 
--- searchUser powinien powiązany z UserRepositoryImp a nie jak jest na diagramie z CRUUser
--- Brak IUserRepository
--- UserRepositoryImp w diagramie nazuwa się UserRepository
+-- searchUser powinien powiązany z UserRepositoryImp a nie jak jest na diagramie z CRUUser.
+-- Brak IUserRepository.
+-- UserRepositoryImp w diagramie nazuwa się UserRepository.
 -- Brak IConnector. 
 
