@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+
 enum class Group
 {
     weekend = 0,

@@ -23,7 +23,7 @@ class UserData
     void setGroup(Group group);
 
     friend std::ostream &operator << (std::ostream &out, const UserData &user);
-    friend std::istream &operator >> (std::istream &in, const UserData &user);
+    friend std::istream &operator >> (std::istream &in, UserData &user);
 
     private:
     std::string name_;
