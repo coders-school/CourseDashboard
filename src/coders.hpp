@@ -7,9 +7,9 @@ class Coders
     std::string firecodeLink;
     std::string group;
     public: 
-    void printName(std::string);
-    void printDiscordNickname(std::string);
-    void printGithubLink(std::string);
-    void printFirecodeLink(std::string);
-    void printGroup(std::string);
+    void printName();
+    void printDiscordNickname();
+    void printGithubLink();
+    void printFirecodeLink();
+    void printGroup();
 };
