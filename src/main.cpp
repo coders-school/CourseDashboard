@@ -13,19 +13,18 @@ std::vector<Coders> codersLibrary;
 
 int main()
 {
-<<<<<<< HEAD
-    //Coders Ziomeczek;
-=======
-    Coders Ziomeczek;
-    Ziomeczek.insertName("Sylwia");
+    Coders vandam{"Łukasz", "vandam", "git", "fire", "weekendowa"};
+    Coders Ziomeczek{"Sylwia", "TheDude", "gitDude", "fireDude", "weekendowa"};
+    /*Ziomeczek.insertName("Sylwia");
     Ziomeczek.insertGroup("Weekendowa");
     Ziomeczek.insertDiscordNickname("DUUD");
     Ziomeczek.insertFirecodeLink("asdasd");
     Ziomeczek.insertGithubLink("asdasdasd");
+    */
     printUser(Ziomeczek);
     addUser(Ziomeczek);
+    addUser(vandam);
     printEveryone(codersLibrary);
->>>>>>> Working prints
     std::cout << "Course Dashboard" << std::endl;
     return 0;
 }

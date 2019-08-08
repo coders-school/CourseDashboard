@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#pragma once
-=======
 #include <string>
->>>>>>> Working prints
 
 class Coders
 {

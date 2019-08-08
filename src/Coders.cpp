@@ -2,17 +2,13 @@
 #include <iostream>
 #include <string>
 
-Coders::Coders(std::string name_, std::string discordNickname_, std::string githubLink_,
+Coders::Coders(std::string userName_, std::string discordNickname_, std::string githubLink_,
     std::string firecodeLink_, std::string group_)
-    :name(name)
-    , discordNickname(discordNickname)
-    , githubLink(githubLink)
-    , firecodeLink(firecodeLink)
-    , group(group)
-{
-    std::cout << __FUNCTION__ << std::endl;
-}
-
+    :userName(userName_)
+    , discordNickname(discordNickname_)
+    , githubLink(githubLink_)
+    , firecodeLink(firecodeLink_)
+    , group(group_){}
 
 void Coders::printName() {std::cout << userName;}
 void Coders::printDiscordNickname() {std::cout << discordNickname;}
