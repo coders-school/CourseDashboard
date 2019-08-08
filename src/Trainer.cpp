@@ -1,7 +1,7 @@
 #include "Trainer.hpp"
 #include <iostream>
 
-void Trainer::insertName(std::string tmpName) 
+void Trainer::insertName(std::string tmpName)
 {
     name = tmpName;
 }
