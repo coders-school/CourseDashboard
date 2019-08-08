@@ -12,4 +12,9 @@ class Coders
     void printGithubLink();
     void printFirecodeLink();
     void printGroup();
+    void insertDiscordNickname(std::string tmpDiscord);
+    void insertName(std::string tmpName);
+    void insertGithubLink(std::string tmpGit);
+    void insertFirecodeLink(std::string tmpFire); 
+    void insertGroup(std::string tmpGroup);
 };
