@@ -1,23 +1,23 @@
 #include "Trainer.hpp"
 #include <iostream>
 
-void Coders::insertName(std::string tmpName) 
+void Trainer::insertName(std::string tmpName) 
 {
     name = tmpName;
 }
-void Coders::insertDiscordNickname(std::string tmpDiscord) 
+void Trainer::insertDiscordNickname(std::string tmpDiscord) 
 {
     discordNickname = tmpDiscord;
 }
-void Coders::insertGithubLink(std::string tmpGit) 
+void Trainer::insertGithubLink(std::string tmpGit) 
 {
     githubLink = tmpGit;
 }
-void Coders::insertFirecodeLink(std::string tmpFire) 
+void Trainer::insertFirecodeLink(std::string tmpFire) 
 {
     firecodeLink = tmpFire;
 }
-void Coders::insertGroup(std::string tmpGroup) 
+void Trainer::insertGroup(std::string tmpGroup) 
 {
     group = tmpGroup;
 }
