@@ -2,36 +2,31 @@
 #include "CourseDashboard.hpp"
 #include "Coders.hpp"
 #include <vector>
+#include <algorithm>
 
-void printEveryone(std::vector<Coders> tmpLibrary);
-void printUser(Coders newUser);
-void addUser(Coders newUser);
-//void editUser();
-//void deleteUser();
+void printEveryone(const std::vector<Coders>& tmpLibrary);
+void printUser(Coders tmpUser);
+void addUser(const Coders& tmpUser);
+void deleteUser(std::vector<Coders> tmpVec, Coders tmpUser); // WIP
 
 std::vector<Coders> codersLibrary;
 
 int main()
 {
-    Coders vandam{"Łukasz", "vandam", "git", "fire", "weekendowa"};
+    Coders Vandam{"Łukasz", "vandam", "https://github.com/lucaswalicki", "fireVandam", "weekendowa"};
     Coders Ziomeczek{"Sylwia", "TheDude", "gitDude", "fireDude", "weekendowa"};
-    /*Ziomeczek.insertName("Sylwia");
-    Ziomeczek.insertGroup("Weekendowa");
-    Ziomeczek.insertDiscordNickname("DUUD");
-    Ziomeczek.insertFirecodeLink("asdasd");
-    Ziomeczek.insertGithubLink("asdasdasd");
-    */
     printUser(Ziomeczek);
     addUser(Ziomeczek);
-    addUser(vandam);
+    addUser(Vandam);
     printEveryone(codersLibrary);
     std::cout << "Course Dashboard" << std::endl;
+    deleteUser(codersLibrary, Vandam); // will not compile now
     return 0;
 }
 
-void addUser(Coders newUser)
+void addUser(const Coders& tmpUser)
 {
-    codersLibrary.push_back(newUser);
+    codersLibrary.push_back(tmpUser);
 }
 
 void printUser(Coders tmpUser)
@@ -48,10 +43,19 @@ void printUser(Coders tmpUser)
     tmpUser.printGithubLink(); std::cout << std::endl;
 }
 
-void printEveryone(std::vector<Coders> tmpLibrary)
+void printEveryone(const std::vector<Coders>& tmpLibrary)
 {
-    for(auto elements : tmpLibrary)
+    for(const auto& elements : tmpLibrary)
     {
         printUser(elements);
+        std::cout << std::endl;
     }
+}
+
+void deleteUser(std::vector<Coders> tmpVec, Coders tmpUser)
+{
+    //std::remove_if(tmpVec.begin(), tmpVec.end(), []()
+    //{
+    //    if()
+    //})
 }

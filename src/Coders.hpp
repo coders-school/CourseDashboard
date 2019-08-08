@@ -9,9 +9,8 @@ class Coders
     std::string firecodeLink;
     std::string group;
     public: 
-    Coders(std::string name_,std::string discordNickname_, std::string githubLink_,
+    Coders(std::string userName_,std::string discordNickname_, std::string githubLink_,
     std::string firecodeLink_,std::string group_);
-
     void printName();
     void printDiscordNickname();
     void printGithubLink();
@@ -22,4 +21,5 @@ class Coders
     void insertGithubLink(std::string tmpGit);
     void insertFirecodeLink(std::string tmpFire); 
     void insertGroup(std::string tmpGroup);
+    //bool operator==(); // WIP
 };
