@@ -41,6 +41,9 @@ project(CourseDashboard)
 
 set(SRC_LIST
     src/CourseDashboard.cpp
+	src/Person.cpp
+	src/Student.cpp
+	src/Trainer.cpp
 )
 
 include_directories(src)
