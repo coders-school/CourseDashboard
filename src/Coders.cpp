@@ -1,5 +1,18 @@
 #include "Coders.hpp"
 #include <iostream>
+#include <string>
+
+Coders::Coders(std::string name, std::string discordNickname, std::string githubLink,
+    std::string firecodeLink, std::string group)
+    :name_(name)
+    , discordNickname_(discordNickname)
+    , githubLink_(githubLink)
+    , firecodeLink_(firecodeLink)
+    , group_(group)
+{
+    std::cout << __FUNCTION__ << std::endl;
+}
+
 
 void Coders::printName() {std::cout << name;}
 void Coders::printDiscordNickname() {std::cout << discordNickname;}

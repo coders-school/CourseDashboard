@@ -10,7 +10,7 @@
 
 int main()
 {
-    Coders Ziomeczek;
+    //Coders Ziomeczek;
     std::cout << "Course Dashboard" << std::endl;
     return 0;
 }
