@@ -15,6 +15,8 @@ public:
             const std::string & firecode);
    
     std::string getAllInfo() const;
+    void updateUser(User user);
+    void deleteUser(User user);
 
 private:
 
