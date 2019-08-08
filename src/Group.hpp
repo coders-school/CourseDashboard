@@ -25,5 +25,3 @@ inline std::ostream &operator << (std::ostream &out, Group group)
 {
     return out << toString(group);
 }
-
-

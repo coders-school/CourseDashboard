@@ -1,6 +1,35 @@
 #include <iostream>
 #include <string>
 #include "UserData.hpp"
+#include <functional>
+
+namespace
+{
+    void printMenu()
+    {
+         std::system("clear");
+         std::cout << "Change: " << std::endl;
+         std::cout << "======================================" << std::endl;
+         std::cout << "1. Name" << std::endl;
+         std::cout << "2. Nick" << std::endl;
+         std::cout << "3. Firecode link: " << std::endl;
+         std::cout << "4. Github link" << std::endl;
+         std::cout << "5. Group" << std::endl;
+         std::cout << "6. Exit" << std::endl;
+         std::cout << "======================================" << std::endl;
+
+         std::cout << "Which information would You like to change?" << std::endl;
+         std::cout << "[To go next, input number from 1 to 6]" << std::endl;
+    }
+
+    void change(std::istream &in, std::function <void (std::string)> setter, std::string prompt)
+    {
+        std::string data;
+        std::cout << prompt << ": ";
+        in >> data;
+        setter(data);
+    }
+}
 
 UserData::UserData(std::string name, std::string nick, std::string firecodeLink, std::string githubLink, Group group) 
     : name_(name)
@@ -76,20 +105,7 @@ std::istream &operator >> (std::istream &in,  UserData &user)
          int choice=0;
          do
           {
-             std::system("clear");
-             std::cout << "Change: " << std::endl;
-             std::cout << "======================================" << std::endl;
-             std::cout << "1. Name" << std::endl;
-             std::cout << "2. Nick" << std::endl;
-             std::cout << "3. Firecode link: " << std::endl;
-             std::cout << "4. Github link" << std::endl;
-             std::cout << "5. Group" << std::endl;
-             std::cout << "6. Exit" << std::endl;
-             std::cout << "======================================" << std::endl;
-
-             std::cout << "Which information would You like to change?" << std::endl;
-             std::cout << "[To go next, input number from 1 to 6]" << std::endl;
-
+             printMenu();
              int choice;
              in >> choice;
              std::system("clear");
@@ -98,39 +114,27 @@ std::istream &operator >> (std::istream &in,  UserData &user)
                  {
                      case 1:
                          {
-                             std::cout << "New name: ";
-                             std::string newName;
-                             in >> newName;
-                             user.setName(newName);
-                             std::system("clear");
-                             break;
+                            auto lambda = [&user](std::string data){user.setName(data);};
+                            change(in, lambda, "New name");
+                            break;
                          }
                      case 2:
                          {
-                             std::cout << "New nick: ";
-                             std::string newNick;
-                             in >> newNick;
-                             user.setNick(newNick);
-                             std::system("clear");
-                             break;
+                            auto lambda = [&user](std::string data){user.setNick(data);};
+                            change(in, lambda, "New nick");
+                            break;
                          }
                      case 3:
                          {
-                             std::cout << "New firecode link: ";
-                             std::string newFirecodeLink;
-                             in >> newFirecodeLink;
-                             user.setFirecodeLink(newFirecodeLink);
-                             std::system("clear");
-                             break;
+                            auto lambda = [&user](std::string data){user.setFirecodeLink(data);};
+                            change(in, lambda, "New firecode link");
+                            break;
                          }
                      case 4:
                          {
-                             std::cout << "New github link: ";
-                             std::string newGithubLink;
-                             in >> newGithubLink;
-                             user.setGithubLink(newGithubLink);
-                             std::system("clear");
-                             break;
+                            auto lambda = [&user](std::string data){user.setGithubLink(data);};
+                            change(in, lambda, "New github link");
+                            break;
                          }
                      case 5:
                          {
