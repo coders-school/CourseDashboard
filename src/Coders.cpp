@@ -14,14 +14,14 @@ Coders::Coders(std::string name_, std::string discordNickname_, std::string gith
 }
 
 
-void Coders::printName() {std::cout << name;}
+void Coders::printName() {std::cout << userName;}
 void Coders::printDiscordNickname() {std::cout << discordNickname;}
-void Coders::printGithubLink() {std::cout << githubLink;}
-void Coders::printFirecodeLink() {std::cout << firecodeLink;}
+void Coders::printGithubLink() {std::cout << githubLink;} // needs raw string
+void Coders::printFirecodeLink() {std::cout << firecodeLink;} // needs raw string
 void Coders::printGroup() {std::cout << group;}
 void Coders::insertName(std::string tmpName)
 {
-    name = tmpName;
+    userName = tmpName;
 }
 void Coders::insertDiscordNickname(std::string tmpDiscord) 
 {

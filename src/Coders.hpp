@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 #pragma once
+=======
+#include <string>
+>>>>>>> Working prints
 
 class Coders
 {
     private:
-    std::string name;
+    std::string userName;
     std::string discordNickname;
     std::string githubLink;
     std::string firecodeLink;
