@@ -40,7 +40,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(CourseDashboard)
 
 set(SRC_LIST
-    src/CourseDashboard.cpp
+    src/main.cpp
 )
 
 include_directories(src)
