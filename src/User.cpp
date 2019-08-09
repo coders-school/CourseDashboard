@@ -27,50 +27,5 @@ std::string User::getAllInfo() const{
     return ss.str();
 }
 
-void User::updateUser(){
-    unsigned int number;
-    getAllInfo();
-    std::cout << "Which data You want to edit? Give number: " << '\n';
-    std::cin >> number;
-    switch (number) {
-    case 1:
-        std::cout << "Give new value to data: ";
-        std::cin >> name_;
-        break;
-    case 2:
-        std::cout << "Give new value to data: ";
-        std::cin >> nick_;
-        break;
-    case 3:
-        std::cout << "Give new value to data: ";
-        std::cin >> group_;
-        break;
-    case 4:
-        std::cout << "Give new value to data: ";
-        std::cin >> gitHub_;
-        break;
-    case 5:
-        std::cout << "Give new value to data: ";
-        std::cin >> firecode_;
-        break;
-    default:
-        std::cout << "You gave wrong value.";
-        break;
-    }
-}
 
-void User::deleteUser(User user){
-    v.erase(user);
-}
 
-void User::getAllInfoEveryone(const std::vector<User> & v){
-    for(const auto& element : v)
-    {
-        element.getAllInfo();
-        std::cout << '\n';
-    }
-}
-
-void addUser(const User &  User){
-    v.emplace_back(User);
-}
