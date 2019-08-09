@@ -41,6 +41,13 @@ project(CourseDashboard)
 
 set(SRC_LIST
     src/CourseDashboard.cpp
+    src/CourseDashboard.hpp
+    src/train.cpp
+    src/train.hpp
+    src/stud.cpp
+    src/stud.hpp
+    src/main.cpp
+    src/catch.hpp
 )
 
 include_directories(src)
