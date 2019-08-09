@@ -26,6 +26,18 @@ std::string User::getAllInfo() const{
     std::cout<< ss.str();
     return ss.str();
 }
-
-
-
+void User::setName(std::string name){
+    name_ = name;
+}
+void User::setNick(std::string nick){
+    nick_ = nick;
+}
+void User::setGroup(std::string group){
+    group_ = group;
+}
+void User::setGitHub(std::string gitHub){
+    gitHub_ = gitHub;
+}
+void User::setFirecode(std::string firecode){
+    firecode_ = firecode;
+}

@@ -15,6 +15,11 @@ public:
             const std::string & firecode);
    
     std::string getAllInfo() const;
+    void setName(std::string name);
+    void setNick(std::string nick);
+    void setGroup(std::string group);
+    void setGitHub(std::string gitHub);
+    void setFirecode(std::string firecode);
 
 private:
 

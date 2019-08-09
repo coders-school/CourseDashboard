@@ -27,33 +27,38 @@ void CourseDashboard::retriveUser(const User & user)
     std::cout << user.getAllInfo() << std::endl;
 }
 
-// TO UPDATE
-void CourseDashboard::updateUser(const User & user)
+void CourseDashboard::updateUser(User & user)
 {
     unsigned int number;
     retriveUser(user);
     std::cout << "Which data You want to edit? Give number: " << '\n';
     std::cin >> number;
+    std::string name,nick,group,gitHub,firecode;
     switch (number) {
     case 1:
         std::cout << "Give new value to data: ";
-        //std::cin >> name_;
+        std::cin >> name;
+        user.setName(name);
         break;
     case 2:
         std::cout << "Give new value to data: ";
-        //std::cin >> nick_;
+        std::cin >> nick;
+        user.setNick(nick);
         break;
     case 3:
         std::cout << "Give new value to data: ";
-        //std::cin >> group_;
+        std::cin >> group;
+        user.setGroup(group);
         break;
     case 4:
         std::cout << "Give new value to data: ";
-        //std::cin >> gitHub_;
+        std::cin >> gitHub;
+        user.setGitHub(gitHub);
         break;
     case 5:
         std::cout << "Give new value to data: ";
-        //std::cin >> firecode_;
+        std::cin >> firecode;
+        user.setFirecode(firecode);
         break;
     default:
         std::cout << "You gave wrong value.";
