@@ -2,7 +2,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
-
+#include "Users.hpp"
 class User
 {
 
@@ -15,9 +15,10 @@ public:
             const std::string & firecode);
    
     std::string getAllInfo() const;
-    void updateUser(User user);
+    void updateUser();
     void deleteUser(User user);
-
+    void addUser(const User &  User);
+    void getAllInfoEveryone(const std::vector<User> & v);
 private:
 
     std::string name_;

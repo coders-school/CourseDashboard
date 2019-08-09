@@ -17,49 +17,60 @@ User::User(     const std::string & name,
 std::string User::getAllInfo() const{
     std::stringstream ss;
     ss<<std::left;   
-    ss<<std::setw(10) << name_ <<"|";
-    ss<<std::setw(10) << nick_ <<"|";
-    ss<<std::setw(15) << group_ <<"|";
-    ss<<std::setw(20) << gitHub_ <<"|";
-    ss<<std::setw(20) << firecode_<<"|";
+    ss<<std::setw(1) << "1." << name_ <<"|";
+    ss<<std::setw(1) << "2." << nick_ <<"|";
+    ss<<std::setw(1) << "3." << group_ <<"|";
+    ss<<std::setw(1) << "4." << gitHub_ <<"|";
+    ss<<std::setw(1) << "5." << firecode_<<"|";
     ss<<std::endl;
+    std::cout<< ss.str();
     return ss.str();
 }
 
-void User::updateUser(User user){
+void User::updateUser(){
     unsigned int number;
-    auto newValue;
-    getAllInfo(user);
+    getAllInfo();
     std::cout << "Which data You want to edit? Give number: " << '\n';
     std::cin >> number;
     switch (number) {
     case 1:
         std::cout << "Give new value to data: ";
-        std::cin >> user.name_;
+        std::cin >> name_;
         break;
     case 2:
         std::cout << "Give new value to data: ";
-        std::cin >> user.nick_;
+        std::cin >> nick_;
         break;
     case 3:
         std::cout << "Give new value to data: ";
-        std::cin >> user.group_;
+        std::cin >> group_;
         break;
     case 4:
         std::cout << "Give new value to data: ";
-        std::cin >> user.gitHub_;
+        std::cin >> gitHub_;
         break;
     case 5:
         std::cout << "Give new value to data: ";
-        std::cin >> user.firecode_;
+        std::cin >> firecode_;
         break;
     default:
-        std::cout << "You gave wrong value."
+        std::cout << "You gave wrong value.";
         break;
     }
 }
 
 void User::deleteUser(User user){
-    //dokończę jutro, utworzę vector<User> który będzie przechowywał obiekty więc usunięcie będzie
-    //usuwało dany element vectora a dodanie będzie przez np. emplace_back
+    v.erase(user);
+}
+
+void User::getAllInfoEveryone(const std::vector<User> & v){
+    for(const auto& element : v)
+    {
+        element.getAllInfo();
+        std::cout << '\n';
+    }
+}
+
+void addUser(const User &  User){
+    v.emplace_back(User);
 }
