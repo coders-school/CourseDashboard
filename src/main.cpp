@@ -1,5 +1,6 @@
 #include <iostream>
 #include "CourseDashboard.hpp"
+#include "User.hpp"
 
 
 int main()
