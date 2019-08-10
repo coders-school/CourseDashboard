@@ -4,6 +4,6 @@
 
 class Trainer : public Student
 {
-	Trainer();
-	virtual ~Trainer();
+	//Trainer();
+	//virtual ~Trainer();
 };

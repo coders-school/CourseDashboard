@@ -4,13 +4,12 @@
 #include <cstdlib>
 #include <unistd.h>
 
+CourseDashboard dashboard;
 int main()
 {
-	std::cout << "---------------------------------------------------------------" << std::endl;
-    std::cout << "-------------------------Course Dashboard----------------------" << std::endl;
-	std::cout << "---------------------------------------------------------------" << std::endl;
-
-	CourseDashboard dashboard;
+	dashboard.run();
+	
+/*
 
 	int ch = 0;
 
@@ -33,7 +32,7 @@ int main()
 		{
 			case 1: 
 				{
-					//dashboard.showStudents();
+					dashboard.showStudents();
 					break;
 				}
 			case 2:
@@ -61,4 +60,6 @@ int main()
 	std::cout << "Bye!" <<std::endl;
 
     return 0;
+
+*/
 }

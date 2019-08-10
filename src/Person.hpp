@@ -8,10 +8,10 @@ public:
 	virtual ~Person();
 
 	std::string name;
-	std::string nick;
-	std::string GitHubLink;
-	std::string FirecodeLink;
-	std::string eMail;
+//	std::string nick;
+//	std::string GitHubLink;
+//	std::string FirecodeLink;
+//	std::string eMail;
 	std::string password;
 
 };
