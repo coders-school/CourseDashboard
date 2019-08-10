@@ -14,6 +14,6 @@ public:
     void updateUser(User & user);
 
 private:
-std::vector<User> users_;
+    std::vector<User> users_;
 
 };
