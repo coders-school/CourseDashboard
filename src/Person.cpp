@@ -38,7 +38,7 @@ void Person::setNick (std::string personNick){
 void Person::setGitHub(std::string gitHubNick){
     surname = gitHubNick;
 }
-void Person::setNick (std::string firecodeNick){
+void Person::setFirecode (std::string firecodeNick){
     nick = firecodeNick;
 }
 
@@ -54,6 +54,6 @@ std::string  Person::getNick()const{
 std::string Person::getGitHub()const{
     return gitHub;
 }
-std::string Person::getNick()const{
+std::string Person::getFirecode()const{
     return firecode;
 }
