@@ -9,7 +9,7 @@ void CourseDashboard::showAll()
 {
     for (auto & user : users_)
     {
-        retriveUser(user);
+        std::cout << user.getAllInfo();
     }
 }
 
@@ -24,21 +24,30 @@ void CourseDashboard::deleteUserByNick(std::string nick)
     {
         return user.getNick()==nick;
     });
+
     if (it != std::end(users_))
     {
         users_.erase(it);
     }
 }
 
-void CourseDashboard::retriveUser(const User & user)
+void CourseDashboard::retriveUserByNick(std::string nick)
 {
-    std::cout << user.getAllInfo() << std::endl;
+    auto it = std::find_if(std::begin(users_),std::end(users_),[nick](const auto & user)
+    {
+        return user.getNick()==nick;
+    });
+    
+    if (it != std::end(users_))
+    {
+        std::cout << it->getAllInfo();
+    }
 }
 
 void CourseDashboard::updateUser(User & user)
 {
     unsigned int number;
-    retriveUser(user);
+    std::cout << user.getAllInfo();
     std::cout << "Which data You want to edit? Give number: " << '\n';
     std::cin >> number;
     std::string name,nick,group,gitHub,firecode;

@@ -23,6 +23,7 @@ std::string User::getAllInfo() const
     ss<<std::setw(1) << "3." << group_ <<"|";
     ss<<std::setw(1) << "4." << gitHub_ <<"|";
     ss<<std::setw(1) << "5." << firecode_<<"|";
+    ss<<std::endl;
     return ss.str();
 }
 void User::setName(std::string name)

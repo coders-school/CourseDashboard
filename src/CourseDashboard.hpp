@@ -10,7 +10,7 @@ public:
     void showAll();
     void createUser(const User & user);
     void deleteUserByNick(std::string nick);
-    void retriveUser(const User & user);
+    void retriveUserByNick(std::string nick);
     void updateUser(User & user);
 
 private:
