@@ -14,6 +14,8 @@ public:
 	void showStudents();
 	void login();
 	void run();
+	void panel(Trainer &);
+	void panel(Student &);
 	//bool checklog(std::string,std::string);
 
 	std::vector <Student> listOfStudents;

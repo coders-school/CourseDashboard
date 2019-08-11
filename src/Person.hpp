@@ -1,11 +1,13 @@
 #pragma once
 #include <string>
 
+
 class Person
 {
 public:
 	Person();
 	virtual ~Person();
+
 
 	std::string name;
 //	std::string nick;
