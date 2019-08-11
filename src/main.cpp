@@ -2,52 +2,68 @@
 #include "UserData.hpp"
 #include <unistd.h>
 #include "Group.hpp"
+#include "UserDataAccessLayer.hpp"
+
 
 int main()
 {
-    std::system("clear");
-    UserData user("Krzysiek", "Cypher", "https://www.testowy-link.og", "https://www.testowy-link-22.og", Group::weekend);
-    
-    int choice = 0;
-    do
-    {
-    std::system("clear");
-    std::cout << "Dashboard: " << std::endl;
-    std::cout << "1. See info about students" << std::endl;
-    std::cout << "2. Add little changes" << std::endl;
-    std::cout << "3. Quit program" << std::endl;
-    std::cin >> choice;
-    std::system("clear"); 
-    
-    
-       switch(choice)
-         {
-             case 1:
-                     {
-                        std::cout << user << std::endl;
-                        std::cout << "[Press enter to go back]" << std::endl; 
-                        std::cin.ignore();
-                        std::cin.get();
-                        break;
-                     }
-             case 2: 
-                     {
-                        std::cin >> user;
-                        std::system("clear");
-                        break;
-                     }
-             case 3: 
-                     {
+	char option = '0';
+	UserDataAccessLayer usrDal;
+	do
+	{
+		std::cout << "Course Dashboard: " << "\n"
+				  << "[Q|q]uit\n"
+				  /*<< "[I|i]nfo\n"*/
+				  << "[C|c]reate user data\n"
+				  << "[R|r]ead user data\n"
+				  << "[U|u]pdate user data\n"
+				  << "[D|d]elete user data\n";
 
-                        return 0;
-                
-                     }
-        
-            default: break;
-            
-        }
-    
-    } while(choice!=3);
-    
-    return 0;
+		std::cout << "> ";
+		std::cin >> option;
+
+		switch(option)
+		{
+			case 'C':
+			case 'c':
+			{
+				usrDal.createUser();
+				break;				
+			}
+			case 'R':
+			case 'r':
+			{
+				std::cout << "Enter user's nickname: ";
+				std::string nickname;
+				std::cin >> nickname;
+				auto usr = usrDal.readUser(nickname);
+				if(usr)
+					std::cout << usr.value() << "\n";
+				break;
+			}
+			case 'U':
+			case 'u':
+			{
+				std::cout << "Enter user's nickname: ";
+				std::string nickname;
+				std::cin >> nickname;
+				usrDal.updateUser(nickname);
+				break;
+			}
+			case 'D':
+			case 'd':
+			{
+				std::cout << "Enter user's nickname: ";
+				std::string nickname;
+				std::cin >> nickname;
+				usrDal.deleteUser(nickname);
+				break;
+			}
+			default:
+				break;
+		}
+	} while(option!='q' && option!='Q');
+
+
+	return 0;
 }

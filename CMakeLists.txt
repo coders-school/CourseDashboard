@@ -42,6 +42,8 @@ project(CourseDashboard)
 set(SRC_LIST
     src/UserData.cpp
     src/UserData.hpp
+    src/UserDataAccessLayer.cpp
+    src/UserDataAccessLayer.hpp
     )
 
 include_directories(src)
