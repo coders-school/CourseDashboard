@@ -2,65 +2,41 @@
 #include <iostream>
 #include <string>
 
-Coders::Coders(std::string userName_, std::string discordNickname_, std::string githubLink_,
-    std::string firecodeLink_, std::string group_)
-    :userName(userName_)
-    ,discordNickname(discordNickname_)
-    ,githubLink(githubLink_)
-    ,firecodeLink(firecodeLink_)
-    ,group(group_){}
 
-std::string Coders::toString()
+Coders::Coders(std::string userName_
+             , std::string discordNickname_
+             , std::string githubLink_
+             , std::string firecodeLink_
+             , Group SetGroup_)
+             : userName(userName_)
+             , discordNickname(discordNickname_)
+             , githubLink(githubLink_)
+             , firecodeLink(firecodeLink_)
+             , SetGroup(SetGroup_){}
+void Coders::insertName(std::string tmpName) {userName = tmpName;}
+void Coders::insertDiscordNickname(std::string tmpDiscord) {discordNickname = tmpDiscord;}
+void Coders::insertGithubLink(std::string tmpGit) {githubLink = tmpGit;}
+void Coders::insertFirecodeLink(std::string tmpFire) {firecodeLink = tmpFire;}
+void Coders::insertGroup(Group TmpGroup) {SetGroup = TmpGroup;};
+void Coders::printUserData()
 {
-    std::string resultPrint = "";
-    resultPrint += userName;
-    resultPrint += " "+ discordNickname;
-    resultPrint += " "+ githubLink;
-    resultPrint += " "+ firecodeLink + '\n';
-    resultPrint += " "+ group + '\n';
-    return resultPrint;
+    std::cout << "Name = " << userName << std::endl;
+    std::cout << "Discord nickname = " << discordNickname << std::endl;
+    std::cout << "GitHub link = " << githubLink << std::endl;
+    std::cout << "FireCode link = " << firecodeLink << std::endl;
+    std::cout << "Group = " << SetGroup;
 }
-/*
-void Coders::printName() 
+bool Coders::operator==(const Coders& tmpUser)
 {
-    std::cout << userName;
-}
-
-void Coders::printDiscordNickname() 
-{
-    std::cout << discordNickname;
-}
-void Coders::printGithubLink() 
-{
-    std::cout << githubLink;
-}
-void Coders::printFirecodeLink() 
-{
-    std::cout << firecodeLink; 
-}
-void Coders::printGroup() 
-{
-    std::cout << group;
+    return userName == tmpUser.userName;
 }
 
-void Coders::insertName(std::string tmpName)
+std::ostream& operator<<(std::ostream& screen, const Coders::Group& tmpGroup)
 {
-    userName = tmpName;
+    switch(tmpGroup)
+    {
+        case Coders::Group::weekends: screen << "weekends"; break;
+        case Coders::Group::evenings: screen << "evenings"; break;
+    }
+    return screen;
 }
-void Coders::insertDiscordNickname(std::string tmpDiscord) 
-{
-    discordNickname = tmpDiscord;
-}
-void Coders::insertGithubLink(std::string tmpGit) 
-{
-    githubLink = tmpGit;
-}
-void Coders::insertFirecodeLink(std::string tmpFire) 
-{
-    firecodeLink = tmpFire;
-}
-void Coders::insertGroup(std::string tmpGroup) 
-{
-    group = tmpGroup;
-}
-*/
