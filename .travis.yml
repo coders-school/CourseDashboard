@@ -10,8 +10,8 @@ before_install:
 
 install: 
   # C++17
-  - sudo apt-get install -qq g++-6
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+  - sudo apt-get install -qq g++-9
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 90
 
 os:
   - linux
@@ -19,6 +19,13 @@ os:
 compiler:
   - g++
   - clang
+
+addons:
+         apt:
+                packages:
+                        - g++-9
+
+
 
 script:
   - mkdir build
