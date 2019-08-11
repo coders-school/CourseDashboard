@@ -14,7 +14,6 @@ addons:
 
 
 script:
-  - CXX=/usr/local/bin/g++-9
   - mkdir build
   - cd build
   - cmake ..
