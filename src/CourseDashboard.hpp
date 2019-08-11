@@ -12,6 +12,7 @@ public:
 
 	void addStudent();
 	void showStudents();
+	void removeStudent(int);
 	void login();
 	void run();
 	void panel(Trainer &);

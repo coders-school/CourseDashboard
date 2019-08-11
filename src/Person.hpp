@@ -10,7 +10,7 @@ public:
 
 
 	std::string name;
-//	std::string nick;
+	std::string nick;
 //	std::string GitHubLink;
 //	std::string FirecodeLink;
 //	std::string eMail;
