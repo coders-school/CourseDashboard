@@ -1,0 +1,5 @@
+CD001 : User not Fund.
+CD002 : Search ward is not a Name or an Email.
+CD003 : Group do not exist.
+CD004 : Email already is in the system
+CD005 : Email is incorrect

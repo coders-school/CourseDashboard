@@ -40,6 +40,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(CourseDashboard)
 
 set(SRC_LIST
+    src/models/AccountDAO.cpp
+    src/models/GroupDAO.cpp
+    src/models/ProfileDAO.cpp
+    src/repository/AccountRepositoryImpl.cpp
+    src/repository/ProfileRepositoryImpl.cpp 
+    src/repository/GroupRepositoryImpl.cpp
+    src/CRUDController.cpp
     src/CourseDashboard.cpp
 )
 
@@ -55,6 +62,15 @@ else (UNIX)
 endif (UNIX)
 
 set(TEST_SRC_LIST
+    tests/modelsTests/AccountDAOTests.cpp
+    tests/modelsTests/ProfileDAOTests.cpp
+    tests/modelsTests/GroupDAOTests.cpp
+    tests/repositoryTests/AccountRepositoryTests.cpp
+    tests/repositoryTests/ProfileRepositoryTests.cpp 
+    tests/repositoryTests/GroupRepositoryTests.cpp
+    tests/CRUDValidationTests.cpp
+    tests/CRUDControllerTests.cpp
+
     tests/CourseDashboardTests.cpp
     tests/test_main.cpp
 )
