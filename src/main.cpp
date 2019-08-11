@@ -11,9 +11,9 @@ int main()
     std::vector<std::string> userLine0 = helper.readData("users_data.txt", 0);
     helper.printVs(userLine0);
 
-    User user1("Joanna", "Bednarska", "Joanna", "teojdb");
+    User user1("Joanna", "Bednarska", "Joanna", "teojdb", "firecode");
     user1.printUserdata();
-    user1.changeData("joanna", "bed", "Joanna", "teojdb");
+    user1.changeData("joanna", "bed", "Joanna", "teojdb", "firecode");
     user1.printUserdata();
     user1.deleteUser();
     user1.printUserdata();
