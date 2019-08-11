@@ -34,6 +34,7 @@ endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
 
+set(CMAKE_CXX_COMPILER "/usr/local/bin/g++-9")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -41,6 +42,8 @@ project(CourseDashboard)
 
 set(SRC_LIST
     src/CourseDashboard.cpp
+    src/User.cpp
+    src/main.cpp
 )
 
 include_directories(src)
