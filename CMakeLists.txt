@@ -40,8 +40,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(CourseDashboard)
 
 set(SRC_LIST
-    src/CourseDashboard.cpp
-)
+    src/UserData.cpp
+    src/UserData.hpp
+    )
 
 include_directories(src)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
@@ -55,7 +56,6 @@ else (UNIX)
 endif (UNIX)
 
 set(TEST_SRC_LIST
-    tests/CourseDashboardTests.cpp
     tests/test_main.cpp
 )
 
