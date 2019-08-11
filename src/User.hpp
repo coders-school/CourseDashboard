@@ -20,6 +20,7 @@ public:
     void setGroup(std::string group);
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
+    std::string getNick() const;
 
 private:
 

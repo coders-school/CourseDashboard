@@ -14,7 +14,8 @@ User::User(const std::string & name,
     , firecode_(firecode)
 {}
 
-std::string User::getAllInfo() const{
+std::string User::getAllInfo() const
+{
     std::stringstream ss;
     ss<<std::left;   
     ss<<std::setw(1) << "1." << name_ <<"|";
@@ -22,22 +23,30 @@ std::string User::getAllInfo() const{
     ss<<std::setw(1) << "3." << group_ <<"|";
     ss<<std::setw(1) << "4." << gitHub_ <<"|";
     ss<<std::setw(1) << "5." << firecode_<<"|";
-    ss<<std::endl;
-    std::cout<< ss.str();
     return ss.str();
 }
-void User::setName(std::string name){
+void User::setName(std::string name)
+{
     name_ = name;
 }
-void User::setNick(std::string nick){
+void User::setNick(std::string nick)
+{
     nick_ = nick;
 }
-void User::setGroup(std::string group){
+void User::setGroup(std::string group)
+{
     group_ = group;
 }
-void User::setGitHub(std::string gitHub){
+void User::setGitHub(std::string gitHub)
+{
     gitHub_ = gitHub;
 }
-void User::setFirecode(std::string firecode){
+void User::setFirecode(std::string firecode)
+{
     firecode_ = firecode;
+}
+
+std::string User::getNick() const 
+{
+    return nick_;
 }

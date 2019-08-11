@@ -9,7 +9,7 @@ public:
     CourseDashboard();
     void showAll();
     void createUser(const User & user);
-    void deleteUser(const User & user);
+    void deleteUserByNick(std::string nick);
     void retriveUser(const User & user);
     void updateUser(User & user);
 

@@ -1,6 +1,7 @@
 #include "CourseDashboard.hpp"
 #include <stdexcept>
 #include <iostream>
+#include <algorithm>
 
 CourseDashboard::CourseDashboard() {}
 
@@ -17,9 +18,16 @@ void CourseDashboard::createUser(const User & user)
     users_.emplace_back(user);
 }
 
-void CourseDashboard::deleteUser(const User & user)
-{   
-    users_.erase(users_.begin());
+void CourseDashboard::deleteUserByNick(std::string nick)
+{  
+    auto it = std::find_if(std::begin(users_),std::end(users_),[nick](const auto & user)
+    {
+        return user.getNick()==nick;
+    });
+    if (it != std::end(users_))
+    {
+        users_.erase(it);
+    }
 }
 
 void CourseDashboard::retriveUser(const User & user)
