@@ -13,6 +13,7 @@ public:
 	std::optional<UserData> readUser(const std::string& nick) const;
 	void updateUser(const std::string& nick);
 	void deleteUser(const std::string& nick);
+	void printUserData() const;
 
 private:
 	std::map<std::string, UserData> userNickToData;

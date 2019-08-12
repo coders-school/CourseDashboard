@@ -5,8 +5,7 @@
 #include <cstdlib>
 #include "Group.hpp"
 #include <utility>
-#include <thread>
-#include <chrono>
+#include "CommonUtilities.hpp"
 
 namespace
 {
@@ -21,10 +20,7 @@ std::optional<Group> inputToGroup(int input)
 			return std::optional<Group>{Group::evening};
 		default:
 			std::cout << "Incorrect group";
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::this_thread::sleep_for(std::chrono::seconds(1));
-			std::system("clear");
+			postponedConsoleClear(std::chrono::seconds(1));
 			return std::nullopt;
 	}
 }
@@ -39,7 +35,7 @@ void UserDataAccessLayer::createUser()
 	if(userNickToData.find(nickname) != userNickToData.end())
 	{
 		std::cout << "\n nickname already exists in db! \n";
-		return; //todo implement going back to entering data
+		return;
 	}
 
 	std::cout << "\n enter first name: ";
@@ -60,10 +56,8 @@ void UserDataAccessLayer::createUser()
 	auto group = inputToGroup(groupChoice);
 	if(!group)
 	{
-		//todo handle incorrect group
 		return;
 	}
-
 	std::system("clear");
 	userNickToData.try_emplace(nickname, name, nickname, fcLink, ghLink, *group);
 }
@@ -110,4 +104,19 @@ void UserDataAccessLayer::deleteUser(const std::string& nick)
 	{
 		std::cout << "User with nick: " << nick << " has been removed \n";
 	}
+}
+
+void UserDataAccessLayer::printUserData() const
+{
+	if(userNickToData.empty())
+	{
+		std::cout << "No user data available\n";
+		return;
+	}
+
+	for(const auto& el : userNickToData)
+	{
+		std::cout << el.second << "\n";
+	}
+	postponedConsoleClear(std::chrono::seconds(5));
 }

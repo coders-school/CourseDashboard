@@ -40,6 +40,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(CourseDashboard)
 
 set(SRC_LIST
+    src/CommonUtilities.hpp
     src/UserData.cpp
     src/UserData.hpp
     src/UserDataAccessLayer.cpp
