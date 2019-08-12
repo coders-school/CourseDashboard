@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include "Group.hpp"
 #include <utility>
+#include <thread>
+#include <chrono>
 
 namespace
 {
@@ -21,6 +23,7 @@ std::optional<Group> inputToGroup(int input)
 			std::cout << "Incorrect group";
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::this_thread::sleep_for(std::chrono::seconds(1));
 			std::system("clear");
 			return std::nullopt;
 	}

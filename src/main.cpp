@@ -4,7 +4,6 @@
 #include "Group.hpp"
 #include "UserDataAccessLayer.hpp"
 
-
 int main()
 {
 	char option = '0';
