@@ -7,16 +7,19 @@ AccountDAO::AccountDAO(
     const String& email,
     const ID& profileID,
     const ID& id)
-    : m_ID(id),
+    : m_Email(email),
     m_ProfileID(profileID),
-    m_Email(email)
+    m_ID(id)
 {}
 
 //---------------------------------------------------------------------------------------
 
 String AccountDAO::toString() const {
 
-    return "Email: " + m_Email + "\n";
+    return "ID: " + std::to_string(m_ID) + 
+           "\nProfileID: " + std::to_string(m_ProfileID) +
+           "\nEmail: " + m_Email +
+           "\n";
 }
 
 //---------------------------------------------------------------------------------------

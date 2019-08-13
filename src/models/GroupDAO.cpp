@@ -10,7 +10,9 @@ GroupDAO::GroupDAO(const String groupName, const ID& id)
 //---------------------------------------------------------------------------------------
 
 String GroupDAO::toString() {
-    return "Group: " + m_GroupName + "\n";
+    return "ID: " + std::to_string(m_ID) + 
+           "\nGroup: " + m_GroupName + 
+           "\n";
 }
 
 //---------------------------------------------------------------------------------------

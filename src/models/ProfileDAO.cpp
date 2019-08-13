@@ -23,11 +23,13 @@ ProfileDAO::ProfileDAO(const String& name,
 
 String ProfileDAO::toString() {
 
-    return "Name: " + m_name
-        + "\nDiscord Nick: " + m_DiscordNick
-        + "\nGithub Link: " + m_GitHubLink
-        + "\nFirecode Link: " + m_FirecodeLink
-        + "\n";
+    return "ID: " + std::to_string(m_ID) +
+           "\nGroupID: " + std::to_string(m_GroupID) +
+           "\nName: " + m_name +
+           "\nDiscord Nick: " + m_DiscordNick +
+           "\nGithub Link: " + m_GitHubLink +
+           "\nFirecode Link: " + m_FirecodeLink + 
+           "\n";
 }
 
 //---------------------------------------------------------------------------------------
