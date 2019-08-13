@@ -14,4 +14,8 @@ struct IAccountRepository
 //---------------------------------------------------------------------------------------
 
     virtual AccountDAO getByStudentID(const ID& id) const = 0;
+
+//---------------------------------------------------------------------------------------
+
+    virtual ~IAccountRepository() = default;
 };

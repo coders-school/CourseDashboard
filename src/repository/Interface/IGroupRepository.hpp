@@ -10,4 +10,7 @@ struct IGroupRepository
     virtual std::optional<GroupDAO> getByGroupName(const String& name) const = 0;
 
 //---------------------------------------------------------------------------------------
+
+    virtual ~IGroupRepository() = default;
+
 };

@@ -39,4 +39,3 @@ void GroupRepositoryImpl::insert(const GroupDAO& entity)
 void GroupRepositoryImpl::execute() {
     //TODO:: To be implemented in user story 2
 }
-

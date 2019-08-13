@@ -55,6 +55,3 @@ void AccountRepositoryImpl::insert(const AccountDAO& entity)
 void AccountRepositoryImpl::execute() {
     //TODO:: To be implemented in user story 2
 };
-
-//---------------------------------------------------------------------------------------
-

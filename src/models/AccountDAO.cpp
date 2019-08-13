@@ -54,5 +54,3 @@ void AccountDAO::setProfileID(const ID& studentID) {
 void AccountDAO::setEmail(const String& email) {
     m_Email = email; 
 }
-
-//---------------------------------------------------------------------------------------

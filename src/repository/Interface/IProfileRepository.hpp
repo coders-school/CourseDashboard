@@ -22,6 +22,7 @@ public:
 
     virtual Profiles getByGroup(const ID& group) const = 0;
 
+//---------------------------------------------------------------------------------------
 
-
+    virtual ~IProfileRepository() = default;
 };
