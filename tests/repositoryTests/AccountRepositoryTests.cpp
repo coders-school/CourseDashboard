@@ -130,6 +130,20 @@ TEST(AccountRepositoryTests, canRemoveAccountByID)
 
 //---------------------------------------------------------------------------------------
 
+TEST(AccountRepositoryTests, canNotRemoveAccountTwoTimes)
+{
+    AccountFixture  l_Fx;
+    auto l_Account = l_Fx.getRepository().getByEmail("0king.pp1115@chaonamdinh.com");
+
+    ASSERT_TRUE(l_Account.has_value());
+
+
+    l_Fx.getRepository().remove(l_Account.value().getID());
+    ASSERT_THROW(l_Fx.getRepository().remove(l_Account.value().getID()), NoSuchUserException);
+}
+
+//---------------------------------------------------------------------------------------
+
 TEST(AccountRepositoryTests, canUpdateAccount)
 {
     AccountFixture  l_Fx;
@@ -158,4 +172,19 @@ TEST(AccountRepositoryTests, canInsertAccount)
 
     ASSERT_TRUE(l_Result.has_value());
     ASSERT_TRUE(!l_Result.value().getEmail().compare("ammar@cathead.ru"));
+}
+
+//---------------------------------------------------------------------------------------
+
+TEST(AccountRepositoryTests, canNotInsertAccountTwoTimes)
+{
+    AccountDAO l_Account("ammar@cathead.ru", true);
+    AccountFixture  l_Fx;
+
+    ASSERT_NO_THROW(l_Fx.getRepository().insert(l_Account));
+    auto l_Result = l_Fx.getRepository().getByEmail("ammar@cathead.ru");
+
+    ASSERT_TRUE(l_Result.has_value());
+    ASSERT_TRUE(!l_Result.value().getEmail().compare("ammar@cathead.ru"));
+    ASSERT_THROW(l_Fx.getRepository().insert(l_Account), UniqueEntryException);
 }

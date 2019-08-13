@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "Interface/IRepository.hpp"
+#include "CDExceptions.hpp"
 
 template<class DAO>
 class RepositoryImpl : public IRepository<DAO>
@@ -23,7 +24,7 @@ protected:
 
     template<class TPredicate>
     auto findBy(const TPredicate& predicate) const {
-        return std::find_if(this->m_Context.begin(), this->m_Context.end(), predicate);
+        return std::find_if(m_Context.begin(), m_Context.end(), predicate);
     }
 
 public:
@@ -48,14 +49,14 @@ public:
 //---------------------------------------------------------------------------------------
 
     std::vector<DAO> getAll() const override {
-        return this->m_Context;
+        return m_Context;
     };
 
 //---------------------------------------------------------------------------------------
 
     void remove(const DAO& entity) override
     {
-        this->remove(entity.getID());
+        remove(entity.getID());
     };
 
 //---------------------------------------------------------------------------------------
@@ -63,17 +64,21 @@ public:
     void remove(const ID& id) override
     {
         auto l_Result = findBy(byID(id));
-        this->m_Context.erase(l_Result);
+        if(l_Result == m_Context.end()) {
+            throw NoSuchUserException("User do not exist or has been removed");
+        }
+
+        m_Context.erase(l_Result);
     }
 
 //---------------------------------------------------------------------------------------
 
     void update(const DAO& entity) override
     {
-        auto l_Result = std::find_if(this->m_Context.begin(),
-                                     this->m_Context.end(), 
-                                      byID(entity.getID()));
-        
+        auto l_Result = std::find_if(m_Context.begin(),
+                                     m_Context.end(), 
+                                     byID(entity.getID()));
+
         *l_Result = entity;
 
     }
@@ -81,6 +86,6 @@ public:
 //---------------------------------------------------------------------------------------
 
     std::size_t getLastID() override {
-        return this->m_Context.size();
+        return m_Context.size();
     }
 };

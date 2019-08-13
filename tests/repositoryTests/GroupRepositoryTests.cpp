@@ -35,6 +35,8 @@ TEST(GroupRepositoryTests, canConstructGroupRepository)
     GroupRepositoryImpl l_Repository(l_Context);
 }
 
+//---------------------------------------------------------------------------------------
+
 TEST(GroupRepositoryTests, canGetGroupByID)
 {
     GroupFixture  l_Fx;
@@ -45,6 +47,8 @@ TEST(GroupRepositoryTests, canGetGroupByID)
 
 }
 
+//---------------------------------------------------------------------------------------
+
 TEST(GroupRepositoryTests, canGetGroupByName)
 {
     GroupFixture  l_Fx;
@@ -54,6 +58,8 @@ TEST(GroupRepositoryTests, canGetGroupByName)
     ASSERT_TRUE(l_Result.value().getID() == 2);
 }
 
+//---------------------------------------------------------------------------------------
+
 TEST(GroupRepositoryTests, canGetAllGroups)
 {
     GroupFixture  l_Fx;
@@ -62,6 +68,8 @@ TEST(GroupRepositoryTests, canGetAllGroups)
     ASSERT_TRUE(l_Result.size() > 1);
     ASSERT_TRUE(l_Result[0].getID() == 1);
 }
+
+//---------------------------------------------------------------------------------------
 
 TEST(GroupRepositoryTests, canRemoveGroupByObject)
 {
@@ -76,6 +84,8 @@ TEST(GroupRepositoryTests, canRemoveGroupByObject)
     ASSERT_FALSE(l_Result.has_value());
 }
 
+//---------------------------------------------------------------------------------------
+
 TEST(GroupRepositoryTests, canRemoveGroupByID)
 {
     GroupFixture  l_Fx;
@@ -88,6 +98,21 @@ TEST(GroupRepositoryTests, canRemoveGroupByID)
 
     ASSERT_FALSE(l_Result.has_value());
 }
+
+//---------------------------------------------------------------------------------------
+
+TEST(GroupRepositoryTests, canNotRemoveGroupTwoTimes)
+{
+    GroupFixture  l_Fx;
+    auto l_Result = l_Fx.getRepository().getByGroupName("Evening");
+
+    ASSERT_TRUE(l_Result.has_value());
+    l_Fx.getRepository().remove(l_Result.value().getID());
+
+    ASSERT_THROW(l_Fx.getRepository().remove(l_Result.value().getID()), NoSuchUserException);
+}
+
+//---------------------------------------------------------------------------------------
 
 TEST(GroupRepositoryTests, canUpdateGroup)
 {
@@ -105,6 +130,8 @@ TEST(GroupRepositoryTests, canUpdateGroup)
     ASSERT_TRUE(l_Result2.has_value());
     ASSERT_TRUE(!l_Result2.value().getGroupName().compare("Evening 1"));
 }
+
+//---------------------------------------------------------------------------------------
 
 TEST(GroupRepositoryTests, canAddGroup)
 {

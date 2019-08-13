@@ -149,6 +149,21 @@ TEST(ProfileRepositoryTests, canRemoveProfileByID)
 
 //---------------------------------------------------------------------------------------
 
+TEST(ProfileRepositoryTests, canNotRemoveProfileTwoTimes)
+{
+    ProfileFixture  l_Fx;
+
+    auto l_Profile = l_Fx.getRepository().getByName("Tester1");
+
+    ASSERT_TRUE(l_Profile.has_value());
+
+
+    l_Fx.getRepository().remove(l_Profile.value()[0].getID());
+    ASSERT_THROW(l_Fx.getRepository().remove(l_Profile.value()[0].getID()), NoSuchUserException);
+}
+
+//---------------------------------------------------------------------------------------
+
 TEST(ProfileRepositoryTests, canUpdateProfile)
 {
     ProfileFixture  l_Fx;

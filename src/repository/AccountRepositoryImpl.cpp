@@ -45,6 +45,11 @@ AccountDAO AccountRepositoryImpl::getByStudentID(const ID& id) const
 
 void AccountRepositoryImpl::insert(const AccountDAO& entity)
 {
+    auto l_Result = findBy(byEmail(entity.getEmail()));
+    if(l_Result != m_Context.end()) {
+        throw UniqueEntryException("User with the email " + entity.getEmail() + " is already registered");
+    }
+
     AccountDAO l_AccountDAO(entity);
     l_AccountDAO.setID(m_Context.size() + 1);
     m_Context.push_back(l_AccountDAO);
