@@ -1,28 +1,31 @@
  #include "train.hpp"
  #include <iostream>
  #include <string>
+ #include <iterator>
  
  
- Trainer::Trainer()
+ StudentData::StudentData()
  {
  }
- Trainer::~Trainer()
+ void StudentData::addUser(std::string name, std::string discordName, std::string gitLink, std::string group)
  {
- }
- void Trainer::addUser(std::string name, std::string surname, std::string        discordName)
- {
-     Student temp {name,surname,discordName};
-     trainer.emplace_back(temp);
+     studData.emplace_back(name, discordName, gitLink, group);
  }
  
- void Trainer::viewUsers() const
+ void StudentData::viewUsers()
  {
-     for (const auto &student: trainer)
-         student.viewUser();
+     int i {0};
+     for (const auto &student: studData)
+     {
+         i++;
+         std::cout<<i<<" ";
+         student.view();
+    }
  }
- void Trainer::deleteUser(int userNumber)
+
+ void StudentData::deleteUser(int userNumber)
  {
-     trainer.erase(trainer.begin()+userNumber);
+     studData.erase(studData.begin()+userNumber);
  }
  //void Trainer::editUser(int userNumber,std::string name, std::string surname,  std::string discordName)
  //{

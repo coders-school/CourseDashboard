@@ -1,24 +1,21 @@
  #include "stud.hpp"
  #include <iostream>
+
  
- Student::Student()
-         :Student {"name","",""}{
-         }
- Student::Student(std::string nameVal, std::string surnameVal, std::string       discordNameVal)
-         :name{nameVal},    surname{surnameVal},    discordName{discordNameVal}
-         {
-         }
- Student::Student(const Student &source)
-       :name{source.name},    surname{source.surname},    discordName{source.    discordName}
-         {
-         }
- Student::~Student()
+ Student::Student(std::string nameVal, std::string discordNameVal, std::string gitLinkVal, std::string groupNameVal)
+     :
+     name{nameVal},
+     discordName{discordNameVal},
+     gitLink{gitLinkVal},
+     groupName{groupNameVal}
  {
+
  }
- void Student::viewUser() const
+ void Student::view() const
  {
-     std::cout<<name << ", " << surname << ", " <<discordName <<std::endl;
+     std::cout<<name << ", "<<discordName<<", "<<gitLink<<", "<<groupName<<std::endl;
  }
+
               
 
 

@@ -3,16 +3,21 @@
   #include <iostream>
   #include "CourseDashboard.hpp"
 
+
   int main()
   {
       std::cout << "Course Dashboard" << std::endl;
-      Trainer trainer1;
-      trainer1.addUser("Wiktor","Lasota","Arakis14");
-      trainer1.addUser("Jan","Kowalski","kowal1234");
-      trainer1.addUser("Test","something ","anything");
+      StudentData database;
+      database.addUser("Wiktor","Arakis14","github.com/test1","weekend group");
+      database.addUser("Jan","kowal1234","github.com/test2","evening group");
+      database.addUser("Test","something ","anything","test");
       std::cout<<"=============================="<<std::endl;
-      trainer1.viewUsers();
-      trainer1.deleteUser(0);
-      trainer1.deleteUser(1);
+      database.viewUsers();
+      database.deleteUser(1);
+      std::cout<<"==="<<std::endl;
+      database.viewUsers();
+
+
       return 0;
   } 
+

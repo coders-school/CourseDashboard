@@ -41,19 +41,15 @@ project(CourseDashboard)
 
 set(SRC_LIST
     src/CourseDashboard.cpp
-    src/CourseDashboard.hpp
     src/train.cpp
-    src/train.hpp
     src/stud.cpp
-    src/stud.hpp
     src/main.cpp
-    src/catch.hpp
 )
 
 include_directories(src)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Werror -Wpedantic -Wextra)
+target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Werror -Wpedantic -Wextra -g)
 
 if (UNIX)
     target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
