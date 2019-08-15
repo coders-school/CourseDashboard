@@ -5,14 +5,12 @@
 
 class User
 {
-
 public:
-
     User(const std::string & name,
-            const std::string & nick,
-            const std::string & group,
-            const std::string & gitHub,
-            const std::string & firecode);
+         const std::string & nick,
+         const std::string & group,
+         const std::string & gitHub,
+         const std::string & firecode);
    
     std::string getAllInfo() const;
     void setName(std::string name);

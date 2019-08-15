@@ -20,9 +20,9 @@ void CourseDashboard::createUser(const User & user)
 
 void CourseDashboard::deleteUserByNick(std::string nick)
 {  
-    auto it = std::find_if(std::begin(users_),std::end(users_),[nick](const auto & user)
+    auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
     {
-        return user.getNick()==nick;
+        return user.getNick() == nick;
     });
 
     if (it != std::end(users_))
@@ -33,9 +33,9 @@ void CourseDashboard::deleteUserByNick(std::string nick)
 
 void CourseDashboard::retriveUserByNick(std::string nick)
 {
-    auto it = std::find_if(std::begin(users_),std::end(users_),[nick](const auto & user)
+    auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
     {
-        return user.getNick()==nick;
+        return user.getNick() == nick;
     });
     
     if (it != std::end(users_))
@@ -50,7 +50,7 @@ void CourseDashboard::updateUser(User & user)
     std::cout << user.getAllInfo();
     std::cout << "Which data You want to edit? Give number: " << '\n';
     std::cin >> number;
-    std::string name,nick,group,gitHub,firecode;
+    std::string name, nick, group, gitHub, firecode;
     switch (number) {
     case 1:
         std::cout << "Give new value to data: ";
