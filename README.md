@@ -36,7 +36,7 @@ build/CourseDashboard
 ## User Stories
 
 1. Jako trener chciałbym móc przeglądać, dodawać, usuwać i edytować dane kursantów
-1. Jako trener chcę, aby wszelkie informacje były zapisywane w pliku (tekstowy, binarny, baza danych?) i odczytywane z niego
+1. Jako trener chcę, aby wszelkie informacje były zapisywane w pliku tekstowym i odczytywane z niego
 1. Jako użytkownik chcę móc zalogować się do aplikacji z użyciem adresu e-mail i hasła
 1. Jako użytkownik aplikacji nie chcę, aby moje hasło było gdziekolwiek dostępne i możliwe do odszyfrowania
 1. Jako użytkownik chciałbym, aby plik z danymi do programu był dostępny online i aby aplikacja pobierała z niego dane.
@@ -55,6 +55,7 @@ build/CourseDashboard
 1. Nazwy klas i typów UpperCamelCase (PascalCase). Nazwy zmiennych i funkcji lowerCamelCase.
 1. Nazwy klas i zmiennych muszą zawierać rzeczownik. Nazwy funkcji muszą zawierać czasownik.
 1. Głębokość wcięć to 4 spacje.
+1. Spacje przed i po operatorach arytmetycznych, spacje po przecinku.
 1. Dopuszczamy jednolinijkowe funkcje, jeśli składają się tylko z jednej instrukcji.
 
     ```cpp
