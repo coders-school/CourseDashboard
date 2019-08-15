@@ -1,19 +1,27 @@
-  #include "train.hpp"
+  #include "studbase.hpp"
   #include "stud.hpp"
   #include <iostream>
   #include "CourseDashboard.hpp"
+  #include <fstream>
+  #include <iterator>
 
 
   int main()
   {
+      std::ofstream out_file { "../dataBase.txt",std::ios::app };
+      if (!out_file)
+      {
+          std::cerr << "Error" << std::endl;
+          return 1;
+      }
       std::cout << "Course Dashboard" << std::endl;
       StudentData database;
-      database.addUser("Wiktor","Arakis14","github.com/test1","weekend group");
-      database.addUser("Jan","kowal1234","github.com/test2","evening group");
-      database.addUser("Test","something ","anything","test");
+      Student wiktor {"Wiktor","Arakis14","github.com/test1","weekend group","firecodelink#1"};
+      database.addUser(wiktor);
+//      out_file << wiktor<<std::endl;
       std::cout<<"=============================="<<std::endl;
       database.viewUsers();
-      database.deleteUser(1);
+      database.deleteUser("Wiktor");
       std::cout<<"==="<<std::endl;
       database.viewUsers();
 

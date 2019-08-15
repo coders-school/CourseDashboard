@@ -5,13 +5,13 @@
 
 class StudentData
  {
+    friend std::ostream &operator << (std::ostream &out, const StudentData &c);
  private:
- std::vector<Student>studData;
+    std::vector<Student> studData;
  public:
-     StudentData();
-     void addUser(std::string name, std::string discordName, std::string gitLink, std::string group);
+     void addUser(const Student &student);
      void viewUsers();
-     void deleteUser(int userNumber);
+     void deleteUser(std::string name);
 //     void editUser(int userNumber,std::string name, std::string surname, std::string discordName);
 
  };

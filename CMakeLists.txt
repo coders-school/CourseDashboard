@@ -41,7 +41,7 @@ project(CourseDashboard)
 
 set(SRC_LIST
     src/CourseDashboard.cpp
-    src/train.cpp
+    src/studbase.cpp
     src/stud.cpp
     src/main.cpp
 )
