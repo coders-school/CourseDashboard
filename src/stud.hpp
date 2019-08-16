@@ -22,6 +22,7 @@
              std::string fireCodeVal);
      Student(const Student &source) = default;
      void view() const;
+
      std::string getName()const;
      std::string getDiscordName()const;
      std::string getGitHubLink()const;

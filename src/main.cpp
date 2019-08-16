@@ -19,12 +19,10 @@
       Student wiktor {"Wiktor","Arakis14","github.com/test1","weekend group","firecodelink#1"};
       database.addUser(wiktor);
 //      out_file << wiktor<<std::endl;
-      std::cout<<"=============================="<<std::endl;
       database.viewUsers();
       database.deleteUser("Wiktor");
-      std::cout<<"==="<<std::endl;
       database.addUser(wiktor);
-      std::cout<<wiktor<<std::endl;
+      std::cout << wiktor << std::endl;
 
       return 0;
   } 
