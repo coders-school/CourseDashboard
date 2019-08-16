@@ -32,16 +32,30 @@
         studData.erase(it);
     }
  }
-// std::ostream &operator <<(std::ostream &out, const StudentData &c)
-// {
-//     out<<c.name<<" "<<c.discordName<<" "<<c.gitLink<<" "<<c.groupName<<std::endl;
-//     return out;
-// }
- //void Trainer::editUser(int userNumber,std::string name, std::string surname,  std::string discordName)
- //{
- //    std::string temp {name,surname,discordName};
- //    trainer.swap(temp.begin()+userNumber);
- //}
+ void StudentData::editUser(Student & stud)
+ {
+     std::string nameVal,discordNameVal,gitLinkVal,groupVal,fireCodeVal;
+     std::cout<<"Edit student data: "<<std::endl;
+     std::cout<<"New name: ";
+     std::cin>>nameVal;
+     stud.setName(nameVal);
+     std::cout<<"New discord name: ";
+     std::cin>>discordNameVal;
+     stud.setDiscordName(discordNameVal);
+     std::cout<<"New github link: ";
+     std::cin>>gitLinkVal;
+     stud.setGitLink(gitLinkVal);
+     std::cout<<"New group: ";
+     std::cin>>groupVal;
+     stud.setGroup(groupVal);
+     std::cout<<"New firecode link: ";
+     std::cin>>fireCodeVal;
+     stud.setFireCode(fireCodeVal);
+ }
+ bool StudentData::isNameMissingInData(const Student &student)
+ {
+     return (student.getName() == "");
+ }
 
 
 

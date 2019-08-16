@@ -12,9 +12,10 @@ class StudentData
      void addUser(const Student &student);
      void viewUsers();
      void deleteUser(std::string name);
-//     void editUser(int userNumber,std::string name, std::string surname, std::string discordName);
-
+     void editUser(Student &stud);
+     bool isNameMissingInData(const Student &student);
  };
+
 
 
 

@@ -23,6 +23,16 @@
      Student(const Student &source) = default;
      void view() const;
      std::string getName()const;
+     std::string getDiscordName()const;
+     std::string getGitHubLink()const;
+     std::string getGroupName()const;
+     std::string getFireCode()const;
+
+     void setName(std::string nameVal);
+     void setDiscordName(std::string discordNameVal);
+     void setGitLink(std::string gitLinkVal);
+     void setGroup(std::string groupNameVal);
+     void setFireCode(std::string fireCodeVal);
  };
 
  
