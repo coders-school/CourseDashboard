@@ -6,3 +6,8 @@ TEST(CourseDashboardTests, canConstructCourseDashboard)
 {
     CourseDashboard cd;
 }
+
+TEST(CourseDasboardsTests, canSausageCode)
+{
+    
+}
