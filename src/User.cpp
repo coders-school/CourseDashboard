@@ -25,6 +25,17 @@ std::string User::getAllInfo() const
     ss<<std::endl;
     return ss.str();
 }
+std::string User::getAllInfoToFile() const
+{
+    std::stringstream ss;
+    ss<<std::left;
+    ss<<std::setw(1) << name_ << std::endl;
+    ss<<std::setw(1) << nick_ << std::endl;
+    ss<<std::setw(1) << group_ << std::endl;
+    ss<<std::setw(1) << gitHub_ << std::endl;
+    ss<<std::setw(1) << firecode_ << std::endl;
+    return ss.str();
+}
 void User::setName(std::string name)
 {
     name_ = name;

@@ -13,6 +13,7 @@ public:
          const std::string & firecode);
    
     std::string getAllInfo() const;
+    std::string getAllInfoToFile() const;
     void setName(std::string name);
     void setNick(std::string nick);
     void setGroup(std::string group);

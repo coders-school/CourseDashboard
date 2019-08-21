@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 
 CourseDashboard::CourseDashboard() {}
 
@@ -81,4 +82,11 @@ void CourseDashboard::updateUser(User & user)
         std::cout << "You gave wrong value.";
         break;
     }
+}
+void CourseDashboard::saveToFile(User & user)
+{
+    std::fstream plik;
+    plik.open("../src/UsersList.txt",std::ios::app);
+    plik << user.getAllInfoToFile() << std::endl;
+    plik.close();
 }
