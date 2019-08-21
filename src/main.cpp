@@ -10,8 +10,6 @@ int main()
     cdb.createUser(u1);
     cdb.retriveUserByNick("SzymonGajewski");
     cdb.showAll();
-    cdb.deleteUserByNick("SzymonGajewski");
-    std::cout<<"after delete: "<<std::endl;
-    cdb.showAll();
+    cdb.saveToFile();
     return 0;
 }
