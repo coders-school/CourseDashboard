@@ -3,6 +3,8 @@
 #include <iostream>
 #include <algorithm>
 #include <fstream>
+#include <string>
+
 
 CourseDashboard::CourseDashboard() {}
 
@@ -102,3 +104,61 @@ void CourseDashboard::saveToFile()
     file_DB.close();
 }
 
+void CourseDashboard::loadUserFromFile()
+{
+    std::fstream userBase;
+    userBase.open("userBase.txt", std::ios::in);
+     
+    if(userBase.good()==false)
+    {
+        std::cout<<"No file userBase.txt found."<<std::endl;
+    }
+    
+    std::string line;
+    std::vector<std::string> userData{};
+    while (getline(userBase, line))
+    {
+        userData.push_back(line);
+        if(userData.size() == 5)
+        {
+            User newUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
+            createUser(newUser);
+            userData.clear();
+        } 
+    }
+    userBase.close();
+}
+
+void CourseDashboard::writeUserToFile()
+{
+    std::vector<std::string> userData(5);
+    std::string name, nick, group, gitHub,firecode;
+    std::cout<<"Writing user to file:"<<std::endl;
+    std::cout<<"- User name: ";
+    std::cin>>userData[0];
+    std::cout<<"- User nick: ";
+    std::cin>>userData[1];
+    std::cout<<"- Group: ";
+    std::cin>>userData[2];
+    std::cout<<"GitHub: ";
+    std::cin>>userData[3];
+    std::cout<<"Firecode: ";
+    std::cin>>userData[4];
+
+    User newUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
+    createUser(newUser);
+
+    std::fstream userBase;
+    userBase.open("userBase.txt", std::ios::out|std::ios::app);
+    for(auto element : userData)
+        userBase << element <<std::endl;
+    userBase.close();
+}
+
+void CourseDashboard::writeUserToFile(const User & user)
+{
+    std::fstream userBase;
+    userBase.open("userBase.txt", std::ios::out|std::ios::app);
+    userBase << user.getAllInfo() <<std::endl;
+    userBase.close();
+}
