@@ -10,7 +10,9 @@ public:
          const std::string & nick,
          const std::string & group,
          const std::string & gitHub,
-         const std::string & firecode);
+         const std::string & firecode,
+         const std::string & email,
+         const std::string & password);
    
     std::string getAllInfo() const;
     void setName(std::string name);
@@ -19,6 +21,8 @@ public:
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
     std::string getNick() const;
+    std::string getEmail() const;
+    std::string getPassword() const;
 
 private:
 
@@ -26,6 +30,8 @@ private:
     std::string nick_;
     std::string group_;
     std::string gitHub_;
-    std::string firecode_;  
+    std::string firecode_;
+    std::string email_;
+    std::string password_;
 
 };
