@@ -85,8 +85,13 @@ void CourseDashboard::updateUser(User & user)
 }
 void CourseDashboard::saveToFile(User & user)
 {
-    std::fstream plik;
-    plik.open("../src/UsersList.txt",std::ios::app);
-    plik << user.getAllInfoToFile() << std::endl;
-    plik.close();
+    std::fstream file;
+    try {
+    file.open("../src/UsersList.txt",std::ios::app);
+    file << user.getAllInfoToFile() << std::endl;
+    file.close();
+    }
+    catch (std::ifstream::failure e) {
+        std::cerr << "Error while opening file: " << e.what() << std::endl;
+    }
 }
