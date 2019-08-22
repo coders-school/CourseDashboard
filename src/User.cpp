@@ -56,6 +56,10 @@ std::string User::getNick() const
     return nick_;
 }
 
+const std::string& User::getName() const
+{
+    return name_;
+}
 std::string User::getEmail() const
 {
     return email_;

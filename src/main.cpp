@@ -10,12 +10,5 @@ int main()
 {
     UserContainer uc;
     std::cout << "Course Dashboard" << std::endl;
-    User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "szymon@mail.com", "lubieplacki");
-    uc.createUser(u1);
-    uc.retriveUserByNick("SzymonGajewski");
-    uc.showAll();
-    uc.deleteUserByNick("SzymonGajewski");
-    std::cout<<"after delete: "<<std::endl;
-    uc.showAll();
     return 0;
 }

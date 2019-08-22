@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include <sstream>
 #include <iomanip>
@@ -6,6 +7,8 @@
 class User
 {
 public:
+    User() = default;
+    
     User(const std::string & name,
          const std::string & nick,
          const std::string & group,
@@ -20,9 +23,14 @@ public:
     void setGroup(std::string group);
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
+    
     std::string getNick() const;
     std::string getEmail() const;
     std::string getPassword() const;
+
+    const std::string& getName() const;
+
+    User& operator=(const User& user) = default;
 
 private:
 
