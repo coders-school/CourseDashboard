@@ -7,10 +7,24 @@ struct UserContainerTests : public ::testing::Test
 {
     UserContainerTests()
     {
-        userContainer_.createUser(User("Kamil", "Kamil.Waszkiewicz", "wieczorowa", "Kamil.Waszkiewicz", "Kamil.Waszkiewicz"));
+        userContainer_.createUser(User("Kamil", 
+                                       "Kamil.Waszkiewicz", 
+                                       "wieczorowa", 
+                                       "Kamil.Waszkiewicz.gitHub", 
+                                       "Kamil.Waszkiewicz.Firecode", 
+                                       "Kamil.Waszkiewicz.Email", 
+                                       "Kamil.Waszkiewicz.Password"));
+        testUser_ = User("Szymon", 
+                         "SzymonGajewski", 
+                         "wieczorowa", 
+                         "SzymonGajewski", 
+                         "SzymonGajewski", 
+                         "SzymonGajewski", 
+                         "SzymonGajewski");
     }
 
     UserContainer userContainer_;
+    User testUser_;
 };
 
 TEST_F(UserContainerTests, canConstructUserContainer)
@@ -20,8 +34,7 @@ TEST_F(UserContainerTests, canConstructUserContainer)
 
 TEST_F(UserContainerTests, canAddUserToUserContainer)
 {
-    User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
-    userContainer_.createUser(u1);
+    userContainer_.createUser(testUser_);
     
     auto result = userContainer_.retriveUserByNick("SzymonGajewski");
     ASSERT_TRUE(result.has_value());
@@ -37,8 +50,7 @@ TEST_F(UserContainerTests, canViewAllUsers)
 
 TEST_F(UserContainerTests, canDeleteAUser)
 {    
-    User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
-    userContainer_.createUser(u1);
+    userContainer_.createUser(testUser_);
 
     auto result = userContainer_.retriveUserByNick("SzymonGajewski");
     ASSERT_TRUE(result.has_value());

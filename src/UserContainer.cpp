@@ -43,7 +43,7 @@ std::optional<User> UserContainer::retriveUserByNick(std::string nick)
     {
         return std::optional<User>(*it);
     }
-    return std::optional<User>();
+    return std::optional<User>(std::nullopt);
 }
 
 void UserContainer::updateUser(User & user)

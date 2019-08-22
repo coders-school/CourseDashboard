@@ -7,11 +7,15 @@
 class User
 {
 public:
+    User() = default;
+    
     User(const std::string & name,
          const std::string & nick,
          const std::string & group,
          const std::string & gitHub,
-         const std::string & firecode);
+         const std::string & firecode,
+         const std::string & email,
+         const std::string & password);
    
     std::string getAllInfo() const;
     void setName(std::string name);
@@ -21,6 +25,8 @@ public:
     void setFirecode(std::string firecode);
     
     std::string getNick() const;
+    std::string getEmail() const;
+    std::string getPassword() const;
 
     const std::string& getName() const;
 
@@ -32,6 +38,8 @@ private:
     std::string nick_;
     std::string group_;
     std::string gitHub_;
-    std::string firecode_;  
+    std::string firecode_;
+    std::string email_;
+    std::string password_;
 
 };
