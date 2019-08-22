@@ -40,6 +40,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(CourseDashboard)
 
 set(SRC_LIST
+    src/AuthenticationProvider.cpp
     src/UserContainer.cpp
     src/CourseDashboard.cpp
     src/User.cpp
@@ -58,6 +59,7 @@ endif (UNIX)
 
 set(TEST_SRC_LIST
     tests/CourseDashboardTests.cpp
+    tests/AuthenticationProviderTest.cpp
     tests/test_main.cpp
 )
 
