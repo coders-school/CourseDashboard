@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
+#include <fstream>
+#include <string>
 
 CourseDashboard::CourseDashboard() {}
 
@@ -80,5 +82,31 @@ void CourseDashboard::updateUser(User & user)
     default:
         std::cout << "You gave wrong value.";
         break;
+    }
+}
+    
+void CourseDashboard::saveInFile()
+{
+    std::ofstream dataFile("dataFile.txt", std::ofstream::out | std::ofstream::trunc);
+    if (dataFile.is_open())
+    {
+        for (auto & user : users_)
+        {
+            dataFile << user.getAllInfo();
+        }
+    }
+}
+
+void CourseDashboard::readFromFile()
+{
+    std::ifstream dataFile("dataFile.txt");
+    if (dataFile.is_open())
+    {
+        std::string line;
+        while (!dataFile.eof())
+        {
+            std::getline(dataFile,line);
+            std::cout << line << std::endl;
+        }
     }
 }
