@@ -48,7 +48,7 @@ TEST_F(UserContainerTests, canViewAllUsers)
     ASSERT_TRUE(result.str().find("Kamil.Waszkiewicz") != std::string::npos);
 }
 
-TEST_F(UserContainerTests, canDeleteAUser)
+TEST_F(UserContainerTests, canDeleteAUserInDatabase)
 {    
     userContainer_.createUser(testUser_);
 
@@ -58,6 +58,12 @@ TEST_F(UserContainerTests, canDeleteAUser)
 
     userContainer_.deleteUserByNick("SzymonGajewski");
     result = userContainer_.retriveUserByNick("SzymonGajewski");
+    ASSERT_FALSE(result.has_value());
+}
+
+TEST_F(UserContainerTests, cantDeleteAUserNotInDatabase)
+{    
+    auto result = userContainer_.retriveUserByNick("SzymonGajewski");
     ASSERT_FALSE(result.has_value());
 }
 
