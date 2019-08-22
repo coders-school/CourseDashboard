@@ -55,3 +55,7 @@ bool operator==(const User &lhs, const User &rhs)
             lhs.firecode_ == rhs.firecode_);
 }
 
+std::string User::getPassword() const
+{
+    return password_;
+}
