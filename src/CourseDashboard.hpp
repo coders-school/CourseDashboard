@@ -13,6 +13,7 @@ public:
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
     void saveToFile();
+    void loadFromFile();
     void loadUserFromFile();
     void writeUserToFile();
     void writeUserToFile(const User & user);

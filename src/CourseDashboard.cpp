@@ -104,6 +104,31 @@ void CourseDashboard::saveToFile()
     file_DB.close();
 }
 
+void CourseDashboard::loadFromFile()
+{
+    std::fstream file_DB("userBase.txt", file_DB.in);
+    if(!file_DB.is_open())
+    {
+        std::cout<<"No file userBase.txt found."<<std::endl;
+    }
+     else
+    {    
+        std::string line;
+        std::vector<std::string> userData{};
+        while (getline(file_DB, line))
+        {
+            userData.push_back(line);
+            if(userData.size() == 5)
+            {
+                User newUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
+                createUser(newUser);
+                userData.clear();
+            } 
+        }
+    }
+    file_DB.close();
+}
+
 void CourseDashboard::loadUserFromFile()
 {
     std::fstream userBase;
