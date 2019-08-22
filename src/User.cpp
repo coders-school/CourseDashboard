@@ -50,3 +50,8 @@ std::string User::getNick() const
 {
     return nick_;
 }
+
+const std::string& User::getName() const
+{
+    return name_;
+}
