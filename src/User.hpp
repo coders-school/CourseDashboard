@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include <sstream>
 #include <iomanip>
@@ -18,7 +19,12 @@ public:
     void setGroup(std::string group);
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
+    
     std::string getNick() const;
+
+    const std::string& getName() const;
+
+    User& operator=(const User& user) = default;
 
 private:
 
