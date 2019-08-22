@@ -83,6 +83,7 @@ void CourseDashboard::updateUser(User & user)
         break;
     }
 }
+
 void CourseDashboard::saveToFile(User & user)
 {
     std::fstream file;
@@ -92,6 +93,45 @@ void CourseDashboard::saveToFile(User & user)
     file.close();
     }
     catch (std::ifstream::failure e) {
+        std::cerr << "Error while opening file: " << e.what() << std::endl;
+    }
+}
+
+void CourseDashboard::loadFromFile()
+{
+    std::ifstream file("../src/UsersList.txt");
+
+    try
+    {
+        int count = 0;
+        std::string name, nick, group, gitHub, firecode, line;
+        while (std::getline(file, line))
+        {
+            switch(count%6)
+            {
+                case 0:
+                    name = line;
+                    break;
+                case 1:
+                    nick = line;
+                    break;
+                case 2:
+                    group = line;
+                    break;
+                case 3:
+                    gitHub = line;
+                    break;
+                case 4:
+                    firecode = line;
+                    User u(name, nick, group, gitHub, firecode);
+                    createUser(u);
+                    break;
+            }
+            count++;
+        }
+    }
+    catch (std::ifstream::failure e)
+    {
         std::cerr << "Error while opening file: " << e.what() << std::endl;
     }
 }
