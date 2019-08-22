@@ -8,13 +8,11 @@ User::User(const std::string &name,
            const std::string &gitHub,
            const std::string &firecode)
     : name_(name), nick_(nick), group_(group), gitHub_(gitHub), firecode_(firecode)
-{
-}
+{}
 
 User::User(nlohmann::json userJson)
     : name_(userJson["name"].get<std::string>()), nick_(userJson["nick"].get<std::string>()), group_(userJson["group"].get<Group>()), gitHub_(userJson["gitHub"].get<std::string>()), firecode_(userJson["firecod"].get<std::string>())
-{
-}
+{}
 
 std::string User::toString() const
 {
@@ -56,3 +54,4 @@ bool operator==(const User &lhs, const User &rhs)
             lhs.gitHub_ == rhs.gitHub_ &&
             lhs.firecode_ == rhs.firecode_);
 }
+
