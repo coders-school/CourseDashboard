@@ -19,6 +19,7 @@ public:
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
     std::string getNick() const;
+    std::string getName() const;
 
 private:
 

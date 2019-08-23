@@ -110,3 +110,56 @@ void CourseDashboard::readFromFile()
         }
     }
 }
+
+
+void CourseDashboard::login()
+{
+    bool test=false;
+    do
+    {
+
+    
+        std::system("clear");
+        std::cout << "---------------------------------------------------------------" << std::endl;
+        std::cout << "-------------------------Course Dashboard----------------------" << std::endl;
+        std::cout << "---------------------------------------------------------------" << std::endl;
+        std::string name;
+        std::string nick;
+        
+    
+        
+            std::cout<<"Your Name"<<std::endl;
+            std::cin>>name;
+            std::cout<<std::endl<<"Your Password"<<std::endl;
+            std::cin>>nick;
+            std::system("clear");
+                std::vector <User> ::iterator it = std::find_if (
+                users_.begin(),
+                users_.end(),
+                [ &name,&nick,&test](const User & users_)
+                {
+                    if( users_.getName() == name &&  users_.getNick() == nick )
+                    {
+
+                        test=true;
+                        return true;
+                    }
+                    else 
+                    {
+                                   
+                        return false;
+                    };
+                });
+            if(test==true)
+            {
+                std::cout<<"Logged : ";
+                std::cout<<it->getName();
+                std::cout<<std::endl<<"Do, what you want to do"<<std::endl;
+                
+            }else
+            {
+                std::cout<<"Login or Password is incorect"<<std::endl<<"Try again";
+            }
+          
+    }while(test!=true);            
+}
