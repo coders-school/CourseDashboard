@@ -122,21 +122,21 @@ void CourseDashboard::login()
     
         
         std::string passw;
-        std::string nic;
+        std::string email;
         
     
         
-            std::cout<<"Your Name"<<std::endl;
-            std::cin>>nic;
+            std::cout<<"Your Email"<<std::endl;
+            std::cin>>email;
             std::cout<<std::endl<<"Your Password"<<std::endl;
             std::cin>>passw;
             std::system("clear");
                 std::vector <User> ::iterator it = std::find_if (
                 users_.begin(),
                 users_.end(),
-                [ &nic,&passw,&test](const User & users_)
+                [ &email,&passw,&test](const User & users_)
                 {
-                    if( users_.getNick() == nic &&  users_.getPassword() == passw )
+                    if( users_.getMail() == email &&  users_.getPassword() == passw )
                     {
 
                         test=true;
@@ -150,7 +150,7 @@ void CourseDashboard::login()
             if(test==true)
             {
                 std::cout<<"Logged : ";
-                std::cout<<it->getNick();
+                std::cout<<it->getAllInfo();
                 std::cout<<std::endl<<"Do, what you want to do"<<std::endl;
                 
             }else

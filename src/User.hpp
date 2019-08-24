@@ -25,6 +25,7 @@ public:
 
 
     std::string getNick() const;
+    std::string getMail() const;
     std::string getPassword() const;
 
 private:

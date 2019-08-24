@@ -69,3 +69,7 @@ std::string User::getPassword()  const
 {
     return password_;
 }
+std::string User::getMail()  const
+{
+    return mail_;
+}
