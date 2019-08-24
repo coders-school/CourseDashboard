@@ -114,51 +114,48 @@ void CourseDashboard::readFromFile()
 
 void CourseDashboard::login()
 {
+    std::system("clear");
     bool test=false;
     do
     {
 
     
-        std::system("clear");
-        std::cout << "---------------------------------------------------------------" << std::endl;
-        std::cout << "-------------------------Course Dashboard----------------------" << std::endl;
-        std::cout << "---------------------------------------------------------------" << std::endl;
-        std::string name;
-        std::string nick;
+        
+        std::string passw;
+        std::string nic;
         
     
         
             std::cout<<"Your Name"<<std::endl;
-            std::cin>>name;
+            std::cin>>nic;
             std::cout<<std::endl<<"Your Password"<<std::endl;
-            std::cin>>nick;
+            std::cin>>passw;
             std::system("clear");
                 std::vector <User> ::iterator it = std::find_if (
                 users_.begin(),
                 users_.end(),
-                [ &name,&nick,&test](const User & users_)
+                [ &nic,&passw,&test](const User & users_)
                 {
-                    if( users_.getName() == name &&  users_.getNick() == nick )
+                    if( users_.getNick() == nic &&  users_.getPassword() == passw )
                     {
 
                         test=true;
                         return true;
                     }
                     else 
-                    {
-                                   
+                    {          
                         return false;
                     };
                 });
             if(test==true)
             {
                 std::cout<<"Logged : ";
-                std::cout<<it->getName();
+                std::cout<<it->getNick();
                 std::cout<<std::endl<<"Do, what you want to do"<<std::endl;
                 
             }else
             {
-                std::cout<<"Login or Password is incorect"<<std::endl<<"Try again";
+                std::cout<<"Login or Password is incorect"<<std::endl<<"Try again"<<std::endl;
             }
           
     }while(test!=true);            

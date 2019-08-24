@@ -8,6 +8,8 @@ class User
 public:
     User(const std::string & name,
          const std::string & nick,
+         const std::string & password,
+         const std::string & mail,
          const std::string & group,
          const std::string & gitHub,
          const std::string & firecode);
@@ -15,11 +17,15 @@ public:
     std::string getAllInfo() const;
     void setName(std::string name);
     void setNick(std::string nick);
+    void setPassword(std::string password);
+    void setMail(std::string mail);
     void setGroup(std::string group);
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
+
+
     std::string getNick() const;
-    std::string getName() const;
+    std::string getPassword() const;
 
 private:
 
@@ -28,5 +34,7 @@ private:
     std::string group_;
     std::string gitHub_;
     std::string firecode_;  
+    std::string password_;
+    std::string mail_;
 
 };
