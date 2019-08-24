@@ -5,6 +5,8 @@
 
 class User
 {
+    friend std::ostream &operator << (std::ostream &out, const User &c);
+
 public:
     User(const std::string & name,
          const std::string & nick,
@@ -19,6 +21,8 @@ public:
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
     std::string getNick() const;
+
+
 
 private:
 

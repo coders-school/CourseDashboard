@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 
 CourseDashboard::CourseDashboard() {}
 
@@ -82,3 +83,36 @@ void CourseDashboard::updateUser(User & user)
         break;
     }
 }
+bool CourseDashboard::savingToFile(User & user)
+{
+    std::ofstream out_file{ "../ParticipantsDetails.txt", std::ios::app };
+    if (!out_file)
+    {
+        std::cerr << "Error" << std::endl;
+        return 1;
+    }
+        out_file << user;
+        out_file.close();
+}
+bool CourseDashboard::readingFromFile()
+{
+    std::ifstream in_file{"../ParticipantsDetails.txt"};
+    if (!in_file)
+    {
+       std::cerr << "Error" << std::endl;
+       return 1;
+    }
+    std::string text{};
+    std::cout << "Reading from file ..." << std::endl;
+    while (std::getline(in_file,text))
+    {
+        std::cout << text << std::endl;
+    }
+    std::cout << "=====================" << std::endl;
+    in_file.close();
+}
+//std::ostream operator << (std::ostream &out, const CourseDashboard &rhs)
+//{
+
+//}
+

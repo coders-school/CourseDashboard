@@ -50,3 +50,9 @@ std::string User::getNick() const
 {
     return nick_;
 }
+std::ostream &operator << (std::ostream &out, const User &c)
+ {
+     out << c.name_ << " " << c.nick_ << " " << c.group_ << " "  << c.gitHub_ << " " << c.firecode_ << std::endl;
+     return out;
+ }
+
