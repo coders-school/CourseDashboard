@@ -44,6 +44,7 @@ set(SRC_LIST
     src/UserContainer.cpp
     src/CourseDashboard.cpp
     src/User.cpp
+    src/UserIOHandler.cpp
 )
 
 include_directories(src)
