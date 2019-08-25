@@ -4,7 +4,7 @@
 #include <string>
 
 
-TEST(AuthenticationProviderTest, canAuthenticate)
+TEST(AuthenticationProviderTests, canAuthenticate)
 {
     User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
@@ -15,7 +15,7 @@ TEST(AuthenticationProviderTest, canAuthenticate)
     EXPECT_EQ(authenticator(user, email, password), true);
 }
 
-TEST(AuthenticationProviderTest, canAuthenticateEmailCaseInsensitivity)
+TEST(AuthenticationProviderTests, canAuthenticateEmailCaseInsensitivity)
 {
     User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
@@ -26,7 +26,7 @@ TEST(AuthenticationProviderTest, canAuthenticateEmailCaseInsensitivity)
     EXPECT_EQ(authenticator(user, email, password), true);
 }
 
-TEST(AuthenticationProviderTest, canNotAuthenticateWrongPassword)
+TEST(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
 {
     User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
@@ -37,7 +37,7 @@ TEST(AuthenticationProviderTest, canNotAuthenticateWrongPassword)
     EXPECT_EQ(authenticator(user, email, password), false);
 }
 
-TEST(AuthenticationProviderTest, canNotAuthenticateEmptyPassword)
+TEST(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
 {
     User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "");
     AuthenticationProvider authenticator;
@@ -48,7 +48,7 @@ TEST(AuthenticationProviderTest, canNotAuthenticateEmptyPassword)
     EXPECT_EQ(authenticator(user, email, password), true);
 }
 
-TEST(AuthenticationProviderTest, canNotAuthenticateWrongEmail)
+TEST(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
 {
     User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
@@ -59,7 +59,7 @@ TEST(AuthenticationProviderTest, canNotAuthenticateWrongEmail)
     EXPECT_EQ(authenticator(user, email, password), false);
 }
 
-TEST(AuthenticationProviderTest, canNotAuthenticateEmptyEmail)
+TEST(AuthenticationProviderTests, canNotAuthenticateEmptyEmail)
 {
     User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "", "lubieplacki");
     AuthenticationProvider authenticator;
