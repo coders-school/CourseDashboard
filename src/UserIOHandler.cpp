@@ -24,7 +24,6 @@ void UserIOHandler::write(const std::string& filePath, const std::string& strBuf
     try
     {
         file->open(filePath, std::fstream::out);
-        file->write(strBuff.c_str(), strBuff.size());
     }
 
     catch(std::ios_base::failure& e)
