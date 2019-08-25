@@ -60,11 +60,14 @@ void User::setMail(std::string mail)
     mail_=mail;
 }
 
+std::string User::getName() const
+{
+    return name_;
+}
 std::string User::getNick()  const
 {
     return nick_;
 }
-
 std::string User::getPassword()  const
 {
     return password_;
@@ -72,4 +75,16 @@ std::string User::getPassword()  const
 std::string User::getMail()  const
 {
     return mail_;
+}
+std::string User::getGroup()  const
+{
+    return group_;
+}
+std::string User::getGitHub()  const
+{
+    return gitHub_;
+}
+std::string User::getFirecode()  const
+{
+    return firecode_;
 }
