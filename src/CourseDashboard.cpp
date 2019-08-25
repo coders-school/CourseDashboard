@@ -106,7 +106,7 @@ void CourseDashboard::saveToFile()
 
 void CourseDashboard::loadFromFile()
 {
-    std::fstream file_DB("userBase.txt", file_DB.in);
+    std::fstream file_DB("baza danych.txt", file_DB.in);
     if(!file_DB.is_open())
     {
         std::cout<<"No file userBase.txt found."<<std::endl;
@@ -114,76 +114,28 @@ void CourseDashboard::loadFromFile()
     else
     {    
         std::string line;
-        std::vector<std::string> userData{};
+        std::vector<std::string> usersData{};
+	    std::vector<std::string> user{};
         while (getline(file_DB, line))
         {
-            userData.push_back(line);
-            if(userData.size() == 5)
-            {
-                User newUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
-                createUser(newUser);
-                userData.clear();
-            } 
+            usersData.push_back(line);
         }
+        for(auto element : usersData)
+        {
+            element.erase(0,2);
+            for(int i=0; i<4; i++)
+            {
+                size_t length = element.find("|");
+                user.push_back(element.substr(0,length));
+                element.erase(0,(length+3));
+            }
+            size_t length = element.find("|");
+            user.push_back(element.substr(0,length));
+
+            User newUser(user[0], user[1], user[2], user[3], user[4]);
+            createUser(newUser);
+            user.clear();
+        }	
     }
     file_DB.close();
-}
-
-void CourseDashboard::loadUserFromFile()
-{
-    std::fstream userBase;
-    userBase.open("userBase.txt", std::ios::in);
-     
-    if(!userBase.good())
-    {
-        std::cout<<"No file userBase.txt found."<<std::endl;
-    }
-    
-    std::string line;
-    std::vector<std::string> userData{};
-    while (getline(userBase, line))
-    {
-        userData.push_back(line);
-        if(userData.size() == 5)
-        {
-            User newUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
-            createUser(newUser);
-            userData.clear();
-        } 
-    }
-    userBase.close();
-}
-
-void CourseDashboard::writeUserToFile()
-{
-    std::vector<std::string> userData(5);
-    std::string name, nick, group, gitHub,firecode;
-    std::cout<<"Writing user to file:"<<std::endl;
-    std::cout<<"- User name: ";
-    std::cin>>userData[0];
-    std::cout<<"- User nick: ";
-    std::cin>>userData[1];
-    std::cout<<"- Group: ";
-    std::cin>>userData[2];
-    std::cout<<"GitHub: ";
-    std::cin>>userData[3];
-    std::cout<<"Firecode: ";
-    std::cin>>userData[4];
-
-    User newUser(userData[0], userData[1], userData[2], userData[3], userData[4]);
-    createUser(newUser);
-
-    std::fstream userBase;
-    userBase.open("userBase.txt", std::ios::out|std::ios::app);
-    for(const auto& element : userData)
-        userBase << element <<std::endl;
-    userBase.close();
-}
-
-void CourseDashboard::writeUserToFile(const User & user)
-{
-    std::fstream userBase;
-    userBase.open("userBase.txt", std::ios::out|std::ios::app);
-    userBase << user.getAllInfo() <<std::endl;
-    userBase.close();
 }

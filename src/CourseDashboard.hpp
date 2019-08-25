@@ -14,11 +14,6 @@ public:
     void updateUser(User & user);
     void saveToFile();
     void loadFromFile();
-    void loadUserFromFile();
-    void writeUserToFile();
-    void writeUserToFile(const User & user);
-
-
 private:
     std::vector<User> users_;
 
