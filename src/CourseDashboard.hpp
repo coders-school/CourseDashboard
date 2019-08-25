@@ -9,8 +9,8 @@ public:
     CourseDashboard();
     void showAll();
     void createUser(const User & user);
-    void deleteUserByNick(std::string nick);
-    void retriveUserByNick(std::string nick);
+    void deleteUserByNick(const std::string& nick);
+    void retriveUserByNick(const std::string& nick);
     void updateUser(User & user);
     void saveToFile();
     void loadFromFile();

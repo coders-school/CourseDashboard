@@ -21,7 +21,7 @@ void CourseDashboard::createUser(const User & user)
     users_.emplace_back(user);
 }
 
-void CourseDashboard::deleteUserByNick(std::string nick)
+void CourseDashboard::deleteUserByNick(const std::string& nick)
 {  
     auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
     {
@@ -34,7 +34,7 @@ void CourseDashboard::deleteUserByNick(std::string nick)
     }
 }
 
-void CourseDashboard::retriveUserByNick(std::string nick)
+void CourseDashboard::retriveUserByNick(const std::string& nick)
 {
     auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
     {
@@ -111,7 +111,7 @@ void CourseDashboard::loadFromFile()
     {
         std::cout<<"No file userBase.txt found."<<std::endl;
     }
-     else
+    else
     {    
         std::string line;
         std::vector<std::string> userData{};
@@ -134,7 +134,7 @@ void CourseDashboard::loadUserFromFile()
     std::fstream userBase;
     userBase.open("userBase.txt", std::ios::in);
      
-    if(userBase.good()==false)
+    if(!userBase.good())
     {
         std::cout<<"No file userBase.txt found."<<std::endl;
     }
@@ -175,7 +175,7 @@ void CourseDashboard::writeUserToFile()
 
     std::fstream userBase;
     userBase.open("userBase.txt", std::ios::out|std::ios::app);
-    for(auto element : userData)
+    for(const auto& element : userData)
         userBase << element <<std::endl;
     userBase.close();
 }
