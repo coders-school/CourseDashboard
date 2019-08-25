@@ -6,6 +6,8 @@
 class User
 {
 public:
+    User() = default;
+
     User(const std::string & name,
          const std::string & nick,
          const std::string & group,

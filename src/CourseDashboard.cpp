@@ -6,7 +6,7 @@
 #include <string>
 
 
-CourseDashboard::CourseDashboard() {}
+CourseDashboard::CourseDashboard() = default;
 
 void CourseDashboard::showAll()
 {
