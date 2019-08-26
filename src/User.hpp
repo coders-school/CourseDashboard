@@ -25,7 +25,7 @@ public:
     std::string getNick() const;
 
 private:
-
+    
     std::string name_;
     std::string nick_;
     std::string group_;
