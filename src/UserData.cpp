@@ -47,14 +47,19 @@ void UserData::retriveUserByNick(std::string nick)
     }
 }
 
-void UserData::updateUser(User & user)
+void UserData::updateUser(User & user, 
+                        std::string name, 
+                        std::string nick,
+                        std::string group, 
+                        std::string gitHub, 
+                        std::string firecode)
 {
     std::cout << user.getAllInfo();
-    std::string name, nick, group, gitHub, firecode;
     user.setName(name);
     user.setNick(nick);
     user.setGroup(group);
     user.setGitHub(gitHub);
     user.setFirecode(firecode);
+    std::cout << "After update : " << std::endl << user.getAllInfo();
 }
 
