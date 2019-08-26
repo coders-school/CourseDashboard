@@ -13,8 +13,7 @@ public:
          const std::string & group,
          const std::string & gitHub,
          const std::string & firecode);
-   
-    std::string getAllInfo() const;
+    
     void setName(std::string name);
     void setNick(std::string nick);
     void setPassword(std::string password);
@@ -22,7 +21,7 @@ public:
     void setGroup(std::string group);
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
-
+    
     std::string getName() const;
     std::string getNick() const;
     std::string getPassword() const;
@@ -30,6 +29,8 @@ public:
     std::string getGroup() const;
     std::string getGitHub() const;
     std::string getFirecode() const;
+
+    std::string getAllInfo() const;
 
 private:
     std::string name_;

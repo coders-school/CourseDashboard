@@ -1,9 +1,4 @@
 #include "CourseDashboard.hpp"
-#include <stdexcept>
-#include <iostream>
-#include <algorithm>
-#include <fstream>
-#include <string>
 
 CourseDashboard::CourseDashboard() {}
 
@@ -85,78 +80,41 @@ void CourseDashboard::updateUser(User & user)
     }
 }
     
-void CourseDashboard::saveInFile()
+void CourseDashboard::saveUsersToFile(std::string filename)
 {
-    std::ofstream dataFile("dataFile.txt", std::ofstream::out | std::ofstream::trunc);
-    if (dataFile.is_open())
+    std::ofstream file(filename, std::ofstream::out | std::ofstream::trunc);
+    if (file.is_open())
     {
         for (auto & user : users_)
         {
-            dataFile << user.getAllInfo();
+            file    << user.getName() << ';'
+                    << user.getNick() << ';'
+                    << user.getPassword() << ';'
+                    << user.getMail() << ';'
+                    << user.getGroup() << ';'
+                    << user.getGitHub() << ';'
+                    << user.getFirecode() << ';'
+                    << '\n';
         }
     }
 }
 
-void CourseDashboard::readFromFile()
+void CourseDashboard::loadUsersFromFile(std::string filename)
 {
-    std::ifstream dataFile("dataFile.txt");
-    if (dataFile.is_open())
+    std::ifstream file(filename);
+    if (file.is_open())
     {
-        std::string line;
-        while (!dataFile.eof())
-        {
-            std::getline(dataFile,line);
-            std::cout << line << std::endl;
+        std::vector<std::string> vstrUser{};
+        std::string tmpLine, tmpValue;
+        users_.clear();
+        while(std::getline(file, tmpLine))
+        {  
+            std::stringstream sstream(tmpLine);
+            while (std::getline(sstream, tmpValue,';')) { vstrUser.push_back(tmpValue); }
+            User loopUser(vstrUser[0], vstrUser[1], vstrUser[2],
+                            vstrUser[3], vstrUser[4], vstrUser[5], vstrUser[6]);
+            users_.emplace_back(loopUser);
+            vstrUser.clear();
         }
     }
-}
-
-
-void CourseDashboard::login()
-{
-    std::system("clear");
-    bool test=false;
-    do
-    {
-
-    
-        
-        std::string passw;
-        std::string email;
-        
-    
-        
-            std::cout<<"Your Email"<<std::endl;
-            std::cin>>email;
-            std::cout<<std::endl<<"Your Password"<<std::endl;
-            std::cin>>passw;
-            std::system("clear");
-                std::vector <User> ::iterator it = std::find_if (
-                users_.begin(),
-                users_.end(),
-                [ &email,&passw,&test](const User & users_)
-                {
-                    if( users_.getMail() == email &&  users_.getPassword() == passw )
-                    {
-
-                        test=true;
-                        return true;
-                    }
-                    else 
-                    {          
-                        return false;
-                    };
-                });
-            if(test==true)
-            {
-                std::cout<<"Logged : ";
-                std::cout<<it->getAllInfo();
-                std::cout<<std::endl<<"Do, what you want to do"<<std::endl;
-                
-            }else
-            {
-                std::cout<<"Login or Password is incorect"<<std::endl<<"Try again"<<std::endl;
-            }
-          
-    }while(test!=true);            
 }
