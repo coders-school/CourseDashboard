@@ -89,10 +89,11 @@ bool CourseDashboard::savingToFile(User & user)
     if (!out_file)
     {
         std::cerr << "Error" << std::endl;
-        return 1;
+        return false;
     }
         out_file << user;
         out_file.close();
+        return true;
 }
 bool CourseDashboard::readingFromFile()
 {
@@ -100,7 +101,7 @@ bool CourseDashboard::readingFromFile()
     if (!in_file)
     {
        std::cerr << "Error" << std::endl;
-       return 1;
+       return false;
     }
     std::string text{};
     std::cout << "Reading from file ..." << std::endl;
@@ -110,6 +111,7 @@ bool CourseDashboard::readingFromFile()
     }
     std::cout << "=====================" << std::endl;
     in_file.close();
+    return true;
 }
 //std::ostream operator << (std::ostream &out, const CourseDashboard &rhs)
 //{

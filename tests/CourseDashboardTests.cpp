@@ -21,7 +21,7 @@ TEST(CourseDashboardTests, canWriteToFile)
     auto result = testCdb.savingToFile(testUser);
 
     //THEN
-    ASSERT_TRUE(result);
+    ASSERT_EQ(true,result);
 }
 TEST(CourseDashboardTests, canReadFromFile)
 {
@@ -32,5 +32,5 @@ TEST(CourseDashboardTests, canReadFromFile)
     auto result = testCdb.readingFromFile();
 
     //THEN
-    ASSERT_EQ(false,result);
+    ASSERT_EQ(true,result);
 }
