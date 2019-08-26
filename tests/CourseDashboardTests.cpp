@@ -14,11 +14,11 @@ TEST(CourseDasboardsTests, canSausageCode)
 TEST(CourseDashboardTests, canWriteToFile)
 {
     //GIVEN
-    UserData testUsd;
+    CourseDashboard testCdb;
     User testUser {"testname","testnick","testgroup","testgithub","testfirecode"};
 
     //WHEN
-    auto result = testUsd.savingToFile(testUser);
+    auto result = testCdb.savingToFile(testUser);
 
     //THEN
     ASSERT_EQ(true,result);
@@ -26,10 +26,10 @@ TEST(CourseDashboardTests, canWriteToFile)
 TEST(CourseDashboardTests, canReadFromFile)
 {
     //GIVEN
-    UserData testUsd;
+    CourseDashboard testCdb;
 
     //WHEN
-    auto result = testUsd.readingFromFile();
+    auto result = testCdb.readingFromFile();
 
     //THEN
     ASSERT_EQ(true,result);
