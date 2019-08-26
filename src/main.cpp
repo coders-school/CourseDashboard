@@ -5,13 +5,14 @@
 int main()
 {
     CourseDashboard cdb;
+    UserData usd;
     std::cout << "Course Dashboard" << std::endl;
     User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
-    cdb.createUser(u1);
-    cdb.retriveUserByNick("SzymonGajewski");
-    cdb.showAll();
-    cdb.deleteUserByNick("SzymonGajewski");
+    usd.createUser(u1);
+    usd.retriveUserByNick("SzymonGajewski");
+    usd.showAll();
+    usd.deleteUserByNick("SzymonGajewski");
     std::cout<<"after delete: "<<std::endl;
-    cdb.showAll();
+    usd.showAll();
     return 0;
 }
