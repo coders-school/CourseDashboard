@@ -5,12 +5,16 @@ User::User(const std::string & name,
            const std::string & nick,
            const std::string & group,
            const std::string & gitHub,
-           const std::string & firecode)
+           const std::string & firecode,
+           const std::string & email,
+           const std::string & password)
     : name_(name)
     , nick_(nick)
     , group_(group)
     , gitHub_(gitHub)
     , firecode_(firecode)
+    , email_(email)
+    , password_(password)
 {}
 
 std::string User::getAllInfo() const
@@ -22,6 +26,8 @@ std::string User::getAllInfo() const
     ss<<std::setw(1) << "3." << group_ << "|";
     ss<<std::setw(1) << "4." << gitHub_ << "|";
     ss<<std::setw(1) << "5." << firecode_ << "|";
+    ss<<std::setw(1) << "6." << email_ << "|";
+    ss<<std::setw(1) << "7." << password_ << "|";
     ss<<std::endl;
     return ss.str();
 }
@@ -44,6 +50,14 @@ void User::setGitHub(std::string gitHub)
 void User::setFirecode(std::string firecode)
 {
     firecode_ = firecode;
+}
+void User::setEmail(std::string email)
+{
+    email_ = email;
+}
+void User::setPassword(std::string password)
+{
+    password_ = password;
 }
 
 std::string User::getNick() const 
