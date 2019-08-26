@@ -83,40 +83,31 @@ void CourseDashboard::updateUser(User & user)
 void CourseDashboard::login()
 {
     std::system("clear");
-    bool test=false;
+    bool loginTest{};
     do
     {
-        std::string passw;
-        std::string email;   
-        std::cout<<"Your Email"<<std::endl;
-        std::cin>>email;
-        std::cout<<std::endl<<"Your Password"<<std::endl;
-        std::cin>>passw;
+        std::string userEmail, userPassword;
+        std::cout << "Enter Your e-mail address: ";
+        std::cin >> userEmail;
+        std::cout << "Enter Your password: ";
+        std::cin >> userPassword;
         std::system("clear");
-        std::vector <User> ::iterator it = std::find_if (
-        users_.begin(),
-        users_.end(),
-        [&email, &passw, &test](const User & users_)
-        {
-            if( users_.getMail() == email &&  users_.getPassword() == passw )
+        auto setLoginTestBoolTrueIfLoginIsCorrect = 
+            [&userEmail, &userPassword, &loginTest](const User & users_)
             {
-                test=true;
-                return true;
-            }
-            else 
-            {          
-                return false;
+                if ( users_.getMail() == userEmail && users_.getPassword() == userPassword )
+                    return loginTest = true;
+                return false; 
             };
-        });
-            if(test==true)
-            {
-                std::cout<<"Logged : ";
-                std::cout<<it->getAllInfo();
-                std::cout<<std::endl<<"Do, what you want to do"<<std::endl;
-                
-            }else
-            {
-                std::cout<<"Login or Password is incorect"<<std::endl<<"Try again"<<std::endl;
-            }
-    }while(test!=true);            
+        auto it = std::find_if(users_.begin(), users_.end(), setLoginTestBoolTrueIfLoginIsCorrect);       
+        if (loginTest == true)
+        {
+            std::cout << "You have succesfuly logged in " << it->getName() << "!\n";
+            std::cout << "Printing Your user info:\n" << it->getAllInfo();
+        }
+        else
+        {
+            std::cout << "Login or Password is incorect! Please try again!" << '\n';
+        }
+    } while (loginTest != true);            
 }
