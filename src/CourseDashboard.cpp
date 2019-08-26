@@ -79,3 +79,44 @@ void CourseDashboard::updateUser(User & user)
         break;
     }
 }
+
+void CourseDashboard::login()
+{
+    std::system("clear");
+    bool test=false;
+    do
+    {
+        std::string passw;
+        std::string email;   
+        std::cout<<"Your Email"<<std::endl;
+        std::cin>>email;
+        std::cout<<std::endl<<"Your Password"<<std::endl;
+        std::cin>>passw;
+        std::system("clear");
+        std::vector <User> ::iterator it = std::find_if (
+        users_.begin(),
+        users_.end(),
+        [&email, &passw, &test](const User & users_)
+        {
+            if( users_.getMail() == email &&  users_.getPassword() == passw )
+            {
+                test=true;
+                return true;
+            }
+            else 
+            {          
+                return false;
+            };
+        });
+            if(test==true)
+            {
+                std::cout<<"Logged : ";
+                std::cout<<it->getAllInfo();
+                std::cout<<std::endl<<"Do, what you want to do"<<std::endl;
+                
+            }else
+            {
+                std::cout<<"Login or Password is incorect"<<std::endl<<"Try again"<<std::endl;
+            }
+    }while(test!=true);            
+}

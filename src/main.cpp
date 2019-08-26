@@ -13,5 +13,6 @@ int main()
     cdb.createUser(rh);
     cdb.createUser(ph);
     cdb.showAll();
+    cdb.login();
     return 0;
 }
