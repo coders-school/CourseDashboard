@@ -84,7 +84,7 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
-void CourseDashboard::login(){
+void CourseDashboard::logIn(){
     std::string email, password, emailKeyword, passwordKeyword;
 
     std::cout << "Enter  e-mail : "; std::cin >> emailKeyword;
