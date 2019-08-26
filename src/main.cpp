@@ -6,6 +6,7 @@ int main()
 {
     CourseDashboard cdb;
     std::cout << "Course Dashboard" << std::endl;
+    cdb.logIn();
     User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "mail@com", "password");
     cdb.createUser(u1);
     cdb.retriveUserByNick("SzymonGajewski");
