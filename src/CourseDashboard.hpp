@@ -19,7 +19,8 @@ public:
     void updateUser(User & user);
     void saveUsersToFile(std::string filename);
     void loadUsersFromFile(std::string filename);
-//private:
+
+private:
     std::vector<User> users_;
 
 };
