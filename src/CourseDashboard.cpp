@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 
 CourseDashboard::CourseDashboard() {}
 
@@ -81,4 +82,38 @@ void CourseDashboard::updateUser(User & user)
         std::cout << "You gave wrong value.";
         break;
     }
+}
+
+void CourseDashboard::login(){
+    std::string email, password, emailKeyword, passwordKeyword;
+
+    std::cout << "Enter  e-mail : "; std::cin >> emailKeyword;
+    std::cout << "Enter Password: "; std::cin >> passwordKeyword;
+
+    std::fstream file;
+    file.open("../src/UsersList.txt", std::ios::in);
+        if(!file.good())
+    {
+        std::cout<<"file doesn't exist";
+        exit(0);
+    }
+
+    while(!file.eof())
+    {
+    file>>email;
+    file>>password;
+    
+        if(emailKeyword == email && passwordKeyword == password) 
+        {   
+            std::cout << "Login successfully" << std::endl; 
+            break;
+        }
+        else
+        {
+            std::cout << "The data provided is incorrect !" << std::endl; 
+            break;
+        }
+        
+    }
+file.close();
 }
