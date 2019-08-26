@@ -12,6 +12,8 @@ public:
     void deleteUserByNick(std::string nick);
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
+    void logIn();
+    
 
 private:
     std::vector<User> users_;
