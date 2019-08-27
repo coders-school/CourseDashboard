@@ -93,15 +93,15 @@ void CourseDashboard::logIn(){
     std::fstream file;
     file.open("../src/UsersList.txt", std::ios::in);
         if(!file.good())
-    {
-        std::cout<<"file doesn't exist";
-        exit(0);
-    }
+        {
+            std::cout<<"file doesn't exist";
+            exit(0);
+        }
 
     while(!file.eof())
     {
-    file>>email;
-    file>>password;
+        file>>email;
+        file>>password;
     
         if(emailKeyword == email && passwordKeyword == password) 
         {   
@@ -112,8 +112,7 @@ void CourseDashboard::logIn(){
         {
             std::cout << "The data provided is incorrect !" << std::endl; 
             break;
-        }
-        
+        }   
     }
-file.close();
+    file.close();
 }
