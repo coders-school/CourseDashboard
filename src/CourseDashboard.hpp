@@ -16,5 +16,5 @@ public:
 
 private:
     std::vector<User> users_;
-    std::map<std::string, std::string> map;
+    std::map<std::string, std::string> map_;
 };

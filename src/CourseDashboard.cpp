@@ -17,7 +17,7 @@ void CourseDashboard::showAll()
 void CourseDashboard::createUser(const User & user)
 {
     users_.emplace_back(user);
-    map[user.getEmail()] = user.getPassword();
+    map_[user.getEmail()] = user.getPassword();
 }
 
 void CourseDashboard::deleteUserByNick(std::string nick)
@@ -90,8 +90,8 @@ bool CourseDashboard::logIn()
     std::string emailKeyword, passwordKeyword;
     std::cout << "Enter  e-mail : "; std::cin >> emailKeyword;  
 
-    auto search = map.find(emailKeyword);
-    if (search != map.end()) 
+    auto search = map_.find(emailKeyword);
+    if (search != map_.end()) 
     {
         std::cout << "Enter Password: "; std::cin >> passwordKeyword;
         if (search -> second == passwordKeyword)
