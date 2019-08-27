@@ -1,37 +1,26 @@
 #include "UserIOHandler.hpp"
 
-#include <fstream>
-#include <functional>
 #include <ios>
 #include <iostream>
-#include <memory>
 #include <string>
 
 using fstreamPtr = std::unique_ptr<std::fstream, std::function<void(std::fstream*)>>;
 using ifstreamPtr = std::unique_ptr<std::ifstream>;
 
-void UserIOHandler::write(const std::string& filePath, const std::string& strBuff)
+UserIOHandler::UserIOHandler(IFstream* fs)
+:fs_(fs)
 {
-    fstreamPtr file(new std::fstream(), 
-        [](std::fstream* f)
-        {
-            if(f->is_open())
-            {
-                f->close();
-            }
-        });
-    
-    file->exceptions(std::ios_base::badbit);
+}
 
+void UserIOHandler::write(const std::string& content)
+{
     try
     {
-        file->open(filePath, std::fstream::out);
-        file->write(strBuff.c_str(), strBuff.size());
+        fs_->tryToWrite(content);
     }
-
     catch(std::ios_base::failure& e)
     {
-        std::cerr << "Write to file: " << filePath << "failed.\n"
+        std::cerr << "Write to file: " << fs_->getFilePath() << "failed.\n"
             << "Error message: " << e.what() << "\n";
     }
 }
