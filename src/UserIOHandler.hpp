@@ -11,7 +11,7 @@ public:
     explicit UserIOHandler(IFstream* fs);
     ~UserIOHandler() = default;
     void write(const std::string& content);
-    void read(const std::string& filePath, std::string& strBuff);
+    std::string read();
 private:
     IFstreamPtr fs_;
 };

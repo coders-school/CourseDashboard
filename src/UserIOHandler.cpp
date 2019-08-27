@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-using fstreamPtr = std::unique_ptr<std::fstream, std::function<void(std::fstream*)>>;
-using ifstreamPtr = std::unique_ptr<std::ifstream>;
+// using fstreamPtr = std::unique_ptr<std::fstream, std::function<void(std::fstream*)>>;
+// using ifstreamPtr = std::unique_ptr<std::ifstream>;
 
 UserIOHandler::UserIOHandler(IFstream* fs)
 :fs_(fs)
@@ -25,22 +25,21 @@ void UserIOHandler::write(const std::string& content)
     }
 }
 
-void UserIOHandler::read(const std::string& filePath, std::string& strBuff)
+std::string UserIOHandler::read()
 {
-    ifstreamPtr file(new std::ifstream());
+    std::string read;
 
     try
     {
-        file->open(filePath, std::fstream::out);
-        while(!file->eof()) {
-            strBuff.push_back(file->get());
-        }
-        strBuff.pop_back();
+        read = fs_->tryToRead();
     }
 
     catch(std::ios_base::failure& e)
     {
-        std::cerr << "Read from file: " << filePath << "failed.\n"
+        std::cerr << "Read from file: " << fs_->getFilePath() << "failed.\n"
             << "Error message: " << e.what() << "\n";
+        return "";
     }
+
+    return read;
 }

@@ -70,10 +70,40 @@ TEST(UserIOHandlerTests, onWriteShouldPrintToCerrOnFailure)
 
 TEST(UserIOHandlerTests, shouldReadFromFile)
 {
-	UserIOHandler sut;
-	sut.write(testFilePath, dummyStr);
+	//todo: replace with mock by delegating action to real object
+	UserIOHandler sut(new Fstream(std::string(testFilePath)));
+	sut.write(dummyStr);
+	EXPECT_EQ(sut.read(), dummyStr);
+}
 
-	std::string str;
-	sut.read(testFilePath, str);
-	EXPECT_EQ(str, dummyStr);
+TEST(UserIOHandlerTests, onReadShouldOnceCallTryToReadOnFstream)
+{
+	FstreamMock* fsMock = new FstreamMock;
+
+	EXPECT_CALL(*fsMock, tryToRead())
+		.Times(1);
+
+	UserIOHandler sut(fsMock);
+	sut.read();
+}
+
+TEST(UserIOHandlerTests, onReadShouldPrintToCerrOnFailure)
+{
+	FstreamMock* fsMock = new FstreamMock;
+
+	ON_CALL(*fsMock, tryToRead())
+		.WillByDefault(Throw(std::ios_base::failure(dummyStr)));
+
+	EXPECT_CALL(*fsMock, tryToRead())
+		.Times(1);
+
+	EXPECT_CALL(*fsMock, getFilePath())
+		.Times(1);
+
+	UserIOHandler sut(fsMock);
+
+	testing::internal::CaptureStderr();
+	sut.read();
+	std::string stdErr = testing::internal::GetCapturedStderr();
+	EXPECT_NE(stdErr.find(dummyStr), std::string::npos);
 }
