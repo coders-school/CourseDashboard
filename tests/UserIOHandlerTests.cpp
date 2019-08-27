@@ -29,3 +29,13 @@ TEST(UserIOHandlerTests, shouldWriteToFile)
 	sut.write(testFilePath, dummyStr);
 	EXPECT_EQ(actual(testFilePath), dummyStr);
 }
+
+TEST(UserIOHandlerTests, shouldReadFromFile)
+{
+	UserIOHandler sut;
+	sut.write(testFilePath, dummyStr);
+
+	std::string str;
+	sut.read(testFilePath, str);
+	EXPECT_EQ(str, dummyStr);
+}
