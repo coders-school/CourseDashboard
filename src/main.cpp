@@ -8,7 +8,7 @@ int main()
     std::cout << "Course Dashboard" << std::endl;
     User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "mail@com", "password");
     cdb.createUser(u1);
-    cdb.logIn()
+    cdb.logIn();
     cdb.retriveUserByNick("SzymonGajewski");
     cdb.showAll();
     cdb.deleteUserByNick("SzymonGajewski");
