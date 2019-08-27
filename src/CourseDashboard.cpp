@@ -84,17 +84,45 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
+std::string CourseDashboard::eMail()
+{
+        std::string email;
+        std::cout<<"Please enter a email."<<std::endl;
+        std::cin>>email;
+        std::cout << "e-mail: \"" << email<< "\"\n";
+
+    return email;
+}
+
+std::string CourseDashboard::passWord()
+{
+	std::string password1, password2;
+	std::cout << "Please enter your password." << std::endl;
+	std::cin >> password1;
+	std::cout << "Please re-enter your password." << std::endl;
+	std::cin >> password2;
+
+	while (password1 != password2)
+	{
+		std::cout << "Error! Passwords do not match." "\n";
+		std::cout << "Please enter your password." << std::endl;
+		std::cin >> password1;
+		std::cout << "Please re-enter your password." << std::endl;
+		std::cin >> password2;
+	}
+
+    return password1; 
+}
+
 void CourseDashboard::logIn()
 {
-    std::string login, password, loginKeyword, passwordKeyword;
-
-    std::cout << "UserName: "; std::cin >> loginKeyword;
-    std::cout << "Password: "; std::cin >> passwordKeyword;
-
+    std::string emailKeyword = eMail();
+    std::string passwordKeyword = passWord();
+    std::string email, password;
+    std::string line;
     std::fstream file;
     file.open("plik.txt", std::ios::in);
-    //std::getline(file,login);
-    //std::getline(file,password);
+
     if(!file.good())
     {
         std::cout<<"file doesn't exist";
@@ -103,20 +131,19 @@ void CourseDashboard::logIn()
 
     while(!file.eof())
     {
-    file>>login;
-    file>>password;
-    //file.open("plik.txt", std::ios::in);
-        if(loginKeyword == login && passwordKeyword == password) 
+        file>>email;
+        file>>password;
+
+        if(emailKeyword == email && passwordKeyword == password) 
         {   
-            std::cout << "Success!" << std::endl; 
+            std::cout << "Login succeesful!" << std::endl; 
             break;
         }
         else
         {
-            std::cout << "Fault!" << std::endl; 
+            std::cout << "Incorrect e-mail or password!" << std::endl; 
             break;
         }
-        
     }
     file.close();
 }
