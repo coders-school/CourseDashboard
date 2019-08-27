@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iomanip>
 
+
 class User
 {
     friend std::ostream &operator << (std::ostream &out, const User &c);
@@ -12,7 +13,9 @@ public:
          const std::string & nick,
          const std::string & group,
          const std::string & gitHub,
-         const std::string & firecode);
+         const std::string & firecode,
+         const std::string & email,
+         const std::string & password);
    
     std::string getAllInfo() const;
     void setName(std::string name);
@@ -20,7 +23,11 @@ public:
     void setGroup(std::string group);
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
+    void setEmail(std::string email);
+    void setPassword(std::string password);
     std::string getNick() const;
+    std::string getEmail() const;
+    std::string getPassword() const;
 
 
 
@@ -30,6 +37,8 @@ private:
     std::string nick_;
     std::string group_;
     std::string gitHub_;
-    std::string firecode_;  
+    std::string firecode_;
+    std::string email_;
+    std::string password_;  
 
 };

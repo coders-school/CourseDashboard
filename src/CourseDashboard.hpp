@@ -1,5 +1,6 @@
 #pragma once
 #include "UserData.hpp"
+#include "Login.hpp"
 
 class CourseDashboard
 {

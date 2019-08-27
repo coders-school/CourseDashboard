@@ -12,8 +12,8 @@ struct UserDataTests : public ::testing::Test
     UserData *userData;
     UserDataTests()
     {
-        user = new User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
-        user2 = new User("Krzysiek", "Cypher", "weekendowa", "firecodeLink", "gitHubLink");
+        user = new User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "szymongajewski@gmail.com", "12345678");
+        user2 = new User("Krzysiek", "Cypher", "weekendowa", "firecodeLink", "gitHubLink", "krzysiek@gmail.com","12345678");
         userData = new UserData;
     }
 
@@ -31,7 +31,7 @@ struct UserDataTests : public ::testing::Test
 
     bool updateUser(User user)
     {
-        userData->updateUser(user, "Krzysiek", "Cypher", "weekendowa", "firecodeLink", "gitHubLink");
+        userData->updateUser(user, "Krzysiek", "Cypher", "weekendowa", "firecodeLink", "gitHubLink", "krzysiek@gmail.com", "12345678");
         return true;
     }
 
@@ -102,7 +102,7 @@ TEST(CourseDashboardTests, canWriteToFile)
 {
     //GIVEN
     CourseDashboard testCdb;
-    User testUser {"testname","testnick","testgroup","testgithub","testfirecode"};
+    User testUser {"testname","testnick","testgroup","testgithub","testfirecode", "testemail", "testpassword"};
 
     //WHEN
     auto result = testCdb.savingToFile(testUser);
