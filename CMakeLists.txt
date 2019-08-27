@@ -45,6 +45,7 @@ set(SRC_LIST
     src/CourseDashboard.cpp
     src/User.cpp
     src/UserIOHandler.cpp
+    src/Fstream.cpp
 )
 
 include_directories(src)
@@ -67,6 +68,7 @@ set(TEST_SRC_LIST
 )
 
 link_libraries(gtest)
+link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
 target_compile_options(${PROJECT_NAME}-ut PUBLIC -Wall -Werror -Wpedantic -Wextra)
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
