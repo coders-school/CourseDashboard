@@ -24,9 +24,8 @@ TEST_F(UserContainerTests, canAddUserToUserContainer)
     userContainer_.createUser(u1);
     
     auto result = userContainer_.retriveUserByNick("SzymonGajewski");
-    ASSERT_TRUE(result.has_value());
-    
-    ASSERT_TRUE(!result.value().getNick().compare("SzymonGajewski"));
+    ASSERT_TRUE(result.has_value());  
+    ASSERT_TRUE(!result.value().getName().compare("Szymon"));
 }
 
 TEST_F(UserContainerTests, canViewAllUsers)
@@ -42,7 +41,7 @@ TEST_F(UserContainerTests, canDeleteAUser)
 
     auto result = userContainer_.retriveUserByNick("SzymonGajewski");
     ASSERT_TRUE(result.has_value());
-    ASSERT_TRUE(!result.value().getNick().compare("SzymonGajewski"));
+    ASSERT_TRUE(!result.value().getName().compare("Szymon"));
 
     userContainer_.deleteUserByNick("SzymonGajewski");
     result = userContainer_.retriveUserByNick("SzymonGajewski");
@@ -53,7 +52,7 @@ TEST_F(UserContainerTests, canUpdateUser)
 {    
     auto result = userContainer_.retriveUserByNick("Kamil.Waszkiewicz");
     ASSERT_TRUE(result.has_value());
-    ASSERT_TRUE(!result.value().getNick().compare("Kamil.Waszkiewicz"));
+    ASSERT_TRUE(!result.value().getName().compare("Kamil"));
 
     result.value().setName("Szymon");
     result.value().setNick("Kamil.Waszkiewicz");
