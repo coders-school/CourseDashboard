@@ -11,6 +11,7 @@ protected:
     virtual void SetUp()
     {
         testU1 = new User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "mail@com", "password");
+        testCdb = new CourseDashboard();
     }
 
     CourseDashboardTests()
