@@ -17,6 +17,7 @@ void CourseDashboard::showAll()
 void CourseDashboard::createUser(const User & user)
 {
     users_.emplace_back(user);
+    map[user.getEmail()] = user.getPassword();
 }
 
 void CourseDashboard::deleteUserByNick(std::string nick)
@@ -84,35 +85,29 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
-void CourseDashboard::logIn(){
-    std::string email, password, emailKeyword, passwordKeyword;
+bool CourseDashboard::logIn()
+{
+    std::string emailKeyword, passwordKeyword;
+    std::cout << "Enter  e-mail : "; std::cin >> emailKeyword;  
 
-    std::cout << "Enter  e-mail : "; std::cin >> emailKeyword;
-    std::cout << "Enter Password: "; std::cin >> passwordKeyword;
-
-    std::fstream file;
-    file.open("../src/UsersList.txt", std::ios::in);
-        if(!file.good())
-        {
-            std::cout<<"file doesn't exist";
-            exit(0);
-        }
-
-    while(!file.eof())
+    auto search = map.find(emailKeyword);
+    if (search != map.end()) 
     {
-        file>>email;
-        file>>password;
-    
-        if(emailKeyword == email && passwordKeyword == password) 
-        {   
-            std::cout << "Login successfully" << std::endl; 
-            break;
-        }
-        else
+        std::cout << "Enter Password: "; std::cin >> passwordKeyword;
+        if (search -> second == passwordKeyword)
         {
-            std::cout << "The data provided is incorrect !" << std::endl; 
-            break;
-        }   
+            std::cout << "Login successful" << std::endl;
+            return true;
+        }
+        else 
+        {
+            std::cout << "Login failure" << std::endl;
+            return false;
+        }
     }
-    file.close();
+    else
+    {
+        std::cout << "User not found" << std::endl;
+        return false;
+    }     
 }

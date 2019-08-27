@@ -23,6 +23,8 @@ public:
     void setEmail(std::string email);
     void setPassword(std::string password);
     std::string getNick() const;
+    std::string getEmail() const;
+    std::string getPassword() const;
 
 private:
     

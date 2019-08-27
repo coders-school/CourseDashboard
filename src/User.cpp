@@ -64,3 +64,13 @@ std::string User::getNick() const
 {
     return nick_;
 }
+
+std::string User::getEmail() const 
+{
+    return email_;
+}
+
+std::string User::getPassword() const 
+{
+    return password_;
+}
