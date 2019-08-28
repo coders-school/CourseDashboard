@@ -4,7 +4,7 @@
 #include "User.hpp"
 
 
-inline std::string convertToJson( const std::vector<User>& users )
+inline nlohmann::json convertToJson( const std::vector<User>& users )
 {
     nlohmann::json jsonArray = nlohmann::json::array();
 
@@ -12,7 +12,7 @@ inline std::string convertToJson( const std::vector<User>& users )
         jsonArray.push_back(user.toJson());
     }
 
-    return jsonArray.dump();
+    return jsonArray;
 }
 
 inline std::vector<User> convertToArray(const std::string& jsonString)

@@ -1,14 +1,14 @@
 #include <gtest/gtest.h>
 #include "Utilits.hpp"
 
-TEST(UtilTests, canConvertVectorOfUsersToJsonString)
+TEST(UtilTests, canConvertVectorOfUsersToJson)
 {
 	std::vector<User> users = {
 		User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski"),
 		User("Kamil", "Kamil.Wszkiewicz", "wieczorowa1", "Kamil.Wszkiewicz", "Kamil.Wszkiewicz"),
 	};
 
-	auto result = convertToJson(users);
+	auto result = convertToJson(users).dump();
 
 	ASSERT_TRUE(result.find("Szymon") != std::string::npos);
 	ASSERT_TRUE(result.find("Kamil.Wszkiewicz") != std::string::npos);
@@ -21,7 +21,7 @@ TEST(UtilTests, canConvertFromJsonToVector)
 		User("Kamil", "Kamil.Wszkiewicz", "wieczorowa1", "Kamil.Wszkiewicz", "Kamil.Wszkiewicz"),
 	};
 
-	auto result = convertToJson(users);
+	auto result = convertToJson(users).dump();
 	users.clear();
 
 	users = convertToArray(result);
