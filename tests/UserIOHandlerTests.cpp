@@ -107,39 +107,3 @@ TEST(UserIOHandlerTests, onReadShouldPrintToCerrOnFailure)
 	std::string stdErr = testing::internal::GetCapturedStderr();
 	EXPECT_NE(stdErr.find(dummyStr), std::string::npos);
 }
-
-TEST(UserIOHandlerTests, canConvertVectorOfUsersToJsonString)
-{
-	FstreamMock* fsMock = new FstreamMock;
-	UserIOHandler sut(fsMock);
-
-	std::vector<User> users = {
-		User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski"),
-		User("Kamil", "Kamil.Wszkiewicz", "wieczorowa1", "Kamil.Wszkiewicz", "Kamil.Wszkiewicz"),
-	};
-
-	auto result = sut.convertToJson(users);
-
-	ASSERT_TRUE(result.find("Szymon") != std::string::npos);
-	ASSERT_TRUE(result.find("Kamil.Wszkiewicz") != std::string::npos);
-}
-
-TEST(UserIOHandlerTests, canConvertFromJsonToVector)
-{
-	FstreamMock* fsMock = new FstreamMock;
-	UserIOHandler sut(fsMock);
-
-	std::vector<User> users = {
-		User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski"),
-		User("Kamil", "Kamil.Wszkiewicz", "wieczorowa1", "Kamil.Wszkiewicz", "Kamil.Wszkiewicz"),
-	};
-
-	auto result = sut.convertToJson(users);
-	users.clear();
-
-	users = sut.convertToArray(result);
-
-	ASSERT_TRUE(users.size() == 2);
-	ASSERT_TRUE(!users[0].getName().compare("Szymon") || !users[0].getName().compare("Kamil"));
-
-}

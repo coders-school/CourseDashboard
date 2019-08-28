@@ -59,6 +59,7 @@ else (UNIX)
 endif (UNIX)
 
 set(TEST_SRC_LIST
+    tests/UtilTests.cpp
     tests/UserIOHandlerTests.cpp
     tests/CourseDashboardTests.cpp
     tests/test_main.cpp

@@ -13,6 +13,14 @@ User::User(const std::string & name,
     , firecode_(firecode)
 {}
 
+User::User(nlohmann::json userJson)
+    : name_(userJson["name"].get<std::string>())
+    , nick_(userJson["nick"].get<std::string>())
+    , group_(userJson["group"].get<std::string>())
+    , gitHub_(userJson["gitHub"].get<std::string>())
+    , firecode_(userJson["firecod"].get<std::string>())
+{}
+
 std::string User::getAllInfo() const
 {
     std::stringstream ss;
@@ -25,22 +33,39 @@ std::string User::getAllInfo() const
     ss<<std::endl;
     return ss.str();
 }
+
+nlohmann::json User::toJson() const
+{
+    nlohmann::json uJson = {
+            { "name", name_},
+            { "nick", nick_},
+            { "group", group_},
+            { "gitHub", gitHub_},
+            { "firecod", firecode_}                
+        };
+    return uJson;
+}
+
 void User::setName(std::string name)
 {
     name_ = name;
 }
+
 void User::setNick(std::string nick)
 {
     nick_ = nick;
 }
+
 void User::setGroup(std::string group)
 {
     group_ = group;
 }
+
 void User::setGitHub(std::string gitHub)
 {
     gitHub_ = gitHub;
 }
+
 void User::setFirecode(std::string firecode)
 {
     firecode_ = firecode;
