@@ -17,3 +17,13 @@ void CourseDashboard::saveToFile(const std::string& pathTofile)
     fileHandler.write(userVectorInJsonFormat.dump());
 }
 
+bool CourseDashboard::login(const std::string& email, const std::string& Password)
+{
+    auto byEmail = [&email](auto user) {
+        return !user.getEmail().compare(email);
+    };
+    auto users = userHandler_.getUserDatabase();
+    auto user = std::find_if(users.begin(), users.end(), byEmail);
+
+    return authenticationProvider(*user, email, Password);
+}
