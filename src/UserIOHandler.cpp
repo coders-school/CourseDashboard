@@ -1,12 +1,9 @@
 #include "UserIOHandler.hpp"
-#include "../external/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 
 #include <ios>
 #include <iostream>
 #include <string>
-
-// using fstreamPtr = std::unique_ptr<std::fstream, std::function<void(std::fstream*)>>;
-// using ifstreamPtr = std::unique_ptr<std::ifstream>;
 
 UserIOHandler::UserIOHandler(IFstream* fs)
 :fs_(fs)
@@ -56,7 +53,7 @@ std::string UserIOHandler::convertToJson( const std::vector<User>& users )
             { "nick", user.getNick()},
             { "group", user.getGroup()},
             { "gitHub", user.getGitHub()},
-            { "firecod", user.getFirecod()}                
+            { "firecode", user.getFirecode()}
         };
 
         jsonArray.push_back(userJson);
@@ -70,17 +67,15 @@ std::vector<User> UserIOHandler::convertToArray(const std::string& jsonString)
     nlohmann::json jsonArray = nlohmann::json::parse(jsonString);
 
     std::vector<User> users;
-    for( auto jsonE : jsonArray)
+    for(auto& jsonE : jsonArray)
     {
         auto name = jsonE["name"].get<std::string>();
         auto nick = jsonE["nick"].get<std::string>();
         auto group = jsonE["group"].get<std::string>();
         auto gitHub = jsonE["gitHub"].get<std::string>();
-        auto firecod = jsonE["firecod"].get<std::string>();
+        auto firecode = jsonE["firecode"].get<std::string>();
 
-        users.push_back(
-            User(name, nick, group, gitHub, firecod)
-        );
+        users.push_back(User(name, nick, group, gitHub, firecode));
     }
 
 

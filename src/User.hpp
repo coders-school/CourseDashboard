@@ -23,7 +23,7 @@ public:
     std::string getName() const;
     std::string getGroup() const;
     std::string getGitHub() const;
-    std::string getFirecod() const;
+    std::string getFirecode() const;
 
 private:
 

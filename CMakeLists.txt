@@ -46,6 +46,7 @@ set(SRC_LIST
     src/Fstream.cpp
 )
 
+include_directories(external)
 include_directories(src)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)

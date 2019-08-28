@@ -122,9 +122,6 @@ TEST(UserIOHandlerTests, canConvertVectorOfUsersToJsonString)
 
 	ASSERT_TRUE(result.find("Szymon") != std::string::npos);
 	ASSERT_TRUE(result.find("Kamil.Wszkiewicz") != std::string::npos);
-
-	std::cout << result << std::endl;
-
 }
 
 TEST(UserIOHandlerTests, canConvertFromJsonToVector)

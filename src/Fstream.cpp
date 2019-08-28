@@ -5,6 +5,25 @@
 #include <ios>
 #include <memory>
 
+using fstreamPtr = std::unique_ptr<std::fstream, std::function<void(std::fstream*)>>;
+
+namespace
+{
+    fstreamPtr setUpFile()
+    {
+        fstreamPtr file(new std::fstream(),
+            [](std::fstream* f)
+            {
+                if(f->is_open())
+                {
+                    f->close();
+                }
+            });
+
+        file->exceptions(std::ios_base::badbit);
+        return file;
+    }
+}
 
 Fstream::Fstream(const std::string& filePath)
 :IFstream(filePath)
@@ -15,21 +34,10 @@ Fstream::~Fstream()
 {
 }
 
-using fstreamPtr = std::unique_ptr<std::fstream, 
-    std::function<void(std::fstream*)>>;
 
 void Fstream::tryToWrite(const std::string& content)
 {
-    fstreamPtr file(new std::fstream(), 
-        [](std::fstream* f)
-        {
-            if(f->is_open())
-            {
-                f->close();
-            }
-        });
-    
-    file->exceptions(std::ios_base::badbit);
+    auto file = setUpFile();
 
     try
     {
@@ -47,17 +55,7 @@ void Fstream::tryToWrite(const std::string& content)
 std::string Fstream::tryToRead()
 {
     std::string strBuff {};
-
-    fstreamPtr file(new std::fstream(), 
-    [](std::fstream* f)
-    {
-        if(f->is_open())
-        {
-            f->close();
-        }
-    });
-    
-    file->exceptions(std::ios_base::badbit);
+    auto file = setUpFile();
 
     try
     {

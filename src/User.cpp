@@ -66,7 +66,7 @@ std::string User::getGitHub() const
     return gitHub_;
 }
 
-std::string User::getFirecod() const
+std::string User::getFirecode() const
 {
     return firecode_;
 }
