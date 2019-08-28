@@ -13,6 +13,11 @@ public:
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
 
+    void loadFromFile(const std::string& pathTofile);
+    void saveToFile(const std::string& pathTofile);
+
+    void clearUserDatabase() { users_.clear(); };
+
 private:
     std::vector<User> users_;
 

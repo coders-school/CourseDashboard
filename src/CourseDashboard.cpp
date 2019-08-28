@@ -3,6 +3,10 @@
 #include <iostream>
 #include <algorithm>
 
+#include "UserIOHandler.hpp"
+#include "Fstream.hpp"
+#include "Utility.hpp"
+
 CourseDashboard::CourseDashboard() {}
 
 void CourseDashboard::showAll()
@@ -82,3 +86,20 @@ void CourseDashboard::updateUser(User & user)
         break;
     }
 }
+
+    void CourseDashboard::loadFromFile(const std::string& pathTofile)
+    {
+        UserIOHandler userIOHandler(new Fstream(pathTofile));
+
+        auto userFromFile = userIOHandler.read();
+        users_  = convertToArray(userFromFile);
+    }
+
+    void CourseDashboard::saveToFile(const std::string& pathTofile)
+    {
+        UserIOHandler userIOHandler(new Fstream(pathTofile));
+
+        auto userVectorInJsonFormat = convertToJson(users_);
+
+        userIOHandler.write(userVectorInJsonFormat.dump());
+    }

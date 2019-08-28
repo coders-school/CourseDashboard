@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Utilits.hpp"
+#include "Utility.hpp"
 
 TEST(UtilTests, canConvertVectorOfUsersToJson)
 {
