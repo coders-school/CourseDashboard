@@ -64,7 +64,7 @@ set(TEST_SRC_LIST
     tests/UserHandlerTests.cpp
     tests/FileHandlerTests.cpp
     tests/CourseDashboardTests.cpp
-    tests/AuthenticationProviderTest.cpp
+    tests/AuthenticationProviderTests.cpp
     tests/test_main.cpp
 )
 
