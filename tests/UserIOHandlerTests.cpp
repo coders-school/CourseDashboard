@@ -118,11 +118,31 @@ TEST(UserIOHandlerTests, canConvertVectorOfUsersToJsonString)
 		User("Kamil", "Kamil.Wszkiewicz", "wieczorowa1", "Kamil.Wszkiewicz", "Kamil.Wszkiewicz"),
 	};
 
-	auto result = sut.convertUsersToJson(users);
+	auto result = sut.convertToJson(users);
 
 	ASSERT_TRUE(result.find("Szymon") != std::string::npos);
 	ASSERT_TRUE(result.find("Kamil.Wszkiewicz") != std::string::npos);
 
 	std::cout << result << std::endl;
+
+}
+
+TEST(UserIOHandlerTests, canConvertFromJsonToVector)
+{
+	FstreamMock* fsMock = new FstreamMock;
+	UserIOHandler sut(fsMock);
+
+	std::vector<User> users = {
+		User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski"),
+		User("Kamil", "Kamil.Wszkiewicz", "wieczorowa1", "Kamil.Wszkiewicz", "Kamil.Wszkiewicz"),
+	};
+
+	auto result = sut.convertToJson(users);
+	users.clear();
+
+	users = sut.convertToArray(result);
+
+	ASSERT_TRUE(users.size() == 2);
+	ASSERT_TRUE(!users[0].getName().compare("Szymon") || !users[0].getName().compare("Kamil"));
 
 }

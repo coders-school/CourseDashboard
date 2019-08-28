@@ -45,7 +45,7 @@ std::string UserIOHandler::read()
     return read;
 }
 
-std::string UserIOHandler::convertUsersToJson(std::vector<User> users)
+std::string UserIOHandler::convertToJson( const std::vector<User>& users )
 {
     nlohmann::json jsonArray = nlohmann::json::array();
 
@@ -63,4 +63,26 @@ std::string UserIOHandler::convertUsersToJson(std::vector<User> users)
     }
 
     return jsonArray.dump();
+}
+
+std::vector<User> UserIOHandler::convertToArray(const std::string& jsonString)
+{
+    nlohmann::json jsonArray = nlohmann::json::parse(jsonString);
+
+    std::vector<User> users;
+    for( auto jsonE : jsonArray)
+    {
+        auto name = jsonE["name"].get<std::string>();
+        auto nick = jsonE["nick"].get<std::string>();
+        auto group = jsonE["group"].get<std::string>();
+        auto gitHub = jsonE["gitHub"].get<std::string>();
+        auto firecod = jsonE["firecod"].get<std::string>();
+
+        users.push_back(
+            User(name, nick, group, gitHub, firecod)
+        );
+    }
+
+
+    return users;
 }

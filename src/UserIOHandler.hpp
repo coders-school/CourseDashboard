@@ -15,7 +15,8 @@ public:
     void write(const std::string& content);
     std::string read();
     
-    std::string convertUsersToJson(std::vector<User> users);
+    std::string convertToJson(const std::vector<User>& users);
+    std::vector<User> convertToArray(const std::string& jsonString);
 
 private:
 
