@@ -1,4 +1,5 @@
 #include "UserIOHandler.hpp"
+#include "../external/nlohmann/json.hpp"
 
 #include <ios>
 #include <iostream>
@@ -42,4 +43,24 @@ std::string UserIOHandler::read()
     }
 
     return read;
+}
+
+std::string UserIOHandler::convertUsersToJson(std::vector<User> users)
+{
+    nlohmann::json jsonArray = nlohmann::json::array();
+
+    for(auto user : users)
+    {
+        nlohmann::json userJson = {
+            { "name", user.getName()},
+            { "nick", user.getNick()},
+            { "group", user.getGroup()},
+            { "gitHub", user.getGitHub()},
+            { "firecod", user.getFirecod()}                
+        };
+
+        jsonArray.push_back(userJson);
+    }
+
+    return jsonArray.dump();
 }

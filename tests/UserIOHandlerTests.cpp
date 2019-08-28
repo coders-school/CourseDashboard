@@ -107,3 +107,22 @@ TEST(UserIOHandlerTests, onReadShouldPrintToCerrOnFailure)
 	std::string stdErr = testing::internal::GetCapturedStderr();
 	EXPECT_NE(stdErr.find(dummyStr), std::string::npos);
 }
+
+TEST(UserIOHandlerTests, canConvertVectorOfUsersToJsonString)
+{
+	FstreamMock* fsMock = new FstreamMock;
+	UserIOHandler sut(fsMock);
+
+	std::vector<User> users = {
+		User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski"),
+		User("Kamil", "Kamil.Wszkiewicz", "wieczorowa1", "Kamil.Wszkiewicz", "Kamil.Wszkiewicz"),
+	};
+
+	auto result = sut.convertUsersToJson(users);
+
+	ASSERT_TRUE(result.find("Szymon") != std::string::npos);
+	ASSERT_TRUE(result.find("Kamil.Wszkiewicz") != std::string::npos);
+
+	std::cout << result << std::endl;
+
+}

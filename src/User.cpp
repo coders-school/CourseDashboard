@@ -50,3 +50,23 @@ std::string User::getNick() const
 {
     return nick_;
 }
+
+std::string User::getName() const
+{
+    return name_;
+}
+
+std::string User::getGroup() const
+{
+    return group_;
+}
+
+std::string User::getGitHub() const
+{
+    return gitHub_;
+}
+
+std::string User::getFirecod() const
+{
+    return firecode_;
+}

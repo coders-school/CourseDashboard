@@ -20,6 +20,11 @@ public:
     void setFirecode(std::string firecode);
     std::string getNick() const;
 
+    std::string getName() const;
+    std::string getGroup() const;
+    std::string getGitHub() const;
+    std::string getFirecod() const;
+
 private:
 
     std::string name_;
