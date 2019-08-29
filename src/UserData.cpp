@@ -46,14 +46,13 @@ void UserData::retriveUserByNick(std::string nick)
         std::cout << it->getAllInfo();
     }
 }
+
 void UserData::updateUser(User & user, 
                         std::string name, 
                         std::string nick,
                         std::string group, 
                         std::string gitHub, 
-                        std::string firecode,
-                        std::string email,
-                        std::string password)
+                        std::string firecode)
 {
     std::cout << user.getAllInfo();
     user.setName(name);
@@ -61,8 +60,6 @@ void UserData::updateUser(User & user,
     user.setGroup(group);
     user.setGitHub(gitHub);
     user.setFirecode(firecode);
-    user.setEmail(email);
-    user.setPassword(password);
     std::cout << "After update : " << std::endl << user.getAllInfo();
 }
 

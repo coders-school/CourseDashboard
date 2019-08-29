@@ -43,7 +43,6 @@ set(SRC_LIST
     src/CourseDashboard.cpp
     src/User.cpp
     src/UserData.cpp
-    src/Login.cpp
 )
 
 include_directories(src)

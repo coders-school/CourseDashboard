@@ -17,9 +17,7 @@ public:
                     std::string nick,
                     std::string group, 
                     std::string gitHub, 
-                    std::string firecode,
-                    std::string email,
-                    std::string password);
+                    std::string firecode);
 
 private:
     std::vector<User> users_;
