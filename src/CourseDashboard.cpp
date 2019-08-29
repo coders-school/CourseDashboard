@@ -101,12 +101,10 @@ bool CourseDashboard::logInUser()
         std::cout << "Enter Password: "; std::cin >> passwordKeyword;
         if (search -> second == passwordKeyword)
         {
-            std::cout << "Login successful" << std::endl;
             return true;
         }
         else 
         {
-            std::cout << "Login failure" << std::endl;
             return false;
         }
     }
@@ -123,12 +121,10 @@ bool CourseDashboard::logInTrainer()
     auto search = find (trainersLoginVector_.begin(), trainersLoginVector_.end(), loginKeyword);
     if (search != trainersLoginVector_.end()) 
     {
-        std::cout << "Login successful" << std::endl;
         return true;
     }
     else
     {
-        std::cout << "Login failure" << std::endl;
         return false;
     }
     return true;
