@@ -3,30 +3,36 @@
 #include "CourseDashboard.hpp"
 #include "LogIn.hpp"
 
+struct LogInTests : public testing::Test
+{
+    LogIn logIn;
+};
 
 TEST(CourseDashboardTests, canConstructCourseDashboard)
 {
     CourseDashboard cd;
 }
 
-TEST(LogInTests, canCreateLogInClass)
-{
-    LogIn logIn;
-}
 
-TEST(LogInTests, canTakeEmailAndPasswordValue)
+TEST_F(LogInTests, canTakeEmailAndPasswordValue)
 {    
     LogIn logIn("testEmail","testPassword");
 }
 
-TEST(LogInTests, canSetEmail)
+TEST_F(LogInTests, SetEmailWithSizeGreaterThanZeroShouldBeTrue)
 {
-    //Arrange
-    LogIn logIn;
-
     //Act
     auto result = logIn.setEmail("testEmail");
 
     //Assert
     ASSERT_TRUE(result);
+}
+
+TEST_F(LogInTests, SetEmailWithSizeLowerOrEqualToZeroShoudlBeFalse)
+{
+    //Act
+    auto result = logIn.setEmail("");
+
+    //Assert
+    ASSERT_FALSE(result);
 }
