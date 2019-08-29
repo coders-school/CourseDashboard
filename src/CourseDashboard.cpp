@@ -84,7 +84,7 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
-std::string CourseDashboard::eMail()
+std::string CourseDashboard::provideEmail()
 {
         std::string email;
         std::cout<<"Please enter a email."<<std::endl;
@@ -94,7 +94,7 @@ std::string CourseDashboard::eMail()
     return email;
 }
 
-std::string CourseDashboard::passWord()
+std::string CourseDashboard::providePassword()
 {
 	std::string password1, password2;
 	std::cout << "Please enter your password." << std::endl;
@@ -114,20 +114,20 @@ std::string CourseDashboard::passWord()
     return password1; 
 }
 
-void CourseDashboard::logIn()
+bool CourseDashboard::logIn()
 {
-    std::string emailKeyword = eMail();
-    std::string passwordKeyword = passWord();
     std::string email, password;
-    std::string line;
-    std::fstream file;
-    file.open("plik.txt", std::ios::in);
+
+    std::ifstream file("plik.txt", std::ios::in);
 
     if(!file.good())
     {
         std::cout<<"file doesn't exist";
         exit(0);
     }
+
+    std::string emailKeyword = provideEmail();
+    std::string passwordKeyword = providePassword();
 
     while(!file.eof())
     {
@@ -137,13 +137,10 @@ void CourseDashboard::logIn()
         if(emailKeyword == email && passwordKeyword == password) 
         {   
             std::cout << "Login succeesful!" << std::endl; 
-            break;
-        }
-        else
-        {
-            std::cout << "Incorrect e-mail or password!" << std::endl; 
-            break;
+            return true;
         }
     }
     file.close();
+
+    return false;
 }

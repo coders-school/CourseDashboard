@@ -12,9 +12,9 @@ public:
     void deleteUserByNick(std::string nick);
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
-    std::string eMail();
-    std::string passWord();
-    void logIn();
+    std::string provideEmail();
+    std::string providePassword();
+    bool logIn();
 
 private:
     std::vector<User> users_;
