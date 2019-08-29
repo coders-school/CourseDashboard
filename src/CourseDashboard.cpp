@@ -102,7 +102,6 @@ bool CourseDashboard::logIn()
 
     if (searchTrainer != trainersLoginVector_.end())
     {
-        std::cout<< "Trainer's Panel." <<std::endl;
         return true;
     }
     else
