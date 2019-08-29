@@ -109,7 +109,7 @@ void CourseDashboard::loadFromFile()
     std::fstream file_DB("baza danych.txt", file_DB.in);
     if(!file_DB.is_open())
     {
-        std::cout<<"No file userBase.txt found."<<std::endl;
+        throw "Problem to open userBase.txt";
     }
     else
     {    
