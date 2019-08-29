@@ -101,7 +101,6 @@ void CourseDashboard::saveToFile()
             file_DB << user.getAllInfo();
         }
     }
-    file_DB.close();
 }
 
 void CourseDashboard::loadFromFile()
@@ -137,5 +136,4 @@ void CourseDashboard::loadFromFile()
             user.clear();
         }	
     }
-    file_DB.close();
 }
