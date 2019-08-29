@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "CourseDashboard.hpp"
+#include "LogIn.hpp"
 
 
 TEST(CourseDashboardTests, canConstructCourseDashboard)
@@ -7,7 +8,7 @@ TEST(CourseDashboardTests, canConstructCourseDashboard)
     CourseDashboard cd;
 }
 
-TEST(CourseDasboardsTests, canSausageCode)
+TEST(LogInTests, canCreateLogInClass)
 {
-    
+    LogIn logIn;
 }
