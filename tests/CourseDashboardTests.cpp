@@ -18,3 +18,15 @@ TEST(LogInTests, canTakeEmailAndPasswordValue)
 {    
     LogIn logIn("testEmail","testPassword");
 }
+
+TEST(LogInTests, canSetEmail)
+{
+    //Arrange
+    LogIn logIn;
+
+    //Act
+    auto result = logIn.setEmail("testEmail");
+
+    //Assert
+    ASSERT_TRUE(result);
+}
