@@ -90,65 +90,35 @@ void CourseDashboard::addTrainer(std::string login)
     trainersLoginVector_.emplace_back(login);
 }
 
-bool CourseDashboard::logInUser()
-{
-    std::string emailKeyword, passwordKeyword;
-    std::cout << "Enter  e-mail : "; std::cin >> emailKeyword;  
-
-    auto search = usersLoginMap_.find(emailKeyword);
-    if (search != usersLoginMap_.end()) 
-    {
-        std::cout << "Enter Password: "; std::cin >> passwordKeyword;
-        if (search -> second == passwordKeyword)
-        {
-            return true;
-        }
-        else 
-        {
-            return false;
-        }
-    }
-    else
-    {
-        std::cout << "User not found" << std::endl;
-        return false;
-    }    
-}
-bool CourseDashboard::logInTrainer()
+bool CourseDashboard::logIn()
 {
     std::string loginKeyword;
-    std::cout << "Enter login : "; std::cin >> loginKeyword;
-    auto search = find (trainersLoginVector_.begin(), trainersLoginVector_.end(), loginKeyword);
-    if (search != trainersLoginVector_.end()) 
+    std::cout << "Enter  e-mail/name : ";
+    std::cin >> loginKeyword;  
+
+    auto searchTrainer = std::find(trainersLoginVector_.begin(), 
+                                   trainersLoginVector_.end(),
+                                   loginKeyword);
+
+    if (searchTrainer != trainersLoginVector_.end())
     {
+        std::cout<< "Trainer's Panel." <<std::endl;
         return true;
     }
     else
     {
-        return false;
-    }
-    return true;
+        auto searchUser = usersLoginMap_.find(loginKeyword);
+        if (searchUser != usersLoginMap_.end()) 
+        {
+            std::string passwordKeyword;
+            std::cout << "Enter Password: "; 
+            std::cin >> passwordKeyword;
+            return ((searchUser->second) == passwordKeyword);
+        }
+        else
+        {
+            return false;
+        }
+    }    
 }
 
-bool CourseDashboard::logIn()
-{
-    int person;
-    std::cout << "1.User" << std::endl;
-    std::cout << "2.Trainer" << std::endl;
-    std::cout << "I am (1 or 2):  ";
-    std::cin >> person;
-    switch (person)
-    {
-    case 1:
-        return logInUser();
-        break;
-    case 2:
-        return logInTrainer();
-        break;
-    default:
-        std::cout << "Invalid value" << std::endl;
-        exit(0);
-        return false;
-        break;
-    }
-}

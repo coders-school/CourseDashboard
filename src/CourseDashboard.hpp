@@ -13,8 +13,6 @@ public:
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
     bool logIn();
-    bool logInUser();
-    bool logInTrainer();
     void addTrainer(std::string login);
 
 private:
