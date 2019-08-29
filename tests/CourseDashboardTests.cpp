@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <string>
 #include "CourseDashboard.hpp"
 #include "LogIn.hpp"
 
@@ -11,4 +12,9 @@ TEST(CourseDashboardTests, canConstructCourseDashboard)
 TEST(LogInTests, canCreateLogInClass)
 {
     LogIn logIn;
+}
+
+TEST(LogInTests, canTakeEmailAndPasswordValue)
+{    
+    LogIn logIn("testEmail","testPassword");
 }
