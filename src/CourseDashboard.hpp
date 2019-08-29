@@ -13,8 +13,12 @@ public:
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
     bool logIn();
+    bool logInUser();
+    bool logInTrainer();
+    void addTrainer(std::string login);
 
 private:
     std::vector<User> users_;
-    std::map<std::string, std::string> map_;
+    std::map<std::string, std::string> usersLoginMap_;
+    std::vector<std::string> trainersLoginVector_;
 };

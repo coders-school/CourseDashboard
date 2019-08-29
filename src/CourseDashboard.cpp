@@ -17,7 +17,7 @@ void CourseDashboard::showAll()
 void CourseDashboard::createUser(const User & user)
 {
     users_.emplace_back(user);
-    map_[user.getEmail()] = user.getPassword();
+    usersLoginMap_[user.getEmail()] = user.getPassword();
 }
 
 void CourseDashboard::deleteUserByNick(std::string nick)
@@ -85,13 +85,18 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
-bool CourseDashboard::logIn()
+void CourseDashboard::addTrainer(std::string login)
+{
+    trainersLoginVector_.emplace_back(login);
+}
+
+bool CourseDashboard::logInUser()
 {
     std::string emailKeyword, passwordKeyword;
     std::cout << "Enter  e-mail : "; std::cin >> emailKeyword;  
 
-    auto search = map_.find(emailKeyword);
-    if (search != map_.end()) 
+    auto search = usersLoginMap_.find(emailKeyword);
+    if (search != usersLoginMap_.end()) 
     {
         std::cout << "Enter Password: "; std::cin >> passwordKeyword;
         if (search -> second == passwordKeyword)
@@ -109,5 +114,45 @@ bool CourseDashboard::logIn()
     {
         std::cout << "User not found" << std::endl;
         return false;
-    }     
+    }    
+}
+bool CourseDashboard::logInTrainer()
+{
+    std::string loginKeyword;
+    std::cout << "Enter login : "; std::cin >> loginKeyword;
+    auto search = find (trainersLoginVector_.begin(), trainersLoginVector_.end(), loginKeyword);
+    if (search != trainersLoginVector_.end()) 
+    {
+        std::cout << "Login successful" << std::endl;
+        return true;
+    }
+    else
+    {
+        std::cout << "Login failure" << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool CourseDashboard::logIn()
+{
+    int person;
+    std::cout << "1.User" << std::endl;
+    std::cout << "2.Trainer" << std::endl;
+    std::cout << "I am (1 or 2):  ";
+    std::cin >> person;
+    switch (person)
+    {
+    case 1:
+        return logInUser();
+        break;
+    case 2:
+        return logInTrainer();
+        break;
+    default:
+        std::cout << "Invalid value" << std::endl;
+        exit(0);
+        return false;
+        break;
+    }
 }

@@ -27,7 +27,6 @@ std::string User::getAllInfo() const
     ss<<std::setw(1) << "4." << gitHub_ << "|";
     ss<<std::setw(1) << "5." << firecode_ << "|";
     ss<<std::setw(1) << "6." << email_ << "|";
-    ss<<std::setw(1) << "7." << password_ << "|";
     ss<<std::endl;
     return ss.str();
 }
