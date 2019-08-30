@@ -32,37 +32,71 @@ std::string User::getAllInfo() const
     ss<<std::endl;
     return ss.str();
 }
-void User::setName(std::string name)
+bool User::setName(std::string name)
 {
-    name_ = name;
+    if(name.size() > 0)
+    {
+        name_ = name;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
-void User::setNick(std::string nick)
+bool User::setNick(std::string nick)
 {
-    nick_ = nick;
+    if(nick.size() > 0)
+    {
+        nick_ = nick;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
-void User::setGroup(std::string group)
+bool User::setGroup(std::string group)
 {
-    group_ = group;
+    if(group.size() > 0)
+    {
+        group_ = group;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
-void User::setGitHub(std::string gitHub)
+bool User::setGitHub(std::string gitHub)
 {
-    gitHub_ = gitHub;
+    if(gitHub.size() > 0)
+    {
+        gitHub_ = gitHub;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
-void User::setFirecode(std::string firecode)
+bool User::setFirecode(std::string firecode)
 {
-    firecode_ = firecode;
+    if(firecode.size() > 0)
+    {
+        firecode_ = firecode;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
-void User::setEmail(std::string email)
-{
-    std::transform(email.begin(), email.end(), email.begin(),
-    [](unsigned char c){ return std::tolower(c); });
-    email_ = email;
-}
-void User::setPassword(std::string password)
-{
-    password_ = password;
-}
-
 std::string User::getNick() const 
 {
     return nick_;
@@ -81,3 +115,30 @@ std::ostream &operator << (std::ostream &out, const User &c)
      return out;
  }
 
+
+bool User::setEmail(std::string email)
+{
+    if(email.size() > 0)
+    {
+        std::transform(email.begin(), email.end(), email.begin(), [] (unsigned char c) { return std::tolower(c); });
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool User::setPassword(std::string password)
+{
+    if(password.size() > 0)
+    {
+        password_ = password;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
+}

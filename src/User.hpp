@@ -18,13 +18,13 @@ public:
          const std::string & password);
    
     std::string getAllInfo() const;
-    void setName(std::string name);
-    void setNick(std::string nick);
-    void setGroup(std::string group);
-    void setGitHub(std::string gitHub);
-    void setFirecode(std::string firecode);
-    void setEmail(std::string email);
-    void setPassword(std::string password);
+    bool setName(std::string name);
+    bool setNick(std::string nick);
+    bool setGroup(std::string group);
+    bool setGitHub(std::string gitHub);
+    bool setFirecode(std::string firecode);
+    bool setEmail(std::string email);
+    bool setPassword(std::string password);
     std::string getNick() const;
     std::string getEmail() const;
     std::string getPassword() const;

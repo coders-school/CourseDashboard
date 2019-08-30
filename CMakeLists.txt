@@ -43,7 +43,8 @@ set(SRC_LIST
     src/CourseDashboard.cpp
     src/User.cpp
     src/UserData.cpp
-)
+    src/Coach.cpp
+    )
 
 include_directories(src)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
