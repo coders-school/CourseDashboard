@@ -1,12 +1,14 @@
 #include <gtest/gtest.h>
 #include <string>
 #include "CourseDashboard.hpp"
-#include "LogIn.hpp"
+#include "Coach.hpp"
+#include "User.hpp"
 
-struct LogInTests : public testing::Test
+struct CoachClassTests : public testing::Test
 {
-    LogIn logIn;
+    Coach coach;
 };
+
 
 TEST(CourseDashboardTests, canConstructCourseDashboard)
 {
@@ -14,42 +16,42 @@ TEST(CourseDashboardTests, canConstructCourseDashboard)
 }
 
 
-TEST_F(LogInTests, canTakeEmailAndPasswordValue)
+TEST_F(CoachClassTests, canTakeEmailAndPasswordValue)
 {    
-    LogIn logIn("testEmail","testPassword");
+    Coach coach("testEmail","testPassword");
 }
 
-TEST_F(LogInTests, SetEmailWithSizeGreaterThanZeroShouldBeTrue)
+TEST_F(CoachClassTests, SetEmailWithSizeGreaterThanZeroShouldBeTrue)
 {
     //Act
-    auto result = logIn.setEmail("testEmail");
+    auto result = coach.setEmail("testEmail");
 
     //Assert
     ASSERT_TRUE(result);
 }
 
-TEST_F(LogInTests, SetEmailWithSizeLowerOrEqualToZeroShoudlBeFalse)
+TEST_F(CoachClassTests, SetEmailWithSizeLowerOrEqualToZeroShoudlBeFalse)
 {
     //Act
-    auto result = logIn.setEmail("");
+    auto result = coach.setEmail("");
 
     //Assert
     ASSERT_FALSE(result);
 }
 
-TEST_F(LogInTests, SetPasswordWithSizeGreaterThanZeroShouldBeTrue)
+TEST_F(CoachClassTests, SetPasswordWithSizeGreaterThanZeroShouldBeTrue)
 {
     //Act
-    auto result = logIn.setPassword("testPassword");
+    auto result = coach.setPassword("testPassword");
 
     //Assert
     ASSERT_TRUE(result);
 }
 
-TEST_F(LogInTests, SetPasswordWithSizeLowerOrEqualToZeroShouldBeFalse)
+TEST_F(CoachClassTests, SetPasswordWithSizeLowerOrEqualToZeroShouldBeFalse)
 {
     //Act
-    auto result = logIn.setPassword("");
+    auto result = coach.setPassword("");
 
     //Assert
     ASSERT_FALSE(result);
