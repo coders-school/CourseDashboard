@@ -49,6 +49,7 @@ struct UserDataTests : public ::testing::Test
     ~UserDataTests()
     {
         delete user;
+        delete user2;
         delete userData;
     };
 
