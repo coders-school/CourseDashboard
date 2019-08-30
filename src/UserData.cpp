@@ -2,7 +2,9 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
-
+#include <vector>
+#include <iterator>
+#include <cctype>
 
 UserData::UserData() {}
 
@@ -44,44 +46,46 @@ void UserData::retriveUserByNick(std::string nick)
         std::cout << it->getAllInfo();
     }
 }
-
-void UserData::updateUser(User & user)
+bool UserData::logIn( 
+        std::string email, 
+        std::string password)
 {
-    unsigned int number;
-    std::cout << user.getAllInfo();
-    std::cout << "Which data You want to edit? Give number: " << '\n';
-    std::cin >> number;
-    std::string name, nick, group, gitHub, firecode;
-    switch (number) {
-    case 1:
-        std::cout << "Give new value to data: ";
-        std::cin >> name;
-        user.setName(name);
-        break;
-    case 2:
-        std::cout << "Give new value to data: ";
-        std::cin >> nick;
-        user.setNick(nick);
-        break;
-    case 3:
-        std::cout << "Give new value to data: ";
-        std::cin >> group;
-        user.setGroup(group);
-        break;
-    case 4:
-        std::cout << "Give new value to data: ";
-        std::cin >> gitHub;
-        user.setGitHub(gitHub);
-        break;
-    case 5:
-        std::cout << "Give new value to data: ";
-        std::cin >> firecode;
-        user.setFirecode(firecode);
-        break;
-    default:
-        std::cout << "You gave wrong value.";
-        break;
+    std::transform(email.begin(), email.end(), email.begin(), [] (unsigned char c) { return std::tolower(c); });
+    auto it = std::find_if(std::begin(users_), std::end(users_), [email] (const auto & user){ return user.getEmail() == email; });
+    if (it != std::end(users_) && it->getEmail() == email && it->getPassword() == password)
+    {
+        std::cout << "Hello " << it->getNick() << ". You are logged now." << std::endl;
+        return it->getEmail() == email && it->getPassword() == password;
     }
-}
+    else if (email == "admin@admin.com" && password == "adminpassword")
+    {
+        std::cout << "Hello admin. You are logged now." << std::endl;
+        return true;
+    }
+    else   
+    {
+        std::cout << "Wrong email or password. Try again." << std::endl;
+        return false;
+    }
 
+}
+void UserData::updateUser(User & user, 
+                        std::string name, 
+                        std::string nick,
+                        std::string group, 
+                        std::string gitHub, 
+                        std::string firecode,
+                        std::string email,
+                        std::string password)
+{
+    std::cout << user.getAllInfo();
+    user.setName(name);
+    user.setNick(nick);
+    user.setGroup(group);
+    user.setGitHub(gitHub);
+    user.setFirecode(firecode);
+    user.setEmail(email);
+    user.setPassword(password);
+    std::cout << "After update : " << std::endl << user.getAllInfo();
+}
 
