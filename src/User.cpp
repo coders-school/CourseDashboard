@@ -55,3 +55,13 @@ const std::string& User::getName() const
 {
     return name_;
 }
+
+
+bool User::operator==(const User& other)
+{
+    return !(name_.compare(other.name_) or
+             nick_.compare(other.nick_) or
+             group_.compare(other.group_) or
+             gitHub_.compare(other.gitHub_) or
+             firecode_.compare(other.firecode_));
+}

@@ -14,7 +14,7 @@ std::stringstream UserContainer::showAll()
     return output;
 }
 
-void UserContainer::createUser(const User & user)
+void UserContainer::add(const User & user)
 {
     users_.emplace_back(user);
 }

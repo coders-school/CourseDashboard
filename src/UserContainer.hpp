@@ -16,7 +16,7 @@ public:
 
     std::stringstream  showAll();
 
-    void createUser(const User & user);
+    void add(const User & user);
 
     void deleteUserByNick(std::string nick);
 

@@ -7,7 +7,7 @@ struct UserContainerTests : public ::testing::Test
 {
     UserContainerTests()
     {
-        userContainer_.createUser(User("Kamil", "Kamil.Waszkiewicz", "wieczorowa", "Kamil.Waszkiewicz", "Kamil.Waszkiewicz"));
+        userContainer_.add(User("Kamil", "Kamil.Waszkiewicz", "wieczorowa", "Kamil.Waszkiewicz", "Kamil.Waszkiewicz"));
     }
 
     UserContainer userContainer_;
@@ -21,7 +21,7 @@ TEST_F(UserContainerTests, canConstructUserContainer)
 TEST_F(UserContainerTests, canAddUserToUserContainer)
 {
     User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
-    userContainer_.createUser(u1);
+    userContainer_.add(u1);
     
     auto result = userContainer_.retriveUserByNick("SzymonGajewski");
     ASSERT_TRUE(result.has_value());  
@@ -37,7 +37,7 @@ TEST_F(UserContainerTests, canViewAllUsers)
 TEST_F(UserContainerTests, canDeleteAUser)
 {    
     User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
-    userContainer_.createUser(u1);
+    userContainer_.add(u1);
 
     auto result = userContainer_.retriveUserByNick("SzymonGajewski");
     ASSERT_TRUE(result.has_value());
