@@ -57,11 +57,6 @@ bool UserData::logIn(
         std::cout << "Hello " << it->getNick() << ". You are logged now." << std::endl;
         return it->getEmail() == email && it->getPassword() == password;
     }
-    else if (email == "admin@admin.com" && password == "adminpassword")
-    {
-        std::cout << "Hello admin. You are logged now." << std::endl;
-        return true;
-    }
     else   
     {
         std::cout << "Wrong email or password. Try again." << std::endl;

@@ -3,7 +3,6 @@
 #include <vector>
 #include "User.hpp"
 
-
 class UserData
 {
 public:

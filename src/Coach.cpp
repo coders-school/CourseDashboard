@@ -1,5 +1,7 @@
 #include "Coach.hpp"
 #include <string>
+#include <algorithm>
+#include <cctype>
 
 Coach::Coach(const std::string email, const std::string password)
             :email_(email),
@@ -10,7 +12,7 @@ bool Coach::setEmail(const std::string email)
 {
     if(email.size() > 0)
     {
-        email_= email;
+        email_ = email;
         return true;
     }
     else
