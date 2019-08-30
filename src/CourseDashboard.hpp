@@ -12,8 +12,8 @@ public:
     void deleteUserByNick(std::string nick);
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
-    std::string provideEmail();
-    std::string providePassword();
+    bool provideEmail(std::string emailC);
+    bool providePassword(std::string password1);
     bool logIn();
 
 private:
