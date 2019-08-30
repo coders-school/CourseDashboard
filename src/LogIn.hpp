@@ -8,6 +8,7 @@ public:
     LogIn() = default;
     
     bool setEmail(const std::string email);
+    bool setPassword(const std::string password);
 
 
 private:

@@ -36,3 +36,21 @@ TEST_F(LogInTests, SetEmailWithSizeLowerOrEqualToZeroShoudlBeFalse)
     //Assert
     ASSERT_FALSE(result);
 }
+
+TEST_F(LogInTests, SetPasswordWithSizeGreaterThanZeroShouldBeTrue)
+{
+    //Act
+    auto result = logIn.setPassword("testPassword");
+
+    //Assert
+    ASSERT_TRUE(result);
+}
+
+TEST_F(LogInTests, SetPasswordWithSizeLowerOrEqualToZeroShouldBeFalse)
+{
+    //Act
+    auto result = logIn.setPassword("");
+
+    //Assert
+    ASSERT_FALSE(result);
+}
