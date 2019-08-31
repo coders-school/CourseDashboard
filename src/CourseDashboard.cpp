@@ -110,9 +110,12 @@ void CourseDashboard::loadUsersFromFile(std::string filename)
         while(std::getline(file, tmpLine))
         {  
             std::stringstream sstream(tmpLine);
-            while (std::getline(sstream, tmpValue,';')) { vstrUser.push_back(tmpValue); }
-            User loopUser(vstrUser[0], vstrUser[1], vstrUser[2],
-                            vstrUser[3], vstrUser[4], vstrUser[5], vstrUser[6]);
+            while (std::getline(sstream, tmpValue,';'))
+            {
+                vstrUser.push_back(tmpValue);
+            }
+            User loopUser(
+                vstrUser[0], vstrUser[1], vstrUser[2], vstrUser[3], vstrUser[4], vstrUser[5], vstrUser[6]);
             users_.emplace_back(loopUser);
             vstrUser.clear();
         }
