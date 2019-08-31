@@ -23,11 +23,10 @@ std::string User::getAllInfo() const
     ss<<std::left;   
     ss<<std::setw(1) << "1." << name_ << "|";
     ss<<std::setw(1) << "2." << nick_ << "|";
-    ss<<std::setw(1) << "3." << password_ << "|";
-    ss<<std::setw(1) << "4." << mail_ << "|";
-    ss<<std::setw(1) << "5." << group_ << "|";
-    ss<<std::setw(1) << "6." << gitHub_ << "|";
-    ss<<std::setw(1) << "7." << firecode_ << "|";
+    ss<<std::setw(1) << "3." << mail_ << "|";
+    ss<<std::setw(1) << "4." << group_ << "|";
+    ss<<std::setw(1) << "5." << gitHub_ << "|";
+    ss<<std::setw(1) << "6." << firecode_ << "|";
     ss<<std::endl;
     return ss.str();
 }
