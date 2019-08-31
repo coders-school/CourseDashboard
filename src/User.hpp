@@ -6,15 +6,14 @@
 class User
 {
 public:
-    User() = default;
-
-    User(const std::string & name,
-         const std::string & nick,
-         const std::string & group,
-         const std::string & gitHub,
-         const std::string & firecode);
+    User(const std::string name,
+         const std::string nick,
+         const std::string group,
+         const std::string gitHub,
+         const std::string firecode);
    
     std::string getAllInfo() const;
+
     void setName(std::string name);
     void setNick(std::string nick);
     void setGroup(std::string group);

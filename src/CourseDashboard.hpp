@@ -5,6 +5,8 @@
 
 class CourseDashboard
 {
+private:
+    std::vector<User> users_;
 public:
     CourseDashboard();
     void showAll();
@@ -14,7 +16,5 @@ public:
     void updateUser(User & user);
     void saveToFile();
     void loadFromFile();
-private:
-    std::vector<User> users_;
 
 };

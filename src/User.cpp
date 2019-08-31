@@ -1,11 +1,11 @@
 #include "User.hpp"
 #include <iostream>
 
-User::User(const std::string & name,
-           const std::string & nick,
-           const std::string & group,
-           const std::string & gitHub,
-           const std::string & firecode)
+User::User(const std::string name,
+           const std::string nick,
+           const std::string group,
+           const std::string gitHub,
+           const std::string firecode)
     : name_(name)
     , nick_(nick)
     , group_(group)
