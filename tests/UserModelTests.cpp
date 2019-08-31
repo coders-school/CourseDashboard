@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "User.hpp"
+#include "UserContainer.hpp"
 
 struct Data
 {
@@ -12,7 +13,7 @@ struct Data
 } data;
 
 
-TEST(UserModelTests, canConstructorUserAndRetriveUsingGetAllInfo)
+TEST(UserModelTests, canConstructUserAndRetriveUsingGetAllInfo)
 {
     User user(data.name, data.nick, data.group, data.github, data.firecode);
     

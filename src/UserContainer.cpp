@@ -1,8 +1,30 @@
 
 #include <algorithm>
+#include <stdexcept>
+
 
 #include "UserContainer.hpp"
 
+
+UserContainer::UserContainer()
+{}
+
+
+auto UserContainer::byNick(const std::string & nick) const
+{
+    return [&nick](const auto & user)
+    {
+        return user.getNick() == nick;
+    };
+}
+
+auto UserContainer::byUser(const User & user) const
+{
+    return [&user](const auto & dbUser)
+    {
+        return dbUser == user;
+    };
+}
 
 std::stringstream UserContainer::showAll()
 {
@@ -14,45 +36,50 @@ std::stringstream UserContainer::showAll()
     return output;
 }
 
-void UserContainer::add(const User & user)
+void UserContainer::add(User && user)
 {
-    users_.emplace_back(user);
+    User emptyUser("", "", "", "", "");
+    auto it = std::find_if(std::begin(users_), std::end(users_), byUser(user));
+
+    if(user == emptyUser) {
+        throw std::invalid_argument("Unable to add user to database. User object is empty ");
+    }
+    if(it != std::end(users_)) {
+        throw std::invalid_argument("Unable to add user to database. User " + user.getNick() + " alrady in database ");
+    }
+
+    users_.emplace_back(std::move(user));
 }
 
-void UserContainer::deleteUserByNick(std::string nick)
+void UserContainer::deleteUserByNick(const std::string& nick)
 {  
-    auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
-    {
-        return user.getNick() == nick;
-    });
+    auto it = std::find_if(std::begin(users_), std::end(users_), byNick(nick));
 
-    if (it != std::end(users_))
+    if (it == std::end(users_))
     {
-        users_.erase(it);
+        throw std::invalid_argument("Unable to delete user. User " + nick + " not fund ");
     }
+    users_.erase(it);
 }
 
-std::optional<User> UserContainer::retriveUserByNick(std::string nick)
+const User& UserContainer::getUserByNick(const std::string& nick) const
 {
-    auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
+    auto it = std::find_if(std::begin(users_), std::end(users_), byNick(nick));
+
+    if (it == std::end(users_))
     {
-        return user.getNick() == nick;
-    });
+        throw std::invalid_argument("User " + nick + " not fund ");
+    }
+    return *it;
+}
+
+User & UserContainer::retriveUser(const User& user)
+{
+    auto it = std::find_if(std::begin(users_), std::end(users_), byUser(user));
     
-    if (it != std::end(users_))
+    if (it == std::end(users_))
     {
-        return std::optional<User>(*it);
+        //TODO: throw an invalid argument exception
     }
-    return std::optional<User>();
-}
-
-void UserContainer::updateUser(User & user)
-{
-    auto nick = user.getNick();
-    auto it = std::find_if(std::begin(users_), std::end(users_), [&nick](const auto & user)
-    {
-        return user.getNick() == nick;
-    });
-
-    *it = user;
+    return (*it);
 }

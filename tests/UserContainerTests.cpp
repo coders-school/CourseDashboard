@@ -21,11 +21,29 @@ TEST_F(UserContainerTests, canConstructUserContainer)
 TEST_F(UserContainerTests, canAddUserToUserContainer)
 {
     User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
-    userContainer_.add(u1);
+    userContainer_.add(std::move(u1));
     
-    auto result = userContainer_.retriveUserByNick("SzymonGajewski");
-    ASSERT_TRUE(result.has_value());  
-    ASSERT_TRUE(!result.value().getName().compare("Szymon"));
+    const User& user = userContainer_.getUserByNick("SzymonGajewski");
+
+    User expectedUser("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
+    ASSERT_TRUE(user == expectedUser);
+}
+
+TEST_F(UserContainerTests, canNotAddEmptyUserObjectToUserContainer)
+{
+    User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
+    userContainer_.add(std::move(u1));
+    
+    ASSERT_THROW(userContainer_.add(std::move(u1)), std::invalid_argument);
+}
+
+TEST_F(UserContainerTests, canNotAddUsersHavingTheSameData)
+{
+    User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
+    User u2("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
+    userContainer_.add(std::move(u1));
+    
+    ASSERT_THROW(userContainer_.add(std::move(u2)), std::invalid_argument);
 }
 
 TEST_F(UserContainerTests, canViewAllUsers)
@@ -37,32 +55,21 @@ TEST_F(UserContainerTests, canViewAllUsers)
 TEST_F(UserContainerTests, canDeleteAUser)
 {    
     User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
-    userContainer_.add(u1);
-
-    auto result = userContainer_.retriveUserByNick("SzymonGajewski");
-    ASSERT_TRUE(result.has_value());
-    ASSERT_TRUE(!result.value().getName().compare("Szymon"));
+    userContainer_.add(std::move(u1));
 
     userContainer_.deleteUserByNick("SzymonGajewski");
-    result = userContainer_.retriveUserByNick("SzymonGajewski");
-    ASSERT_FALSE(result.has_value());
+    ASSERT_THROW(userContainer_.getUserByNick("SzymonGajewski"), std::invalid_argument);
+}
+
+TEST_F(UserContainerTests, canNotDeleteUserNotInDatabase)
+{    
+    ASSERT_THROW(userContainer_.deleteUserByNick("SzymonGajewski"), std::invalid_argument);
 }
 
 TEST_F(UserContainerTests, canUpdateUser)
 {    
-    auto result = userContainer_.retriveUserByNick("Kamil.Waszkiewicz");
-    ASSERT_TRUE(result.has_value());
-    ASSERT_TRUE(!result.value().getName().compare("Kamil"));
+    User& result = userContainer_.retriveUser(userContainer_.getUserByNick("Kamil.Waszkiewicz"));
+    result.setNick("New.Kamil.Waszkiewicz");
 
-    result.value().setName("Szymon");
-    result.value().setNick("Kamil.Waszkiewicz");
-    result.value().setGroup("weekendowa");
-    result.value().setGitHub("Kamil.Waszkiewicz");
-    result.value().setFirecode("SzymonGajewski");
-
-    userContainer_.updateUser(result.value());
-    result = userContainer_.retriveUserByNick("Kamil.Waszkiewicz");
-
-    ASSERT_TRUE(result.has_value());
-    ASSERT_TRUE(!result.value().getName().compare("Szymon"));
+    ASSERT_NO_THROW(userContainer_.getUserByNick("New.Kamil.Waszkiewicz").getNick());
 }

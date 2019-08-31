@@ -7,6 +7,8 @@
 class User
 {
 public:
+    
+
     User(const std::string & name,
          const std::string & nick,
          const std::string & group,
@@ -14,7 +16,6 @@ public:
          const std::string & firecode);
     
     User(User&& other) = default;
-    User(const User& ohter) = default;
 
     std::string getAllInfo() const;
     void setName(std::string name);
@@ -24,20 +25,16 @@ public:
     void setFirecode(std::string firecode);
     
     std::string getNick() const;
-
-    const std::string& getName() const;
+    std::string getName() const;
 
     User& operator=(User&& user) = default;
-    User& operator=(const User& user) = default;
-
-    bool operator==(const User& other);
+    
+    friend bool operator==(const User& lhs, const User& rhs);
 
 private:
-
     std::string name_;
     std::string nick_;
     std::string group_;
     std::string gitHub_;
-    std::string firecode_;  
-
+    std::string firecode_;
 };

@@ -1,6 +1,8 @@
 #include "User.hpp"
 #include <iostream>
 
+
+
 User::User(const std::string & name,
            const std::string & nick,
            const std::string & group,
@@ -51,17 +53,16 @@ std::string User::getNick() const
     return nick_;
 }
 
-const std::string& User::getName() const
+std::string User::getName() const
 {
     return name_;
 }
 
-
-bool User::operator==(const User& other)
+bool operator==(const User& lhs, const User& rhs)
 {
-    return !(name_.compare(other.name_) or
-             nick_.compare(other.nick_) or
-             group_.compare(other.group_) or
-             gitHub_.compare(other.gitHub_) or
-             firecode_.compare(other.firecode_));
+    return !(lhs.name_.compare(rhs.name_) or
+             lhs.nick_.compare(rhs.nick_) or
+             lhs.group_.compare(rhs.group_) or
+             lhs.gitHub_.compare(rhs.gitHub_) or
+             lhs.firecode_.compare(rhs.firecode_));
 }

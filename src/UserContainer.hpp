@@ -1,6 +1,6 @@
+#pragma once
 
 #include <vector>
-#include <optional>
 
 #include "User.hpp"
 
@@ -8,20 +8,21 @@ class UserContainer
 {
 private:
     std::vector<User> users_;
-    
-public:
-    UserContainer() = default;
 
-    ~UserContainer() = default;
+    auto byNick(const std::string & nick) const;
+    auto byUser(const User & user) const;
+
+public:
+    UserContainer();
 
     std::stringstream  showAll();
 
-    void add(const User & user);
+    void add(User&& user);
 
-    void deleteUserByNick(std::string nick);
+    void deleteUserByNick(const std::string& nick);
 
-    std::optional<User> retriveUserByNick(std::string nick);
+    const User & getUserByNick(const std::string& nick) const;
+
+    User& retriveUser(const User&);
     
-    void updateUser(User & user);
-
 };
