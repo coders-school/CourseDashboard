@@ -2,11 +2,12 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
+#include <iostream>
 
-Coach::Coach(const std::string email, const std::string password)
-            :email_(email),
-             password_(password)
-             {}
+Coach::Coach(std::string email, std::string password) 
+            : email_(email)
+            , password_(password)
+            {}
 
 bool Coach::setEmail(const std::string email)
 {
@@ -19,7 +20,6 @@ bool Coach::setEmail(const std::string email)
     {
         return false;
     }
-    
 }
 
 bool Coach::setPassword(const std::string password)
@@ -33,5 +33,15 @@ bool Coach::setPassword(const std::string password)
     {
         return false;
     }
-    
 }
+
+std::string Coach::getEmail() const
+{
+    return email_;
+}
+
+std::string Coach::getPassword() const
+{
+    return password_;
+}
+

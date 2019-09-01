@@ -44,6 +44,7 @@ set(SRC_LIST
     src/User.cpp
     src/UserData.cpp
     src/Coach.cpp
+    src/CoachDataAccess.cpp
     )
 
 include_directories(src)
@@ -60,7 +61,9 @@ endif (UNIX)
 set(TEST_SRC_LIST
     tests/CourseDashboardTests.cpp
     tests/test_main.cpp
-)
+    tests/CoachTests.cpp
+    tests/CoachDataAccessTests.cpp
+    )
 
 link_libraries(gtest)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})

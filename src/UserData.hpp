@@ -2,11 +2,12 @@
 #include <iostream>
 #include <vector>
 #include "User.hpp"
+#include "Connect.hpp"
 
 class UserData
 {
 public:
-    UserData();
+    UserData(Connect & connect);
     void showAll();
     void createUser(const User & user);
     void deleteUserByNick(std::string nick);
@@ -23,4 +24,7 @@ public:
 
 protected:
     std::vector<User> users_;
+
+private:
+    Connect & connect_;
 };

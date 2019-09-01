@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include "Connect.hpp"
 
 
 class User
@@ -9,7 +10,8 @@ class User
     friend std::ostream &operator << (std::ostream &out, const User &c);
 
 public:
-    User(const std::string & name,
+    User(
+         const std::string & name,
          const std::string & nick,
          const std::string & group,
          const std::string & gitHub,
@@ -25,11 +27,14 @@ public:
     bool setFirecode(std::string firecode);
     bool setEmail(std::string email);
     bool setPassword(std::string password);
+
     std::string getNick() const;
     std::string getEmail() const;
     std::string getPassword() const;
 
+
 private:
+    
     std::string name_;
     std::string nick_;
     std::string group_;

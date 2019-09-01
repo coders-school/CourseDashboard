@@ -2,7 +2,8 @@
 #include <iostream>
 #include <algorithm>
 #include <cctype>
-User::User(const std::string & name,
+User::User(
+           const std::string & name,
            const std::string & nick,
            const std::string & group,
            const std::string & gitHub,
@@ -15,7 +16,7 @@ User::User(const std::string & name,
     , gitHub_(gitHub)
     , firecode_(firecode)
     , email_(email)
-    ,password_(password)
+    , password_(password)
 {}
 
 std::string User::getAllInfo() const
@@ -120,7 +121,7 @@ bool User::setEmail(std::string email)
 {
     if(email.size() > 0)
     {
-        std::transform(email.begin(), email.end(), email.begin(), [] (unsigned char c) { return std::tolower(c); });
+        email_ = email;
         return true;
     }
     else
@@ -140,5 +141,40 @@ bool User::setPassword(std::string password)
     {
         return false;
     }
-    
 }
+
+//int User::tryToLogin(std::string email, std::string password)
+//{
+//    if(email != email_ or password != password_)
+//    {
+//        std::cout << "Fail :)" << std::endl;
+//        return -1;
+//    }
+//    else
+//    {
+//        if(connect_.checkIfUserIsAlreadyLoggedIn() == true)
+//        {
+//            std::cout << "Already logged in" << std::endl;
+//            return -1;
+//        }
+//        else
+//        {
+//            connect_.login(email,password);
+//            return 1;    
+//        }
+//    }
+//}
+//
+//int User::tryToLogout()
+//{
+//    if(connect_.checkIfUserIsAlreadyLoggedIn() == false)
+//    {
+//        std::cout << "Already logged out" << std::endl;
+//        return -1;
+//    }
+//    else
+//    {
+//        connect_.logout();
+//    }
+//}
+//

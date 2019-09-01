@@ -6,7 +6,7 @@
 #include <iterator>
 #include <cctype>
 
-UserData::UserData() {}
+UserData::UserData(Connect & connect) : connect_(connect) {}
 
 void UserData::showAll()
 {
@@ -19,6 +19,7 @@ void UserData::showAll()
 void UserData::createUser(const User & user)
 {
     users_.emplace_back(user);
+    connect_.login(user.getEmail(), user.getPassword());
 }
 
 void UserData::deleteUserByNick(std::string nick)
@@ -50,20 +51,27 @@ bool UserData::logIn(
         std::string email, 
         std::string password)
 {
-    std::transform(email.begin(), email.end(), email.begin(), [] (unsigned char c) { return std::tolower(c); });
     auto it = std::find_if(std::begin(users_), std::end(users_), [email] (const auto & user){ return user.getEmail() == email; });
     if (it != std::end(users_) && it->getEmail() == email && it->getPassword() == password)
     {
-        std::cout << "Hello " << it->getNick() << ". You are logged now." << std::endl;
-        return it->getEmail() == email && it->getPassword() == password;
+        if(connect_.checkIfUserIsAlreadyLoggedIn() == true)
+        {
+            std::cout << "Already logged in" << std::endl;
+            return false;
+        }
+        else
+        {
+            connect_.login(email, password);
+            return true;
+        }
     }
     else   
     {
         std::cout << "Wrong email or password. Try again." << std::endl;
         return false;
     }
-
 }
+
 void UserData::updateUser(User & user, 
                         std::string name, 
                         std::string nick,
