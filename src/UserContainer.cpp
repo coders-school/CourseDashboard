@@ -79,7 +79,7 @@ User & UserContainer::retriveUser(const User& user)
     
     if (it == std::end(users_))
     {
-        //TODO: throw an invalid argument exception
+       throw std::invalid_argument("User " + user.getNick() + " do not exist");
     }
     return (*it);
 }

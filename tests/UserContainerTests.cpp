@@ -73,3 +73,9 @@ TEST_F(UserContainerTests, canUpdateUser)
 
     ASSERT_NO_THROW(userContainer_.getUserByNick("New.Kamil.Waszkiewicz").getNick());
 }
+
+TEST_F(UserContainerTests, canNotUpdateUseNotInDatabase)
+{
+    User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
+    ASSERT_THROW(userContainer_.retriveUser(u1), std::invalid_argument);
+}
