@@ -17,12 +17,19 @@ inline nlohmann::json convertToJson( const std::vector<User>& users )
 
 inline std::vector<User> convertToArray(const std::string& jsonString)
 {
-    nlohmann::json jsonArray = nlohmann::json::parse(jsonString);
+    try
+    {
+        nlohmann::json jsonArray = nlohmann::json::parse(jsonString);
 
-    std::vector<User> array;
-    for(auto& jsonE : jsonArray) {
-        array.push_back(User(jsonE));
+        std::vector<User> array;
+        for(auto& jsonE : jsonArray) {
+            array.push_back(User(jsonE));
+        }
+
+        return array;
     }
-
-    return array;
+    catch(const nlohmann::json::parse_error& e)
+    {
+        throw std::invalid_argument(e.what());
+    }
 }

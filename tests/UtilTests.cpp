@@ -30,3 +30,8 @@ TEST(UtilTests, canConvertFromJsonToVector)
 	ASSERT_TRUE(!users[0].getName().compare("Szymon") || !users[0].getName().compare("Kamil"));
 
 }
+
+TEST(UtilTests, canReciveExceptionWhenStringIsNotJsonString)
+{
+	ASSERT_THROW(convertToArray("NotJsonString"), std::invalid_argument);
+}
