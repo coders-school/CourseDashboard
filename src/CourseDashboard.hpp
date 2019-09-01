@@ -8,8 +8,8 @@ class CourseDashboard
 public:
     CourseDashboard();
     void showAll();
-    void createUser(const User & user);
-    void deleteUserByNick(std::string nick);
+    bool createUser(const User & user);
+    bool  deleteUserByNick(std::string nick);
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
     void saveUsersToFile(std::vector<User> users);

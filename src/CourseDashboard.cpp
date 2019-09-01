@@ -14,12 +14,21 @@ void CourseDashboard::showAll()
     }
 }
 
-void CourseDashboard::createUser(const User & user)
+bool CourseDashboard::createUser(const User & user)
 {
-    users_.emplace_back(user);
+    try
+    {   
+        users_.emplace_back(user);
+        return true;
+    }
+    catch (...)
+    {
+        return false;
+    }
+        
 }
 
-void CourseDashboard::deleteUserByNick(std::string nick)
+bool CourseDashboard::deleteUserByNick(std::string nick)
 {  
     auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
     {
@@ -29,7 +38,10 @@ void CourseDashboard::deleteUserByNick(std::string nick)
     if (it != std::end(users_))
     {
         users_.erase(it);
+        return true;
     }
+    else
+        return false;
 }
 
 void CourseDashboard::retriveUserByNick(std::string nick)
@@ -87,13 +99,14 @@ void CourseDashboard::updateUser(User & user)
 void CourseDashboard::saveUsersToFile(std::vector<User>  users)
 {
     std::fstream file;
+    std::string fileName = "../src/UsersList.txt"; 
     try 
     {
-    file.open("../src/UsersList.txt",std::ios::out);
-    for(auto element : users)
-    {
-        file << element.getAllInfoToFile() << std::endl;
-    }
+        file.open(fileName,std::ios::out);
+        for(auto element : users)
+        {
+            file << element.getAllInfoToFile() << std::endl;
+        }
     }
     catch (std::ifstream::failure e) 
     {
@@ -103,7 +116,8 @@ void CourseDashboard::saveUsersToFile(std::vector<User>  users)
 
 void CourseDashboard::loadFromFile()
 {
-    std::ifstream file("../src/UsersList.txt");
+    std::string fileName = "../src/UsersList.txt";
+    std::ifstream file(fileName);
 
     try
     {

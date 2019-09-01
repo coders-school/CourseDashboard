@@ -6,7 +6,7 @@ int main()
 {
     CourseDashboard cdb;
     std::cout << "Course Dashboard" << std::endl;
-    //cdb.loadFromFile();
+    cdb.loadFromFile();
     User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
     cdb.createUser(u1);
     User u2("Jan", "JanKowalski", "weekendowa", "JanKowalski", "JanKowalski");
