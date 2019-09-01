@@ -45,7 +45,7 @@ TEST_F(CourseDashboardTests, canLogIn)
 TEST_F(CourseDashboardTests, canNotLogIn)
 {
     cdbLogIn.setLoginPassword("wrongMail", "wrongPassword");
-    ASSERT_FALSE(cdbLogIn.logIn() == false);
+    ASSERT_TRUE(cdbLogIn.logIn() == false);
 }
 
 
