@@ -84,15 +84,19 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
-void CourseDashboard::saveToFile(User & user)
+void CourseDashboard::saveUsersToFile(std::vector<User> & users)
 {
     std::fstream file;
-    try {
-    file.open("../src/UsersList.txt",std::ios::app);
-    file << user.getAllInfoToFile() << std::endl;
-    file.close();
+    try 
+    {
+    file.open("../src/UsersList.txt",std::ios::out);
+    for(auto element : users)
+    {
+        file << element.getAllInfoToFile() << std::endl;
     }
-    catch (std::ifstream::failure e) {
+    }
+    catch (std::ifstream::failure e) 
+    {
         std::cerr << "Error while opening file: " << e.what() << std::endl;
     }
 }

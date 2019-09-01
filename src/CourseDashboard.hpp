@@ -12,10 +12,8 @@ public:
     void deleteUserByNick(std::string nick);
     void retriveUserByNick(std::string nick);
     void updateUser(User & user);
-    void saveToFile(User & user);
+    void saveUsersToFile(std::vector<User> & users);
     void loadFromFile();
-
-private:
     std::vector<User> users_;
 
 };
