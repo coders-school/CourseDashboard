@@ -12,7 +12,7 @@ int main()
     User u2("Jan", "JanKowalski", "weekendowa", "JanKowalski", "JanKowalski");
     cdb.createUser(u2);
     cdb.showAll();
-    cdb.saveUsersToFile(cdb.users_);
+    cdb.saveUsersToFile(cdb.getVector());
     cdb.deleteUserByNick("SzymonGajewski");
     std::cout<<"after delete: "<<std::endl;
     cdb.showAll();

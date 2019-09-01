@@ -84,7 +84,7 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
-void CourseDashboard::saveUsersToFile(std::vector<User> & users)
+void CourseDashboard::saveUsersToFile(std::vector<User>  users)
 {
     std::fstream file;
     try 
@@ -138,4 +138,9 @@ void CourseDashboard::loadFromFile()
     {
         std::cerr << "Error while opening file: " << e.what() << std::endl;
     }
+}
+
+std::vector<User> CourseDashboard::getVector() const
+{
+    return users_;
 }
