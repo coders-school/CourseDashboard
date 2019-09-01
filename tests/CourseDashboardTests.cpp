@@ -9,10 +9,8 @@ public:
     CourseDashboardTests()
     {
         User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "mail@com", "password");
-        cdb.createUser(u1);
         cdbLogIn.createUser(u1);
     }
-    CourseDashboard cdb;
     CourseDashboardLogIn cdbLogIn;
 };
 
@@ -23,17 +21,17 @@ TEST_F(CourseDashboardTests, canConstructCourseDashboard)
 
 TEST_F(CourseDashboardTests, canConstructUser)
 {
-    User u;
+    User u("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "mail@com", "password");
 }
 
 TEST_F(CourseDashboardTests, canRetriveUserByNick)
 {
-    cdb.retriveUserByNick("SzymonGajewski");
+    cdbLogIn.retriveUserByNick("SzymonGajewski");
 }
 
 TEST_F(CourseDashboardTests, canShowAll)
 {
-    cdb.showAll();
+    cdbLogIn.showAll();
 }
 
 TEST_F(CourseDashboardTests, canLogIn)
