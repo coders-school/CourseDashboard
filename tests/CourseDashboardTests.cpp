@@ -12,11 +12,6 @@ TEST(CourseDashboardTests, canConstructCourseDashboard)
     CourseDashboard cd;
 }
 
-TEST_F(TestLogIn, tryEmailReturnTrue)
-{
-    CourseDashboard login();
-}
-
 TEST_F(TestLogIn, EmailReturnTrue)
 {
     auto result = login.provideEmail("testForEmail");
