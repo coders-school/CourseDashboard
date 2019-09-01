@@ -15,7 +15,7 @@ public:
     bool logIn();
     void addTrainer(std::string login);
 
-private:
+protected:
     std::vector<User> users_;
     std::map<std::string, std::string> usersLoginMap_;
     std::vector<std::string> trainersLoginVector_;

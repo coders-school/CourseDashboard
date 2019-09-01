@@ -1,35 +1,51 @@
 #include <gtest/gtest.h>
 #include "CourseDashboard.hpp"
+#include "CourseDashboardLogIn.hpp"
 #include "User.hpp"
 
 class CourseDashboardTests : public ::testing::Test
 {
-protected:
-    CourseDashboard* testCdb;
-    User* testU1;
-
-    virtual void SetUp()
-    {
-        testU1 = new User("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "mail@com", "password");
-        testCdb = new CourseDashboard();
-    }
-
+public:
     CourseDashboardTests()
     {
-        EXPECT_NE("mail", testU1->getEmail());
-        EXPECT_EQ("mail@com", testU1->getEmail());
-        EXPECT_TRUE(testCdb->logIn());
+        User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski", "mail@com", "password");
+        cdb.createUser(u1);
+        cdbLogIn.createUser(u1);
     }
-
-    virtual void TearDown()
-    {
-        delete testU1;
-        delete testCdb;
-    }
+    CourseDashboard cdb;
+    CourseDashboardLogIn cdbLogIn;
 };
 
-TEST(CourseDashboardTests, canConstructCourseDashboard)
+TEST_F(CourseDashboardTests, canConstructCourseDashboard)
 {
     CourseDashboard cd;
 }
+
+TEST_F(CourseDashboardTests, canConstructUser)
+{
+    User u;
+}
+
+TEST_F(CourseDashboardTests, canRetriveUserByNick)
+{
+    cdb.retriveUserByNick("SzymonGajewski");
+}
+
+TEST_F(CourseDashboardTests, canShowAll)
+{
+    cdb.showAll();
+}
+
+TEST_F(CourseDashboardTests, canLogIn)
+{
+    cdbLogIn.setLoginPassword("mail@com", "password");
+    ASSERT_TRUE(cdbLogIn.logIn() == true);
+}
+
+TEST_F(CourseDashboardTests, canNotLogIn)
+{
+    cdbLogIn.setLoginPassword("wrongMail", "wrongPassword");
+    ASSERT_FALSE(cdbLogIn.logIn() == false);
+}
+
 
