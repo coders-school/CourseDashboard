@@ -86,16 +86,7 @@ void CourseDashboard::saveUsersToFile(std::string filename)
     if (file.is_open())
     {
         for (auto & user : users_)
-        {
-            file    << user.getName() << ';'
-                    << user.getNick() << ';'
-                    << user.getPassword() << ';'
-                    << user.getMail() << ';'
-                    << user.getGroup() << ';'
-                    << user.getGitHub() << ';'
-                    << user.getFirecode() << ';'
-                    << '\n';
-        }
+            file << user.serialize();
     }
 }
 

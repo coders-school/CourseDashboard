@@ -30,60 +30,51 @@ std::string User::getAllInfo() const
     ss<<std::endl;
     return ss.str();
 }
+
 void User::setName(std::string name)
 {
     name_ = name;
 }
+
 void User::setNick(std::string nick)
 {
     nick_ = nick;
 }
+
 void User::setGroup(std::string group)
 {
     group_ = group;
 }
+
 void User::setGitHub(std::string gitHub)
 {
     gitHub_ = gitHub;
 }
+
 void User::setFirecode(std::string firecode)
 {
     firecode_ = firecode;
 }
+
 void User::setPassword(std::string password)
 {
     password_=password;
 }
+
 void User::setMail(std::string mail)
 {
     mail_=mail;
 }
 
-std::string User::getName() const
-{
-    return name_;
-}
 std::string User::getNick()  const
 {
     return nick_;
 }
-std::string User::getPassword()  const
+
+std::string User::serialize()
 {
-    return password_;
-}
-std::string User::getMail()  const
-{
-    return mail_;
-}
-std::string User::getGroup()  const
-{
-    return group_;
-}
-std::string User::getGitHub()  const
-{
-    return gitHub_;
-}
-std::string User::getFirecode()  const
-{
-    return firecode_;
+    std::string output{};
+    output = name_+ ';' +nick_ + ';' + password_ + ';' + mail_ + ';' 
+        + group_ + ';' + gitHub_ + ';' + firecode_ + '\n';
+    return output; 
 }

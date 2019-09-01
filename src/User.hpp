@@ -22,16 +22,17 @@ public:
     void setGitHub(std::string gitHub);
     void setFirecode(std::string firecode);
     
-    std::string getName() const;
+    // std::string getName() const;
     std::string getNick() const;
-    std::string getPassword() const;
-    std::string getMail() const;
-    std::string getGroup() const;
-    std::string getGitHub() const;
-    std::string getFirecode() const;
-
+    // std::string getPassword() const;
+    // std::string getMail() const;
+    // std::string getGroup() const;
+    // std::string getGitHub() const;
+    // std::string getFirecode() const;
     std::string getAllInfo() const;
 
+    std::string serialize();
+    
 private:
     std::string name_;
     std::string nick_;
