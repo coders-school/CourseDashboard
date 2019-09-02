@@ -89,9 +89,9 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
-void CourseDashboard::saveToFile()
+void CourseDashboard::saveToFile(std::string fileName)
 {
-    std::fstream file_DB("baza danych.txt", file_DB.in | file_DB.out);
+    std::ofstream file_DB(fileName);
     if(!file_DB.is_open())
     {
         std::cout << "error" << std::endl;
@@ -105,9 +105,9 @@ void CourseDashboard::saveToFile()
     }
 }
 
-void CourseDashboard::loadFromFile()
+void CourseDashboard::loadFromFile(std::string fileName)
 {
-    std::fstream file_DB("baza danych.txt", file_DB.in);
+    std::ifstream file_DB(fileName);
     if(!file_DB.is_open())
     {
         throw "Problem to open userBase.txt";

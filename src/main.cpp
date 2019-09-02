@@ -20,10 +20,10 @@ int main()
     std::cout << cdb.showAll();
 
     cdb.retriveUserByNick("PiotrNowak");  // TODO improve function
-    cdb.loadFromFile();
+    cdb.loadFromFile("baza danych.txt");
     User u2("Jan Kowalski", "Jan123", "weekendowa", "JanK", "JanK");
     cdb.createUser(u2);
     std::cout << cdb.showAll();
-    cdb.saveToFile();
+    cdb.saveToFile("baza danych.txt");
     return 0;
 }

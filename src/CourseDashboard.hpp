@@ -14,7 +14,7 @@ public:
     void deleteUserByNick(const std::string& nick);
     void retriveUserByNick(const std::string& nick);
     void updateUser(User & user);
-    void saveToFile();
-    void loadFromFile();
+    void saveToFile(std::string fileName);
+    void loadFromFile(std::string fileName);
 
 };
