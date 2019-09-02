@@ -9,7 +9,7 @@ private:
     std::vector<User> users_;
 public:
     CourseDashboard();
-    std::basic_string<char> showAll();
+    std::string showAll();
     void createUser(const User & user);
     void deleteUserByNick(const std::string& nick);
     void retriveUserByNick(const std::string& nick);
