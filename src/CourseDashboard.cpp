@@ -8,12 +8,14 @@
 
 CourseDashboard::CourseDashboard() = default;
 
-void CourseDashboard::showAll()
+std::string CourseDashboard::showAll()
 {
+    std::string result;
     for (auto & user : users_)
     {
-        std::cout << user.getAllInfo();
+        result.append(user.getAllInfo());
     }
+    return result;
 }
 
 void CourseDashboard::createUser(const User & user)

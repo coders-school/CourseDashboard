@@ -6,13 +6,24 @@ int main()
 {
     CourseDashboard cdb;
     std::cout << "Course Dashboard" << std::endl;
-    User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
+
+    User u1("Jan",
+            "JanKowalski",
+            "weekendowa",
+            "jkowalski",
+            "jkowalski");
+
+    std::cout << cdb.showAll();
+
     cdb.createUser(u1);
-    cdb.retriveUserByNick("SzymonGajewski");
+
+    std::cout << cdb.showAll();
+
+    cdb.retriveUserByNick("PiotrNowak");  // TODO improve function
     cdb.loadFromFile();
     User u2("Jan Kowalski", "Jan123", "weekendowa", "JanK", "JanK");
     cdb.createUser(u2);
-    cdb.showAll();
+    std::cout << cdb.showAll();
     cdb.saveToFile();
     return 0;
 }

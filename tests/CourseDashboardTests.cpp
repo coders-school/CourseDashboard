@@ -39,5 +39,15 @@ TEST_F(CourseDashboardTests, canConstructCourseDashboard)
 TEST_F(CourseDashboardTests, canAddAnotherUser)
 {
     CourseDashboard_.createUser(testUser2);
+    auto result = CourseDashboard_.showAll();
+    int recordsCount = std::count(result.begin(), result.end(), '\n');
+    EXPECT_EQ(recordsCount, 2);
+}
+
+TEST_F(CourseDashboardTests, canDeleteUser)
+{
+    CourseDashboard_.deleteUserByNick("JanKowalski");
+    auto result = CourseDashboard_.showAll();
+    EXPECT_EQ(result, "");
 }
 

@@ -15,15 +15,14 @@ User::User(const std::string name,
 
 std::string User::getAllInfo() const
 {
-    std::stringstream ss;
-    ss<<std::left;   
-    ss<<std::setw(1) << "1." << name_ << "|";
-    ss<<std::setw(1) << "2." << nick_ << "|";
-    ss<<std::setw(1) << "3." << group_ << "|";
-    ss<<std::setw(1) << "4." << gitHub_ << "|";
-    ss<<std::setw(1) << "5." << firecode_ << "|";
-    ss<<std::endl;
-    return ss.str();
+    std::string output;
+    output.append("1.").append(name_).append("|");
+    output.append("2.").append(nick_).append("|");
+    output.append("3.").append(group_).append("|");
+    output.append("4.").append(gitHub_).append("|");
+    output.append("5.").append(firecode_).append("|");
+    output.append("\n");
+    return output;
 }
 void User::setName(std::string name)
 {
