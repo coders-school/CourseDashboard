@@ -7,7 +7,6 @@
 #include "Fstream.hpp"
 #include "Utility.hpp"
 
-CourseDashboard::CourseDashboard() {}
 
 void CourseDashboard::showAll()
 {

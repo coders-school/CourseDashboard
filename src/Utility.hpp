@@ -1,35 +1,28 @@
 #include <string>
-
-#include "../external/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 #include "User.hpp"
 
+using namespace nlohmann;
 
-inline nlohmann::json convertToJson( const std::vector<User>& users )
+inline json convertToJson(const Users& users)
 {
-    nlohmann::json jsonArray = nlohmann::json::array();
+    auto jsonArray = json::array();
 
-    for(auto user : users) {
+    for(const auto & user : users) {
         jsonArray.push_back(user.toJson());
     }
 
     return jsonArray;
 }
 
-inline std::vector<User> convertToArray(const std::string& jsonString)
+inline Users convertToArray(const std::string& jsonString)
 {
-    try
-    {
-        nlohmann::json jsonArray = nlohmann::json::parse(jsonString);
+    auto jsonArray = json::parse(jsonString);
 
-        std::vector<User> array;
-        for(auto& jsonE : jsonArray) {
-            array.push_back(User(jsonE));
-        }
+    Users array;
+    for(auto& jsonE : jsonArray) {
+        array.push_back(User(jsonE));
+    }
 
-        return array;
-    }
-    catch(const nlohmann::json::parse_error& e)
-    {
-        throw std::invalid_argument(e.what());
-    }
+    return array;
 }

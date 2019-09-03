@@ -6,7 +6,6 @@
 class CourseDashboard
 {
 public:
-    CourseDashboard();
     void showAll();
     void createUser(const User & user);
     void deleteUserByNick(std::string nick);
@@ -20,5 +19,4 @@ public:
 
 private:
     std::vector<User> users_;
-
 };

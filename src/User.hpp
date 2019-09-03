@@ -39,3 +39,5 @@ private:
     std::string firecode_;  
 
 };
+
+using Users = std::vector<User>;
