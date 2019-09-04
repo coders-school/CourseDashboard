@@ -9,7 +9,7 @@
 class FstreamMock : public IFstream
 {
 public:
-	MOCK_METHOD(void, tryToWrite, (const std::string& content), (override));
-	MOCK_METHOD(std::string, tryToRead, (), (override));
-	MOCK_METHOD(std::string, getFilePath, (), (const, override));
+	MOCK_CONST_METHOD1(tryToWrite, void(const std::string& content));
+	MOCK_CONST_METHOD0(tryToRead, std::string());
+	MOCK_CONST_METHOD0(getFilePath, std::string());
 };
