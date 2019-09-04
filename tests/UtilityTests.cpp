@@ -13,8 +13,8 @@ TEST_F(UtilityTests, canConvertVectorOfUsersToJson)
 {
 	auto result = convertToJson(users).dump();
 
-	ASSERT_NE(result.find(szymon.getName()), std::string::npos);
-	ASSERT_NE(result.find(kamil.getName()), std::string::npos);
+	ASSERT_NE(result.find(szymon.getNick()), std::string::npos);
+	ASSERT_NE(result.find(kamil.getNick()), std::string::npos);
 }
 
 TEST_F(UtilityTests, canConvertFromJsonToVector)
@@ -25,8 +25,8 @@ TEST_F(UtilityTests, canConvertFromJsonToVector)
 	users = convertToArray(result);
 
 	ASSERT_TRUE(users.size() == 2);
-	ASSERT_EQ(users[0].getName(), szymon.getName());
-	ASSERT_EQ(users[1].getName(), kamil.getName());
+	ASSERT_EQ(users[0].getNick(), szymon.getNick());
+	ASSERT_EQ(users[1].getNick(), kamil.getNick());
 
 }
 

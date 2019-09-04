@@ -6,7 +6,7 @@
 #include "Utility.hpp"
 
 
-void CourseDashboard::showAll()
+void CourseDashboard::showAll() const
 {
     for (auto & user : users_)
     {
@@ -32,7 +32,7 @@ void CourseDashboard::deleteUserByNick(std::string nick)
     }
 }
 
-void CourseDashboard::retriveUserByNick(std::string nick)
+std::unique_ptr<User> CourseDashboard::retriveUserByNick(std::string nick) const
 {
     auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
     {
@@ -41,8 +41,9 @@ void CourseDashboard::retriveUserByNick(std::string nick)
     
     if (it != std::end(users_))
     {
-        std::cout << it->getAllInfo();
+        return std::make_unique<User>(*it);
     }
+    return nullptr;
 }
 
 void CourseDashboard::updateUser(User & user)
@@ -96,4 +97,9 @@ void CourseDashboard::saveToFile(const std::string& pathTofile)
     UserIOHandler userIOHandler(pathTofile);
     auto userVectorInJsonFormat = convertToJson(users_);
     userIOHandler.write(userVectorInJsonFormat.dump());
+}
+
+void CourseDashboard::clearUserDatabase()
+{
+    users_.clear();
 }
