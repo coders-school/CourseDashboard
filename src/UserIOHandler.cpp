@@ -1,42 +1,42 @@
 #include "UserIOHandler.hpp"
-#include "nlohmann/json.hpp"
-
-#include <ios>
 #include <iostream>
-#include <string>
+#include <fstream>
 
-UserIOHandler::UserIOHandler(IFstream* fs)
-:fs_(fs)
-{
-}
 
-void UserIOHandler::write(const std::string& content)
+UserIOHandler::UserIOHandler(const std::string& filePath)
+    :filePath_(filePath)
+{}
+
+void UserIOHandler::write(const std::string& content) const
 {
     try
     {
-        fs_->tryToWrite(content);
+        std::ofstream file(filePath_);
+        file.write(content.c_str(), content.size());
     }
     catch(std::ios_base::failure& e)
     {
-        std::cerr << "Write to file: " << fs_->getFilePath() << "failed.\n"
-            << "Error message: " << e.what() << "\n";
+        std::cerr << "Write to file: " << filePath_ << "failed.\n"
+                  << "Error message: " << e.what() << "\n";
     }
 }
 
-std::string UserIOHandler::read()
+std::string UserIOHandler::read() const
 {
-    std::string read;
+    std::string read{};
 
     try
     {
-        read = fs_->tryToRead();
+        std::ifstream file(filePath_);
+        while(!file.eof()) {
+            read.push_back(file.get());
+        }
+        read.pop_back();
     }
-
     catch(std::ios_base::failure& e)
     {
-        std::cerr << "Read from file: " << fs_->getFilePath() << "failed.\n"
-            << "Error message: " << e.what() << "\n";
-        return "";
+        std::cerr << "Read from file: " << filePath_ << "failed.\n"
+                  << "Error message: " << e.what() << "\n";
     }
 
     return read;

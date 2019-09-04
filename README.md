@@ -12,7 +12,7 @@ Celem projektu będzie utworzenie aplikacji, która będzie przechowywać i wyś
 mkdir build
 cd build
 cmake ..
-make
+make -j
 ```
 
 ### Uruchomienie testów

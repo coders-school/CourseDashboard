@@ -2,9 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
-
 #include "UserIOHandler.hpp"
-#include "Fstream.hpp"
 #include "Utility.hpp"
 
 
@@ -86,19 +84,16 @@ void CourseDashboard::updateUser(User & user)
     }
 }
 
-    void CourseDashboard::loadFromFile(const std::string& pathTofile)
-    {
-        UserIOHandler userIOHandler(new Fstream(pathTofile));
+void CourseDashboard::loadFromFile(const std::string& pathTofile)
+{
+    UserIOHandler userIOHandler(pathTofile);
+    auto userFromFile = userIOHandler.read();
+    users_  = convertToArray(userFromFile);
+}
 
-        auto userFromFile = userIOHandler.read();
-        users_  = convertToArray(userFromFile);
-    }
-
-    void CourseDashboard::saveToFile(const std::string& pathTofile)
-    {
-        UserIOHandler userIOHandler(new Fstream(pathTofile));
-
-        auto userVectorInJsonFormat = convertToJson(users_);
-
-        userIOHandler.write(userVectorInJsonFormat.dump());
-    }
+void CourseDashboard::saveToFile(const std::string& pathTofile)
+{
+    UserIOHandler userIOHandler(pathTofile);
+    auto userVectorInJsonFormat = convertToJson(users_);
+    userIOHandler.write(userVectorInJsonFormat.dump());
+}

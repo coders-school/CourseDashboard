@@ -43,7 +43,6 @@ set(SRC_LIST
     src/CourseDashboard.cpp
     src/User.cpp
     src/UserIOHandler.cpp
-    src/Fstream.cpp
 )
 
 include_directories(external)
