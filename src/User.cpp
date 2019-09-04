@@ -4,7 +4,7 @@
 
 User::User(const std::string & name,
            const std::string & nick,
-           const std::string & group,
+           Group group,
            const std::string & gitHub,
            const std::string & firecode)
     : name_(name)
@@ -17,7 +17,7 @@ User::User(const std::string & name,
 User::User(nlohmann::json userJson)
     : name_(userJson["name"].get<std::string>())
     , nick_(userJson["nick"].get<std::string>())
-    , group_(userJson["group"].get<std::string>())
+    , group_(userJson["group"].get<Group>())
     , gitHub_(userJson["gitHub"].get<std::string>())
     , firecode_(userJson["firecod"].get<std::string>())
 {}
@@ -25,13 +25,13 @@ User::User(nlohmann::json userJson)
 std::string User::getAllInfo() const
 {
     std::stringstream ss;
-    ss<<std::left;   
-    ss<<std::setw(1) << "1." << name_ << "|";
-    ss<<std::setw(1) << "2." << nick_ << "|";
-    ss<<std::setw(1) << "3." << group_ << "|";
-    ss<<std::setw(1) << "4." << gitHub_ << "|";
-    ss<<std::setw(1) << "5." << firecode_ << "|";
-    ss<<std::endl;
+    ss << std::left;   
+    ss << std::setw(1) << "1." << name_ << "|";
+    ss << std::setw(1) << "2." << nick_ << "|";
+    ss << std::setw(1) << "3." << (group_ == Group::weekend ? "weekend" : "evening") << "|";
+    ss << std::setw(1) << "4." << gitHub_ << "|";
+    ss << std::setw(1) << "5." << firecode_ << "|";
+    ss << std::endl;
     return ss.str();
 }
 
@@ -47,27 +47,27 @@ nlohmann::json User::toJson() const
     return uJson;
 }
 
-void User::setName(std::string name)
+void User::setName(const std::string & name)
 {
     name_ = name;
 }
 
-void User::setNick(std::string nick)
+void User::setNick(const std::string & nick)
 {
     nick_ = nick;
 }
 
-void User::setGroup(std::string group)
+void User::setGroup(Group group)
 {
     group_ = group;
 }
 
-void User::setGitHub(std::string gitHub)
+void User::setGitHub(const std::string & gitHub)
 {
     gitHub_ = gitHub;
 }
 
-void User::setFirecode(std::string firecode)
+void User::setFirecode(const std::string & firecode)
 {
     firecode_ = firecode;
 }

@@ -3,8 +3,8 @@
 
 struct UtilityTests : ::testing::Test
 {
-	User szymon{"Szymon", "SzymonG", "wieczorowa", "SzymonG", "SzymonG"};
-	User kamil{"Kamil", "Kamil.W", "wieczorowa1", "Kamil.W", "Kamil.W"};
+	User szymon{"Szymon", "SzymonG", User::Group::evening, "SzymonG", "SzymonG"};
+	User kamil{"Kamil", "Kamil.W", User::Group::weekend, "Kamil.W", "Kamil.W"};
 
 	Users users = {szymon, kamil};
 };

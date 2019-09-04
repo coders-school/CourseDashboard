@@ -6,7 +6,7 @@ int main()
 {
     CourseDashboard cdb;
     std::cout << "Course Dashboard" << std::endl;
-    User u1("Szymon", "SzymonGajewski", "wieczorowa", "SzymonGajewski", "SzymonGajewski");
+    User u1("Szymon", "SzymonG", User::Group::evening, "SzymonG", "SzymonG");
     cdb.createUser(u1);
     cdb.saveToFile("userDatabase.txt");
     cdb.clearUserDatabase();

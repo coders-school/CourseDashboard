@@ -67,7 +67,7 @@ void CourseDashboard::updateUser(User & user)
     case 3:
         std::cout << "Give new value to data: ";
         std::cin >> group;
-        user.setGroup(group);
+        user.setGroup(group == "weekend" ? User::Group::weekend : User::Group::evening);
         break;
     case 4:
         std::cout << "Give new value to data: ";
