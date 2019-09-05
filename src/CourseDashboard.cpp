@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
-#include "UserIOHandler.hpp"
+#include "FileHandler.hpp"
 #include "Utility.hpp"
 
 
@@ -63,16 +63,16 @@ void CourseDashboard::updateUser(User* userIterator,
 
 void CourseDashboard::loadFromFile(const std::string& pathTofile)
 {
-    UserIOHandler userIOHandler(pathTofile);
-    auto userFromFile = userIOHandler.read();
+    FileHandler fileHandler(pathTofile);
+    auto userFromFile = fileHandler.read();
     users_  = convertToArray(userFromFile);
 }
 
 void CourseDashboard::saveToFile(const std::string& pathTofile)
 {
-    UserIOHandler userIOHandler(pathTofile);
+    FileHandler fileHandler(pathTofile);
     auto userVectorInJsonFormat = convertToJson(users_);
-    userIOHandler.write(userVectorInJsonFormat.dump());
+    fileHandler.write(userVectorInJsonFormat.dump());
 }
 
 void CourseDashboard::clearUserDatabase()

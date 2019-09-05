@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <fstream>
 #include <string>
-#include "UserIOHandler.hpp"
+#include "FileHandler.hpp"
 
 
 using namespace testing;
@@ -24,16 +24,16 @@ std::string actual(const std::string& filePath)
 
 } // namespace
 
-TEST(UserIOHandlerTests, shouldWriteToFile)
+TEST(FileHandlerTests, shouldWriteToFile)
 {
-	UserIOHandler sut(testFilePath);
+	FileHandler sut(testFilePath);
 	sut.write(dummyStr);
 	EXPECT_EQ(actual(testFilePath), dummyStr);
 }
 
-TEST(UserIOHandlerTests, shouldReadFromFile)
+TEST(FileHandlerTests, shouldReadFromFile)
 {
-	UserIOHandler sut(testFilePath);
+	FileHandler sut(testFilePath);
 	sut.write(dummyStr);
 	EXPECT_EQ(sut.read(), dummyStr);
 }

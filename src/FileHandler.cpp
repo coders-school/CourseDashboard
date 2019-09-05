@@ -1,13 +1,13 @@
-#include "UserIOHandler.hpp"
+#include "FileHandler.hpp"
 #include <iostream>
 #include <fstream>
 
 
-UserIOHandler::UserIOHandler(const std::string& filePath)
+FileHandler::FileHandler(const std::string& filePath)
     :filePath_(filePath)
 {}
 
-void UserIOHandler::write(const std::string& content) const
+void FileHandler::write(const std::string& content) const
 {
     try
     {
@@ -21,7 +21,7 @@ void UserIOHandler::write(const std::string& content) const
     }
 }
 
-std::string UserIOHandler::read() const
+std::string FileHandler::read() const
 {
     std::string read{};
 

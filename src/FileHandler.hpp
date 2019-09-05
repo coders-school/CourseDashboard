@@ -2,10 +2,10 @@
 #include <string>
 
 
-class UserIOHandler
+class FileHandler
 {
 public:
-    explicit UserIOHandler(const std::string& filePath);
+    explicit FileHandler(const std::string& filePath);
     void write(const std::string& content) const;
     std::string read() const;
 

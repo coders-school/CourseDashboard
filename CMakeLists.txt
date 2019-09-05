@@ -42,7 +42,7 @@ project(CourseDashboard)
 set(SRC_LIST
     src/CourseDashboard.cpp
     src/User.cpp
-    src/UserIOHandler.cpp
+    src/FileHandler.cpp
 )
 
 include_directories(external)
@@ -59,7 +59,7 @@ endif (UNIX)
 
 set(TEST_SRC_LIST
     tests/UtilityTests.cpp
-    tests/UserIOHandlerTests.cpp
+    tests/FileHandlerTests.cpp
     tests/CourseDashboardTests.cpp
     tests/test_main.cpp
 )
