@@ -1,6 +1,5 @@
 #pragma once
 #include "User.hpp"
-#include <memory>
 #include <vector>
 
 
@@ -10,8 +9,13 @@ public:
     void showAll() const;
     void createUser(const User & user);
     void deleteUserByNick(std::string nick);
-    std::unique_ptr<User> retriveUserByNick(std::string nick) const;
-    void updateUser(User & user);
+    User* retriveUserByNick(std::string nick);
+    void updateUser(User* userIterator,
+                    User::Group group,
+                    std::string_view name = "",
+                    std::string_view nick = "",
+                    std::string_view github = "",
+                    std::string_view firecode = "");
 
     void loadFromFile(const std::string& pathTofile);
     void saveToFile(const std::string& pathTofile);

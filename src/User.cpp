@@ -22,7 +22,7 @@ User::User(nlohmann::json userJson)
     , firecode_(userJson["firecod"].get<std::string>())
 {}
 
-std::string User::getAllInfo() const
+std::string User::toString() const
 {
     std::stringstream ss;
     ss << std::left;   
@@ -38,41 +38,19 @@ std::string User::getAllInfo() const
 nlohmann::json User::toJson() const
 {
     nlohmann::json uJson = {
-            { "name", name_},
-            { "nick", nick_},
-            { "group", group_},
-            { "gitHub", gitHub_},
-            { "firecod", firecode_}                
-        };
+        { "name", name_},
+        { "nick", nick_},
+        { "group", group_},
+        { "gitHub", gitHub_},
+        { "firecod", firecode_}
+    };
     return uJson;
 }
 
-void User::setName(const std::string & name)
-{
-    name_ = name;
-}
+void User::setName(std::string_view name)           { name_ = name; }
+void User::setNick(std::string_view nick)           { nick_ = nick; }
+void User::setGroup(Group group)                    { group_ = group; }
+void User::setGitHub(std::string_view gitHub)       { gitHub_ = gitHub; }
+void User::setFirecode(std::string_view firecode)   { firecode_ = firecode; }
 
-void User::setNick(const std::string & nick)
-{
-    nick_ = nick;
-}
-
-void User::setGroup(Group group)
-{
-    group_ = group;
-}
-
-void User::setGitHub(const std::string & gitHub)
-{
-    gitHub_ = gitHub;
-}
-
-void User::setFirecode(const std::string & firecode)
-{
-    firecode_ = firecode;
-}
-
-std::string User::getNick() const 
-{
-    return nick_;
-}
+std::string User::getNick() const                   { return nick_; }

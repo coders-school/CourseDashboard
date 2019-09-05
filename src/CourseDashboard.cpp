@@ -10,7 +10,7 @@ void CourseDashboard::showAll() const
 {
     for (auto & user : users_)
     {
-        std::cout << user.getAllInfo();
+        std::cout << user.toString();
     }
 }
 
@@ -32,57 +32,33 @@ void CourseDashboard::deleteUserByNick(std::string nick)
     }
 }
 
-std::unique_ptr<User> CourseDashboard::retriveUserByNick(std::string nick) const
+User* CourseDashboard::retriveUserByNick(std::string nick)
 {
-    auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
+    auto it = std::find_if(users_.begin(), users_.end(), [nick](const auto & user)
     {
         return user.getNick() == nick;
     });
-    
-    if (it != std::end(users_))
-    {
-        return std::make_unique<User>(*it);
-    }
-    return nullptr;
+    if (it == users_.end())
+        return nullptr;
+    return &(*it);
 }
 
-void CourseDashboard::updateUser(User & user)
+void CourseDashboard::updateUser(User* userIterator,
+                                 User::Group group,
+                                 std::string_view name,
+                                 std::string_view nick,
+                                 std::string_view github,
+                                 std::string_view firecode)
 {
-    unsigned int number;
-    std::cout << user.getAllInfo();
-    std::cout << "Which data You want to edit? Give number: " << '\n';
-    std::cin >> number;
-    std::string name, nick, group, gitHub, firecode;
-    switch (number) {
-    case 1:
-        std::cout << "Give new value to data: ";
-        std::cin >> name;
-        user.setName(name);
-        break;
-    case 2:
-        std::cout << "Give new value to data: ";
-        std::cin >> nick;
-        user.setNick(nick);
-        break;
-    case 3:
-        std::cout << "Give new value to data: ";
-        std::cin >> group;
-        user.setGroup(group == "weekend" ? User::Group::weekend : User::Group::evening);
-        break;
-    case 4:
-        std::cout << "Give new value to data: ";
-        std::cin >> gitHub;
-        user.setGitHub(gitHub);
-        break;
-    case 5:
-        std::cout << "Give new value to data: ";
-        std::cin >> firecode;
-        user.setFirecode(firecode);
-        break;
-    default:
-        std::cout << "You gave wrong value.";
-        break;
-    }
+    userIterator->setGroup(group);
+    if (not name.empty())
+        userIterator->setName(name);
+    if (not nick.empty())
+        userIterator->setNick(name);
+    if (not github.empty())
+        userIterator->setGitHub(name);
+    if (not firecode.empty())
+        userIterator->setFirecode(name);
 }
 
 void CourseDashboard::loadFromFile(const std::string& pathTofile)

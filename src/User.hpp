@@ -19,14 +19,14 @@ public:
 
     User(nlohmann::json userJson);
    
-    std::string getAllInfo() const;
+    std::string toString() const;
     nlohmann::json toJson() const;
 
-    void setName(const std::string & name);
-    void setNick(const std::string & nick);
+    void setName(std::string_view name);
+    void setNick(std::string_view nick);
     void setGroup(Group group);
-    void setGitHub(const std::string & gitHub);
-    void setFirecode(const std::string & firecode);
+    void setGitHub(std::string_view gitHub);
+    void setFirecode(std::string_view firecode);
     std::string getNick() const;
 
 private:
