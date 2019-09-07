@@ -29,6 +29,8 @@ public:
     void setFirecode(std::string_view firecode);
     std::string getNick() const;
 
+    friend bool operator==(const User &lhs, const User& rhs);
+
 private:
     std::string name_;
     std::string nick_;
@@ -37,5 +39,7 @@ private:
     std::string firecode_;  
 
 };
+
+//bool operator==(const User &lhs, const User& rhs);
 
 using Users = std::vector<User>;
