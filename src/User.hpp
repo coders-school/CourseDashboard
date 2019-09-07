@@ -15,7 +15,9 @@ public:
          const std::string & nick,
          Group group,
          const std::string & gitHub,
-         const std::string & firecode);
+         const std::string & firecode,
+         const std::string &email = "",
+         const std::string &password = "");
 
     User(nlohmann::json userJson);
    

@@ -6,8 +6,10 @@ User::User(const std::string &name,
            const std::string &nick,
            Group group,
            const std::string &gitHub,
-           const std::string &firecode)
-    : name_(name), nick_(nick), group_(group), gitHub_(gitHub), firecode_(firecode)
+           const std::string &firecode,
+           const std::string &email,
+           const std::string &password)
+    : name_(name), nick_(nick), group_(group), gitHub_(gitHub), firecode_(firecode), email_(email), password_(password)
 {}
 
 User::User(nlohmann::json userJson)
@@ -58,4 +60,10 @@ bool operator==(const User &lhs, const User &rhs)
 std::string User::getPassword() const
 {
     return password_;
+}
+
+
+std::string User::getEmail() const
+{
+    return email_;
 }

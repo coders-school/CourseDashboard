@@ -6,7 +6,7 @@
 
 TEST(AuthenticationProviderTests, canAuthenticate)
 {
-    User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
+    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
 
     std::string email = "alicjaliqui@gmail.com";
@@ -17,7 +17,7 @@ TEST(AuthenticationProviderTests, canAuthenticate)
 
 TEST(AuthenticationProviderTests, canAuthenticateEmailCaseInsensitivity)
 {
-    User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
+    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
 
     std::string email = "alicjaliqui@gmail.com";
@@ -28,7 +28,7 @@ TEST(AuthenticationProviderTests, canAuthenticateEmailCaseInsensitivity)
 
 TEST(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
 {
-    User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
+    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
 
     std::string email = "alicjaliqui@gmail.com";
@@ -39,7 +39,7 @@ TEST(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
 
 TEST(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
 {
-    User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "");
+    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "");
     AuthenticationProvider authenticator;
 
     std::string email = "alicjaliqui@gmail.com";
@@ -50,7 +50,7 @@ TEST(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
 
 TEST(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
 {
-    User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
+    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
 
     std::string email = "szymon@gmail.com";
@@ -61,7 +61,7 @@ TEST(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
 
 TEST(AuthenticationProviderTests, canNotAuthenticateEmptyEmail)
 {
-    User user("Alicja", "AJU", "wieczorowa", "alicjaliQui", "alicjaliQui", "", "lubieplacki");
+    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "", "lubieplacki");
     AuthenticationProvider authenticator;
 
     std::string email = "";
