@@ -25,3 +25,11 @@ TEST_F(UserHandlerTests, retriveNotExistingUserReturnsNullptr)
     cut.createUser(szymon);
     ASSERT_EQ(cut.retriveUserByNick("nonExisting"), nullptr);
 }
+
+TEST_F(UserHandlerTests, deleteNotExistingUserDoesNothing)
+{
+    cut.createUser(szymon);
+    auto beforeDelete = cut.getUserDatabase();
+    cut.deleteUserByNick("nonExisting");
+    ASSERT_EQ(beforeDelete, cut.getUserDatabase());
+}
