@@ -60,6 +60,7 @@ endif (UNIX)
 
 set(TEST_SRC_LIST
     tests/UtilityTests.cpp
+    tests/UserHandlerTests.cpp
     tests/FileHandlerTests.cpp
     tests/CourseDashboardTests.cpp
     tests/test_main.cpp
