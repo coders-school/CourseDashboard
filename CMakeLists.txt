@@ -40,6 +40,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(CourseDashboard)
 
 set(SRC_LIST
+    src/AuthenticationProvider.cpp
     src/CourseDashboard.cpp
     src/User.cpp
     src/UserHandler.cpp
@@ -63,6 +64,7 @@ set(TEST_SRC_LIST
     tests/UserHandlerTests.cpp
     tests/FileHandlerTests.cpp
     tests/CourseDashboardTests.cpp
+    tests/AuthenticationProviderTests.cpp
     tests/test_main.cpp
 )
 

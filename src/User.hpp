@@ -15,7 +15,9 @@ public:
          const std::string & nick,
          Group group,
          const std::string & gitHub,
-         const std::string & firecode);
+         const std::string & firecode,
+         const std::string &email = "",
+         const std::string &password = "");
 
     User(nlohmann::json userJson);
    
@@ -28,6 +30,8 @@ public:
     void setGitHub(std::string_view gitHub);
     void setFirecode(std::string_view firecode);
     std::string getNick() const;
+    std::string getEmail() const;
+    std::string getPassword() const;
 
     friend bool operator==(const User &lhs, const User& rhs);
 
@@ -36,10 +40,10 @@ private:
     std::string nick_;
     Group group_;
     std::string gitHub_;
-    std::string firecode_;  
+    std::string firecode_;
+    std::string email_;
+    std::string password_;
 
 };
-
-//bool operator==(const User &lhs, const User& rhs);
 
 using Users = std::vector<User>;

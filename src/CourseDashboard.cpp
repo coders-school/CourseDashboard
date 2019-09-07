@@ -1,6 +1,7 @@
 #include "CourseDashboard.hpp"
 #include "FileHandler.hpp"
 #include "Utility.hpp"
+#include "AuthenticationProvider.hpp"
 
 
 void CourseDashboard::loadFromFile(const std::string& pathTofile)
@@ -17,3 +18,15 @@ void CourseDashboard::saveToFile(const std::string& pathTofile)
     fileHandler.write(userVectorInJsonFormat.dump());
 }
 
+bool CourseDashboard::login(const std::string& email, const std::string& password)
+{
+    auto byEmail = [&email](auto user) {
+        return !user.getEmail().compare(email);
+    };
+    auto users = userHandler_.getUserDatabase();
+    auto user = std::find_if(users.begin(), users.end(), byEmail);
+
+    AuthenticationProvider authenticationProvider;
+
+    return authenticationProvider(*user, email, password);
+}
