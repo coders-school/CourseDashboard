@@ -33,3 +33,29 @@ TEST_F(UserHandlerTests, deleteNotExistingUserDoesNothing)
     cut.deleteUserByNick("nonExisting");
     ASSERT_EQ(beforeDelete, cut.getUserDatabase());
 }
+
+TEST_F(UserHandlerTests, deleteUserDoesDeleteRequestedUser)
+{
+    cut.createUser(szymon);
+    auto beforeDelete = cut.getUserDatabase();
+    cut.deleteUserByNick(nick);
+    ASSERT_NE(beforeDelete, cut.getUserDatabase());
+}
+
+TEST_F(UserHandlerTests, updateUserAffectRequestedUser)
+{
+    cut.createUser(szymon);
+    auto szymonBeforeChange = cut.retriveUserByNick(nick);
+    cut.updateUser(szymonBeforeChange, User::Group::weekend, "NotSzymon","NotSzymonG", "NotSzymonG","NotSzymonG");
+    auto szymonAfterChange = cut.retriveUserByNick(nick);
+    ASSERT_NE(szymonBeforeChange, szymonAfterChange);
+}
+
+TEST_F(UserHandlerTests, updateUserDoesntAffectOtherUsers)
+{
+    cut.createUser(szymon);
+    auto szymonBeforeChange = cut.retriveUserByNick(nick);
+    cut.updateUser(&szymon, User::Group::weekend, "NotSzymon","NotSzymonG", "NotSzymonG","NotSzymonG");
+    auto szymonAfterChange = cut.retriveUserByNick(nick);
+    ASSERT_EQ(szymonBeforeChange, szymonAfterChange);
+}
