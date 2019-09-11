@@ -1,84 +1,32 @@
 #include "CourseDashboard.hpp"
-#include <stdexcept>
-#include <iostream>
-#include <algorithm>
+#include "FileHandler.hpp"
+#include "Utility.hpp"
+#include "AuthenticationProvider.hpp"
 
-CourseDashboard::CourseDashboard() {}
 
-void CourseDashboard::showAll()
+void CourseDashboard::loadFromFile(const std::string& pathTofile)
 {
-    for (auto & user : users_)
-    {
-        std::cout << user.getAllInfo();
-    }
+    FileHandler fileHandler(pathTofile);
+    auto userFromFile = fileHandler.read();
+    userHandler_.getUserDatabase()  = convertToArray(userFromFile);
 }
 
-void CourseDashboard::createUser(const User & user)
+void CourseDashboard::saveToFile(const std::string& pathTofile)
 {
-    users_.emplace_back(user);
+    FileHandler fileHandler(pathTofile);
+    auto userVectorInJsonFormat = convertToJson(userHandler_.getUserDatabase());
+    fileHandler.write(userVectorInJsonFormat.dump());
 }
 
-void CourseDashboard::deleteUserByNick(std::string nick)
-{  
-    auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
-    {
-        return user.getNick() == nick;
-    });
-
-    if (it != std::end(users_))
-    {
-        users_.erase(it);
-    }
-}
-
-void CourseDashboard::retriveUserByNick(std::string nick)
+bool CourseDashboard::login(const std::string& email, const std::string& password)
 {
-    auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto & user)
-    {
-        return user.getNick() == nick;
-    });
-    
-    if (it != std::end(users_))
-    {
-        std::cout << it->getAllInfo();
-    }
-}
+    auto byEmail = [&email](auto user) {
+        return !user.getEmail().compare(email);
+    };
+    auto users = userHandler_.getUserDatabase();
+    auto user = std::find_if(users.begin(), users.end(), byEmail);
 
-void CourseDashboard::updateUser(User & user)
-{
-    unsigned int number;
-    std::cout << user.getAllInfo();
-    std::cout << "Which data You want to edit? Give number: " << '\n';
-    std::cin >> number;
-    std::string name, nick, group, gitHub, firecode;
-    switch (number) {
-    case 1:
-        std::cout << "Give new value to data: ";
-        std::cin >> name;
-        user.setName(name);
-        break;
-    case 2:
-        std::cout << "Give new value to data: ";
-        std::cin >> nick;
-        user.setNick(nick);
-        break;
-    case 3:
-        std::cout << "Give new value to data: ";
-        std::cin >> group;
-        user.setGroup(group);
-        break;
-    case 4:
-        std::cout << "Give new value to data: ";
-        std::cin >> gitHub;
-        user.setGitHub(gitHub);
-        break;
-    case 5:
-        std::cout << "Give new value to data: ";
-        std::cin >> firecode;
-        user.setFirecode(firecode);
-        break;
-    default:
-        std::cout << "You gave wrong value.";
-        break;
-    }
+    AuthenticationProvider authenticationProvider;
+
+    return authenticationProvider(*user, email, password);
 }

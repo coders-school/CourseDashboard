@@ -40,10 +40,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(CourseDashboard)
 
 set(SRC_LIST
+    src/AuthenticationProvider.cpp
     src/CourseDashboard.cpp
     src/User.cpp
+    src/UserHandler.cpp
+    src/FileHandler.cpp
 )
 
+include_directories(external)
 include_directories(src)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)
@@ -56,11 +60,16 @@ else (UNIX)
 endif (UNIX)
 
 set(TEST_SRC_LIST
+    tests/UtilityTests.cpp
+    tests/UserHandlerTests.cpp
+    tests/FileHandlerTests.cpp
     tests/CourseDashboardTests.cpp
+    tests/AuthenticationProviderTests.cpp
     tests/test_main.cpp
 )
 
 link_libraries(gtest)
+link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
 target_compile_options(${PROJECT_NAME}-ut PUBLIC -Wall -Werror -Wpedantic -Wextra)
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)

@@ -1,19 +1,16 @@
 #pragma once
 #include "User.hpp"
 #include <vector>
-
+#include "UserHandler.hpp"
 
 class CourseDashboard
 {
 public:
-    CourseDashboard();
-    void showAll();
-    void createUser(const User & user);
-    void deleteUserByNick(std::string nick);
-    void retriveUserByNick(std::string nick);
-    void updateUser(User & user);
+    void loadFromFile(const std::string& pathTofile);
+    void saveToFile(const std::string& pathTofile);
+
+    bool login(const std::string& email, const std::string& password);
 
 private:
-    std::vector<User> users_;
-
+    UserHandler userHandler_;
 };
