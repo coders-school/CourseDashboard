@@ -2,27 +2,19 @@ cmake_minimum_required(VERSION 3.2)
 
 # - - - - - - - - - - - libargon2 library section - - - - - - - - - - -
 # Compile argon2 library
-set (cmd1 "make")
-execute_process(COMMAND ${cmd1}
+execute_process(COMMAND make
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/../external/argon2)
 
 # Create lib directory
-set (cmd2 "mkdir")
-set (arg2 "lib")
-execute_process(COMMAND ${cmd2} ${arg2}
+execute_process(COMMAND mkdir lib
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/../)
 
 # Move argon2 library to /lib folder
-set (cmd3 "mv")
-set (arg3_1 "./external/argon2/libargon2.a")
-set (arg3_2 "./lib/libargon2.a")
-execute_process(COMMAND ${cmd3} ${arg3_1} ${arg3_2}
+execute_process(COMMAND mv ./external/argon2/libargon2.a ./lib/libargon2.a
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/../)
 
 # Clean /external/argon2 directory
-set (cmd4 "make")
-set (arg4 "clean")
-execute_process(COMMAND ${cmd4} ${arg4}
+execute_process(COMMAND make clean
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/../external/argon2)
 # - - - - - - - - - - end of libargon2 library section - - - - - - - - -
 
