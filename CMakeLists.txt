@@ -63,6 +63,7 @@ set(SRC_LIST
     src/User.cpp
     src/UserHandler.cpp
     src/FileHandler.cpp
+    src/PasswordHashingProvider.cpp
 )
 
 include_directories(external)
@@ -75,7 +76,7 @@ target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Werror -Wpedantic -Wextra -
 if (UNIX)
     target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 else (UNIX)
-    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
 endif (UNIX)
 
 set(TEST_SRC_LIST
@@ -91,5 +92,6 @@ set(TEST_SRC_LIST
 link_libraries(gtest)
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
-target_compile_options(${PROJECT_NAME}-ut PUBLIC -Wall -Werror -Wpedantic -Wextra)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libargon2.a)
+target_compile_options(${PROJECT_NAME}-ut PUBLIC -Wall -Werror -Wpedantic -Wextra -pthread)
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
