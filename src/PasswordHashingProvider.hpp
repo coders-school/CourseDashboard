@@ -5,7 +5,6 @@ class PasswordHashingProvider {
 public:
     PasswordHashingProvider();
     PasswordHashingProvider(unsigned pwdSaltLength, unsigned pwdHashLength);
-    
     PasswordHashingProvider(const PasswordHashingProvider& other);
     ~PasswordHashingProvider();
     PasswordHashingProvider& operator= (const PasswordHashingProvider& other);

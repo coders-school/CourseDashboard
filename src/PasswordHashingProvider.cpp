@@ -7,7 +7,8 @@
 
 PasswordHashingProvider::PasswordHashingProvider() : 
     passwordSaltLength(16), passwordHashLength(16) {
-}    
+}
+
 PasswordHashingProvider::PasswordHashingProvider(unsigned pwdSaltLength, unsigned pwdHashLength) :
     passwordSaltLength(pwdSaltLength), passwordHashLength(pwdHashLength) {
     checkAndCorrectInitialValues(passwordSaltLength, passwordHashLength);
@@ -34,6 +35,7 @@ std::string PasswordHashingProvider::generateSalt() {
         stringStream << uIDistr(randEng);
     return stringStream.str();
 }
+
 std::string PasswordHashingProvider::generateHash(const std::string& passwordSalt, const std::string& passwordPhrase) {
     std::unique_ptr<uint8_t> temporaryHash(new uint8_t[passwordHashLength]);
     argon2d_hash_raw(
@@ -41,6 +43,7 @@ std::string PasswordHashingProvider::generateHash(const std::string& passwordSal
         passwordSalt.c_str(), passwordSalt.length(), temporaryHash.get(), passwordHashLength);
     return convertToString(temporaryHash.get(), passwordHashLength);
 }
+
 void PasswordHashingProvider::checkAndCorrectInitialValues(unsigned& saltLength, unsigned& hashLength) {
     if (saltLength < minSaltLength)
         saltLength = minSaltLength;
