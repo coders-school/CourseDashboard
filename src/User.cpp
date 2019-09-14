@@ -1,6 +1,7 @@
 #include "User.hpp"
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 User::User(const std::string &name,
            const std::string &nick,
