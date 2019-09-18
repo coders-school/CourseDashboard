@@ -69,14 +69,15 @@ set(SRC_LIST
 include_directories(external)
 include_directories(src)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
+target_link_libraries(${PROJECT_NAME}-lib -pthread)
+target_link_libraries(${PROJECT_NAME}-lib ${CMAKE_SOURCE_DIR}/lib/libargon2.a)
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libargon2.a)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Werror -Wpedantic -Wextra -pthread)
 
 if (UNIX)
-    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 else (UNIX)
-    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
 endif (UNIX)
 
 set(TEST_SRC_LIST
@@ -92,6 +93,5 @@ set(TEST_SRC_LIST
 link_libraries(gtest)
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
-target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libargon2.a)
-target_compile_options(${PROJECT_NAME}-ut PUBLIC -Wall -Werror -Wpedantic -Wextra -pthread)
 target_link_libraries(${PROJECT_NAME}-ut ${PROJECT_NAME}-lib)
+target_compile_options(${PROJECT_NAME}-ut PUBLIC -Wall -Werror -Wpedantic -Wextra -pthread)
