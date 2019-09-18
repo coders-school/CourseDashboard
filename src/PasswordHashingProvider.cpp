@@ -40,7 +40,7 @@ std::string PasswordHashingProvider::generateSalt() const {
 }
 
 std::string PasswordHashingProvider::generateHash(const std::string& passwordSalt, const std::string& passwordPhrase) const {
-    std::unique_ptr<uint8_t> temporaryHash(new uint8_t[passwordHashLength]);
+    std::unique_ptr<uint8_t[]> temporaryHash = std::make_unique<uint8_t[]>(passwordHashLength);
     argon2d_hash_raw(
         iterations, memoryCost, threads, passwordPhrase.c_str(), passwordPhrase.length(), 
         passwordSalt.c_str(), passwordSalt.length(), temporaryHash.get(), passwordHashLength);
@@ -57,7 +57,7 @@ void PasswordHashingProvider::checkAndCorrectInitialValues(const unsigned& saltL
 std::string PasswordHashingProvider::convertToString(const uint8_t* input, const unsigned& length) const {
     std::stringstream ss;
     ss << std::hex << std::setfill('0');
-    for (unsigned i=1; i<=length; ++i)
-        ss << std::setw(2) << static_cast<int>(input[i]);
+    for (unsigned it=0; it<length; ++it)
+        ss << std::setw(2) << static_cast<int>(input[it]);
     return ss.str();
 }
