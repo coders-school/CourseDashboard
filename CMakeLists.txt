@@ -87,6 +87,7 @@ set(TEST_SRC_LIST
     tests/FileHandlerTests.cpp
     tests/CourseDashboardTests.cpp
     tests/AuthenticationProviderTests.cpp
+    tests/PasswordHashingProvider.cpp
     tests/test_main.cpp
 )
 
