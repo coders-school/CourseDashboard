@@ -4,26 +4,25 @@
 #include <iomanip>
 #include <random>
 #include <memory>
+#include <algorithm>
+#include <iostream>
 
 PasswordHashingProvider::PasswordHashingProvider() : 
-    passwordSaltLength(16), passwordHashLength(16) {
-}
+    PasswordHashingProvider(16, 16)
+{}
 
 PasswordHashingProvider::PasswordHashingProvider(unsigned pwdSaltLength, unsigned pwdHashLength) :
     passwordSaltLength(pwdSaltLength), passwordHashLength(pwdHashLength) {
-    checkAndCorrectInitialValues(passwordSaltLength, passwordHashLength);
-}
-
-PasswordHashingProvider::PasswordHashingProvider(const PasswordHashingProvider& other) :
-    passwordSaltLength(other.passwordSaltLength),
-    passwordHashLength(other.passwordHashLength) {
+    checkAndCorrectInitialValues(pwdSaltLength, pwdHashLength);
 }
 
 PasswordHashingProvider::~PasswordHashingProvider() {
 }
 
-PasswordHashingProvider& PasswordHashingProvider::operator= (const PasswordHashingProvider& other) {
-    return *this = PasswordHashingProvider(other);
+void PasswordHashingProvider::printSaltAndHashLength() {
+    std::cout << "PasswordHasingProvider instance:\n";
+    std::cout << "    salt length:" << passwordSaltLength << '\n';
+    std::cout << "    hash length:" << passwordHashLength << '\n';
 }
 
 std::string PasswordHashingProvider::generateSalt() {
@@ -44,15 +43,11 @@ std::string PasswordHashingProvider::generateHash(const std::string& passwordSal
     return convertToString(temporaryHash.get(), passwordHashLength);
 }
 
-void PasswordHashingProvider::checkAndCorrectInitialValues(unsigned& saltLength, unsigned& hashLength) {
-    if (saltLength < minSaltLength)
-        saltLength = minSaltLength;
-    if (saltLength > maxSaltLength)
-        saltLength = maxSaltLength;
-    if (hashLength < minHashLength)
-        hashLength = minHashLength;
-    if (hashLength > maxHashLength)
-        hashLength = maxHashLength;
+void PasswordHashingProvider::checkAndCorrectInitialValues(const unsigned& saltLength, const unsigned& hashLength) {
+    passwordSaltLength = std::max(passwordSaltLength, static_cast<unsigned>(PasswordHashingProvider::minSaltLength));
+    passwordSaltLength = std::min(passwordSaltLength, static_cast<unsigned>(PasswordHashingProvider::maxSaltLength));
+    passwordHashLength = std::max(passwordHashLength, static_cast<unsigned>(PasswordHashingProvider::minHashLength));
+    passwordHashLength = std::min(passwordHashLength, static_cast<unsigned>(PasswordHashingProvider::maxHashLength));
 }
 
 std::string PasswordHashingProvider::convertToString(const uint8_t* input, const unsigned& length) {

@@ -5,15 +5,18 @@ class PasswordHashingProvider {
 public:
     PasswordHashingProvider();
     PasswordHashingProvider(unsigned pwdSaltLength, unsigned pwdHashLength);
-    PasswordHashingProvider(const PasswordHashingProvider& other);
+    PasswordHashingProvider(const PasswordHashingProvider&) = default;
+    PasswordHashingProvider(PasswordHashingProvider&&) noexcept = delete;
+    PasswordHashingProvider& operator= (const PasswordHashingProvider&) = default;
+    PasswordHashingProvider& operator= (PasswordHashingProvider&&) noexcept = delete;
     ~PasswordHashingProvider();
-    PasswordHashingProvider& operator= (const PasswordHashingProvider& other);
-
+        
+    void printSaltAndHashLength();
     std::string generateSalt();
     std::string generateHash(const std::string& passwordSalt, const std::string& passwordPhrase);
 
 private:
-    void checkAndCorrectInitialValues(unsigned& saltLength, unsigned& hashLength);
+    void checkAndCorrectInitialValues(const unsigned& saltLength, const unsigned& hashLength);
     std::string convertToString(const uint8_t* input, const unsigned& length);
 
     unsigned passwordSaltLength;
