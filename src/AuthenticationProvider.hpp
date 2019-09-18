@@ -2,11 +2,7 @@
 #include <string>
 #include "User.hpp"
 
-class AuthenticationProvider
-{
-    bool validateEmail(const User & user, const std::string & email);
-    bool validatePassword(const User & user, const std::string & password);
-
+class AuthenticationProvider {
 public:
     bool operator()(
         const User & user,

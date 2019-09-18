@@ -10,13 +10,15 @@ User::User(const std::string &name,
            const std::string &firecode,
            const std::string &email,
            const std::string &password)
-    : name_(name)
+    : hash_(PasswordHashingProvider(16,16))
+    , name_(name)
     , nick_(nick)
     , group_(group)
     , gitHub_(gitHub)
     , firecode_(firecode)
     , email_(email)
-    , password_(password)
+    , salt_(hash_.generateSalt())
+    , hashedPassword_(hash_.generateHash(salt_, password))
 {}
 
 User::User(nlohmann::json userJson)
@@ -68,13 +70,24 @@ bool operator==(const User &lhs, const User &rhs)
             lhs.firecode_ == rhs.firecode_);
 }
 
-std::string User::getPassword() const
-{
-    return password_;
-}
-
-
 std::string User::getEmail() const
 {
     return email_;
+}
+
+bool User::validatePassword(const std::string& password) const {
+    return !hashedPassword_.compare(hash_.generateHash(salt_, password));
+}
+
+bool User::validateEmail(const std::string& email) const {
+    if (!email.empty() && (email.size() == email_.size())) {
+        for(std::size_t i=0; i<email.size(); ++i) {
+            if(tolower(email[i]) != tolower(email_[i]))
+                return false;            
+        }
+    }
+    else {
+        return false;
+    }
+    return true;
 }
