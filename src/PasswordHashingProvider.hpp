@@ -25,4 +25,7 @@ private:
     static const unsigned maxSaltLength = 32;
     static const unsigned minHashLength = 8;
     static const unsigned maxHashLength = 64;
+    static const int iterations = 1;
+    static const int memoryCost = (1<<16);
+    static const int threads = 1;
 };

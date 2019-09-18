@@ -21,8 +21,11 @@ PasswordHashingProvider::~PasswordHashingProvider() {
 
 void PasswordHashingProvider::printSaltAndHashLength() {
     std::cout << "PasswordHasingProvider instance:\n";
-    std::cout << "    salt length:" << passwordSaltLength << '\n';
-    std::cout << "    hash length:" << passwordHashLength << '\n';
+    std::cout << "  salt length:" << passwordSaltLength << '\n';
+    std::cout << "  hash length:" << passwordHashLength << '\n';
+    std::cout << "  iterations:" << iterations << '\n';
+    std::cout << "  memory cost:" << memoryCost << '\n';
+    std::cout << "  threads:" << threads << '\n';
 }
 
 std::string PasswordHashingProvider::generateSalt() {
@@ -38,7 +41,7 @@ std::string PasswordHashingProvider::generateSalt() {
 std::string PasswordHashingProvider::generateHash(const std::string& passwordSalt, const std::string& passwordPhrase) {
     std::unique_ptr<uint8_t> temporaryHash(new uint8_t[passwordHashLength]);
     argon2d_hash_raw(
-        1, (1<<16), 1, passwordPhrase.c_str(), passwordPhrase.length(), 
+        iterations, memoryCost, threads, passwordPhrase.c_str(), passwordPhrase.length(), 
         passwordSalt.c_str(), passwordSalt.length(), temporaryHash.get(), passwordHashLength);
     return convertToString(temporaryHash.get(), passwordHashLength);
 }
