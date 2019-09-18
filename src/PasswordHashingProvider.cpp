@@ -6,6 +6,7 @@
 #include <memory>
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 
 PasswordHashingProvider::PasswordHashingProvider() : 
     PasswordHashingProvider(16, 16)
