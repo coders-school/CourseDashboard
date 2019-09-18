@@ -20,7 +20,7 @@ PasswordHashingProvider::~PasswordHashingProvider() {
 }
 
 void PasswordHashingProvider::printSaltAndHashLength() {
-    std::cout << "PasswordHasingProvider instance:\n";
+    std::cout << "PasswordHashingProvider instance:\n";
     std::cout << "  salt length:" << passwordSaltLength << '\n';
     std::cout << "  hash length:" << passwordHashLength << '\n';
     std::cout << "  iterations:" << iterations << '\n';
