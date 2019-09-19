@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <sstream>
 
+
 User::User(const std::string &name,
            const std::string &nick,
            Group group,
@@ -78,3 +79,4 @@ std::string User::getEmail() const
 {
     return email_;
 }
+

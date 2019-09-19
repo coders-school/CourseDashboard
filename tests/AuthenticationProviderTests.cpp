@@ -69,3 +69,23 @@ TEST(AuthenticationProviderTests, canNotAuthenticateEmptyEmail)
 
     EXPECT_EQ(authenticator(user, email, password), false);
 }
+
+TEST(AuthenticationProviderTests, hashingPasswordReturnsTheSamePassword)
+{
+    AuthenticationProvider authenticator;
+    
+    std::string hashedPassword = authenticator.hashPassword("lubieplacki");
+    std::string result = "lubieplacki";
+
+    ASSERT_FALSE(hashedPassword == result);
+}
+
+TEST(AuthenticationProviderTests, hashingPasswordReturnsCorrectEncryption)
+{
+    AuthenticationProvider authenticator;
+    
+    std::string hashedPassword = authenticator.hashPassword("lubieplacki");
+    std::string result = "1949dc019c411f92c6f3dad9358feecc1840befe6a0601cae30859341eab3ba7";
+
+    EXPECT_EQ(hashedPassword, result);
+}

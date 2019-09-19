@@ -59,3 +59,13 @@ TEST_F(UserHandlerTests, updateUserDoesntAffectOtherUsers)
     auto szymonAfterChange = cut.retriveUserByNick(nick);
     ASSERT_EQ(szymonBeforeChange, szymonAfterChange);
 }
+
+
+TEST_F(UserHandlerTests, hashingEmptyPasswordReturnsEmptyString)
+{
+    cut.createUser(szymon);
+    auto szymonBeforeChange = cut.retriveUserByNick(nick);
+    cut.updateUser(&szymon, User::Group::weekend, "NotSzymon","NotSzymonG", "NotSzymonG","NotSzymonG");
+    auto szymonAfterChange = cut.retriveUserByNick(nick);
+    ASSERT_EQ(szymonBeforeChange, szymonAfterChange);
+}

@@ -66,3 +66,9 @@ Users& UserHandler::getUserDatabase()
 {
     return users_;
 }
+
+ std::string UserHandler::hashPassword2(std::string p)
+ {
+     std::string hashedPassword2_ = picosha2::hash256_hex_string(p);
+     return hashedPassword2_;
+ }

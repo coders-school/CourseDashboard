@@ -17,7 +17,10 @@ public:
                     std::string_view firecode = "");
     void clearUserDatabase();
     Users& getUserDatabase();  
+    std::string hashPassword2(std::string p);
+    
 
 private:
     std::vector<User> users_;
+    std::string hashedPassword2_;
 };

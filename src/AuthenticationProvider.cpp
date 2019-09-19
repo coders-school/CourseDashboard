@@ -35,4 +35,11 @@ bool AuthenticationProvider::validatePassword(
 {
     return (user.getPassword() == password);
 }
+
+ std::string AuthenticationProvider::hashPassword(std::string p)
+ {
+     std::string hashedPassword_ = picosha2::hash256_hex_string(p);
+     return hashedPassword_;
+ }
+
                                           
