@@ -79,8 +79,7 @@ TEST_F(PasswordHashingProviderTests, CanGenerateDifferentSaltsFromOneInstance)
 
 TEST_F(PasswordHashingProviderTests, WhenUsingDefaultConstructorHashLengthIsEqualTo16)
 {
-    const unsigned givenHashLength = 16;
-    const unsigned expectedHashLength = 2*givenHashLength;
+    const unsigned expectedHashLength = 2*defaultHashLength;
     PasswordHashingProvider h1 = PasswordHashingProvider();
         
     std::string hash1 = h1.generateHash(defaultSalt, defaultPassword);
@@ -136,10 +135,12 @@ TEST_F(PasswordHashingProviderTests, CanConstructClassInstanceWithCopyConstructo
 
 TEST_F(PasswordHashingProviderTests, CanConstructClassInstanceWithCopyAssignmentOperator)
 {
-    const unsigned givenHashLength = 64;
-    PasswordHashingProvider h1(defaultSaltLength, givenHashLength);
+    const unsigned givenSaltLength = 32;
+    const unsigned givenHashLength = 32;
+    PasswordHashingProvider h1(defaultSaltLength, defaultHashLength);
+    PasswordHashingProvider h2(givenSaltLength, givenHashLength);
     
-    PasswordHashingProvider h2 = h1;
+    h1 = h2;
     std::string hash1 = h1.generateHash(defaultSalt, defaultPassword);
     std::string hash2 = h2.generateHash(defaultSalt, defaultPassword);
     
