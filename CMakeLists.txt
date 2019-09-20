@@ -45,6 +45,7 @@ set(SRC_LIST
     src/User.cpp
     src/UserHandler.cpp
     src/FileHandler.cpp
+    src/HashingPassword.cpp
 )
 
 include_directories(external)
@@ -66,6 +67,7 @@ set(TEST_SRC_LIST
     tests/FileHandlerTests.cpp
     tests/CourseDashboardTests.cpp
     tests/AuthenticationProviderTests.cpp
+    tests/HashingPasswordTests.cpp
     tests/test_main.cpp
 )
 

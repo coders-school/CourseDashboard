@@ -2,6 +2,7 @@
 #include <string>
 #include "nlohmann/json.hpp"
 #include "picosha2.h"
+#include "HashingPassword.hpp"
 
 class User
 {
@@ -45,6 +46,7 @@ private:
     std::string email_;
     std::string password_;
     std::string hashedPassword_;
+    HashingPassword h_;
 };
 
 using Users = std::vector<User>;
