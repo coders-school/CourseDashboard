@@ -18,6 +18,8 @@ private:
                     const std::string& date,
                     const std::string& time) const;
 
+    void validateDateTime(const std::string& date, const std::string& time);
+
     Schedules schedules_;
 public:
     
