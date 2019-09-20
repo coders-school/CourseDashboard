@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <regex>
 
-auto Calender::findSchedule(const std::string& group) const {
+auto Calender::findSchedule(User::Group group) const {
     return schedules_.equal_range(group);
 }
 
@@ -41,7 +41,7 @@ void Calender::validateDateTime(const std::string& date, const std::string& time
     }
 }
 
-void Calender::addLesson(const std::string& group, 
+void Calender::addLesson(User::Group group, 
                          const std::string& date, 
                          const std::string& time, 
                          const std::string& subject) 
@@ -59,13 +59,9 @@ void Calender::addLesson(const std::string& group,
     schedules_.emplace(group, Lesson(date, time, subject));
 }
 
-void Calender::eraseLesson(const std::string& group, const std::string& date, const std::string& time)
+void Calender::eraseLesson(User::Group group, const std::string& date, const std::string& time)
 {
     const auto& schedule = findSchedule(group);
-    if(schedule.first == schedules_.end()) {
-        throw std::invalid_argument("Group is invalid or do not exist");
-    }
-
     auto lesson = findLesson(schedule, date, time);
     if(lesson == schedules_.end()) {
         throw std::invalid_argument("lesson on day " + date + " and time " + time + " not found");
@@ -74,13 +70,9 @@ void Calender::eraseLesson(const std::string& group, const std::string& date, co
     schedules_.erase(lesson);
 }
 
-const Lesson& Calender::viewLesson(const std::string& group, const std::string& date, const std::string& time) const
+const Lesson& Calender::viewLesson(User::Group group, const std::string& date, const std::string& time) const
 {
     const auto& schedule = findSchedule(group);
-    if(schedule.first == schedules_.end()) {
-        throw std::invalid_argument("Group is invalid or do not exist");
-    }
-
     auto lesson = findLesson(schedule, date, time);
     if(lesson == schedules_.end()) {
         throw std::invalid_argument("lesson on day " + date + " and time " + time + " not found");
@@ -88,9 +80,9 @@ const Lesson& Calender::viewLesson(const std::string& group, const std::string& 
     return lesson->second;
 }
 
-Calender::Schedules Calender::viewSchedule(const std::string& group)
+Calender::Schedules Calender::viewSchedule(User::Group group)
 {
-    if(!group.compare("ALL")) {
+    if(User::Group::ALL == group) {
         return schedules_;
     }
     std::pair<Schedules::iterator, Schedules::iterator> schedule = schedules_.equal_range(group);

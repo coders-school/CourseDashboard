@@ -8,7 +8,9 @@ public:
     enum class Group
     {
         weekend,
-        evening
+        evening,
+
+        ALL,
     };
 
     User(const std::string & name,
@@ -29,6 +31,7 @@ public:
     void setGroup(Group group);
     void setGitHub(std::string_view gitHub);
     void setFirecode(std::string_view firecode);
+    std::string getName() const;
     std::string getNick() const;
     std::string getEmail() const;
     std::string getPassword() const;

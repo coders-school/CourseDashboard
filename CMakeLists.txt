@@ -47,6 +47,8 @@ set(SRC_LIST
     src/FileHandler.cpp
     src/Lesson.cpp
     src/Calender.cpp
+    src/Attendance.cpp
+    src/AttendanceHandler.cpp
 
 )
 
@@ -63,6 +65,7 @@ else (UNIX)
 endif (UNIX)
 
 set(TEST_SRC_LIST
+    
     tests/UtilityTests.cpp
     tests/UserTests.cpp
     tests/UserHandlerTests.cpp
@@ -71,6 +74,8 @@ set(TEST_SRC_LIST
     tests/AuthenticationProviderTests.cpp
     tests/LessonTests.cpp
     tests/CalendarTests.cpp
+    tests/AttandanceTests.cpp
+    tests/AttendanceHandlerTests.cpp
     tests/test_main.cpp
 )
 
