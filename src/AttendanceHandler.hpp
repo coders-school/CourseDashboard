@@ -9,7 +9,7 @@
 class AttendanceHandler
 {
 private:
-  
+  auto matchByEmail(const User& userProfile);
 
   void report(const User& userProfile,
               const Lesson& Lesson,

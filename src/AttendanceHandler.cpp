@@ -2,6 +2,14 @@
 #include <algorithm>
 #include "AttendanceHandler.hpp"
 
+auto AttendanceHandler::matchByEmail(const User& userProfile)
+{
+    return [&userProfile](const auto& report)
+    {
+        return !report.second.getEmail().compare(userProfile.getEmail());
+    };
+}
+
 void AttendanceHandler::report(const User& userProfile,
                                const Lesson& Lesson,
                                const std::string& action,
@@ -10,16 +18,8 @@ void AttendanceHandler::report(const User& userProfile,
     std::string key = Lesson.getDate() + "T" + Lesson.getTime();
     auto reportList = attendanceList_.equal_range(key);
     
-    auto prediction = [&userProfile](const auto& report)
-    {
-        if(report.second.getEmail() == userProfile.getEmail()) {
-            return true;
-        }
-        return false;
-    };
-    
     if(reportList.first == attendanceList_.end() or 
-       std::find_if(reportList.first, reportList.second, prediction) == attendanceList_.end())
+       std::find_if(reportList.first, reportList.second, matchByEmail(userProfile)) == attendanceList_.end())
     {
         attendanceList_.emplace(key, Attendance(userProfile.getEmail(), userProfile.getName(), action, comment));
         return;
@@ -44,7 +44,7 @@ void AttendanceHandler::reportMakeUp(const User& userProfile,
     report(userProfile, Lesson, "MakeUp for: " + absenceDate, comment);
 }
 
-AttendanceHandler::AttendanceList AttendanceHandler::viewReports(const User * const userProfile = nullptr)
+AttendanceHandler::AttendanceList AttendanceHandler::viewReports(const User * const userProfile)
 {
     if(userProfile == nullptr) {
         return attendanceList_;
@@ -52,10 +52,6 @@ AttendanceHandler::AttendanceList AttendanceHandler::viewReports(const User * co
 
     AttendanceHandler::AttendanceList allUserReports;
 
-    auto matchByEmail = [&userProfile](const auto& r) {
-        return !r.second.getEmail().compare(userProfile->getEmail());
-    };
-
-    std::copy_if(attendanceList_.begin(), attendanceList_.end(), std::inserter(allUserReports, allUserReports.begin()), matchByEmail);
+    std::copy_if(attendanceList_.begin(), attendanceList_.end(), std::inserter(allUserReports, allUserReports.begin()), matchByEmail(*userProfile));
     return allUserReports;
 }

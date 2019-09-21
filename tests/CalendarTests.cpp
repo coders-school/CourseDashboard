@@ -55,17 +55,6 @@ TEST_F(CalendarTests, can_Add_Two_Lessons_for_the_same_group_one_After_the_other
     ASSERT_NO_THROW(calender_.addLesson(User::Group::weekend, "2019-06-16", "17:30", "Environment configuration" ));
 }
 
-TEST_F(CalendarTests, viewLesson_Throw_Exception_When_Data_Or_Time_Not_Found) {
-    ASSERT_THROW(calender_.eraseLesson(User::Group::evening, "2019-07-10", "16:30"), std::invalid_argument);
-    ASSERT_THROW(calender_.eraseLesson(User::Group::evening, "2019-07-06", "16:31"), std::invalid_argument);
-}
-
-TEST_F(CalendarTests, can_eraseLesson)
-{
-    calender_.eraseLesson(User::Group::evening, "2019-07-06", "16:30");
-    ASSERT_THROW(calender_.viewLesson(User::Group::evening, "2019-07-06", "16:30"), std::invalid_argument);
-}
-
 TEST_F(CalendarTests, viewAllSchedules)
 {
     auto result = calender_.viewSchedule(User::Group::ALL);

@@ -19,7 +19,8 @@ private:
                     const std::string& date,
                     const std::string& time) const;
 
-    void validateDateTime(const std::string& date, const std::string& time);
+    void validateDate(const std::string& date);
+    void validateTime(const std::string& time);
 
     Schedules schedules_;
 public:
@@ -30,8 +31,6 @@ public:
                    const std::string& date,
                    const std::string& time,
                    const std::string& subject);
-
-    void eraseLesson(User::Group group, const std::string& date, const std::string& time);
 
     const Lesson& viewLesson(User::Group group, const std::string& date, const std::string& time) const;
 

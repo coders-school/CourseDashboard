@@ -22,7 +22,7 @@ auto Calender::findLesson(const std::pair<Calender::Schedules::const_iterator,
     return std::find_if(range.first, range.second, prediction);
 }
 
-void Calender::validateDateTime(const std::string& date, const std::string& time)
+void Calender::validateDate(const std::string& date)
 {
     std::regex dataMatch("[0-9]{2}[-|.|/][0-9]{2}[-|.|/][0-9]{4}|"
                          "[0-9]{4}[-|.|/][0-9]{2}[-|.|/][0-9]{2}|");
@@ -32,7 +32,10 @@ void Calender::validateDateTime(const std::string& date, const std::string& time
                                     "Valid formats are \"dd-mm-yyyy\" or \"yyyy-mm-dd\"\n"
                                     "valid separetor \".\" \"-\" \"\\\"");
     }
+}
 
+void Calender::validateTime(const std::string& time)
+{
     std::regex timeMatch("[0-9]{2}[:][0-9]{2}");
 
     if(!std::regex_match(time, timeMatch)) {
@@ -46,7 +49,8 @@ void Calender::addLesson(User::Group group,
                          const std::string& time, 
                          const std::string& subject) 
 {
-    validateDateTime(date, time);
+    validateDate(date);
+    validateTime(time);
 
     const auto& schedule = findSchedule(group);
     if(schedule.first != schedules_.end())
@@ -57,17 +61,6 @@ void Calender::addLesson(User::Group group,
         }
     }
     schedules_.emplace(group, Lesson(date, time, subject));
-}
-
-void Calender::eraseLesson(User::Group group, const std::string& date, const std::string& time)
-{
-    const auto& schedule = findSchedule(group);
-    auto lesson = findLesson(schedule, date, time);
-    if(lesson == schedules_.end()) {
-        throw std::invalid_argument("lesson on day " + date + " and time " + time + " not found");
-    }
-
-    schedules_.erase(lesson);
 }
 
 const Lesson& Calender::viewLesson(User::Group group, const std::string& date, const std::string& time) const
@@ -85,7 +78,7 @@ Calender::Schedules Calender::viewSchedule(User::Group group)
     if(User::Group::ALL == group) {
         return schedules_;
     }
-    std::pair<Schedules::iterator, Schedules::iterator> schedule = schedules_.equal_range(group);
+    auto schedule = findSchedule(group);
     
     Schedules selectedSchedule;
     std::copy(schedule.first, schedule.second, std::inserter(selectedSchedule, selectedSchedule.begin()));
