@@ -17,7 +17,7 @@ auto Calender::findLesson(const std::pair<Calender::Schedules::const_iterator,
 {
     auto prediction = [&date, &time](const auto& element)
     {
-       return !element.second.getData().compare(date) && !element.second.getTime().compare(time);
+       return !element.second.getDate().compare(date) && !element.second.getTime().compare(time);
     };
     return std::find_if(range.first, range.second, prediction);
 }

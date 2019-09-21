@@ -23,7 +23,6 @@ private:
 
     Schedules schedules_;
 public:
-    
     Calender() = default;
     ~Calender() = default;
 

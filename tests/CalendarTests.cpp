@@ -17,7 +17,7 @@ struct CalendarTests : public ::testing::Test
 TEST_F(CalendarTests, can_add_and_view_Lesson)
 {
     const auto& result = calender_.viewLesson(User::Group::evening, "2019-07-07", "16:30");
-    EXPECT_EQ(result.getData(), "2019-07-07");
+    EXPECT_EQ(result.getDate(), "2019-07-07");
     EXPECT_EQ(result.getTime(),  "16:30");
     EXPECT_EQ(result.getSubject(), "Basics of C++");
 }
@@ -30,8 +30,8 @@ TEST_F(CalendarTests, can_add_date_with_dot_slash_minus)
     const auto& result1 = calender_.viewLesson(User::Group::evening, "2019/06/17", "16:30");
     const auto& result2 = calender_.viewLesson(User::Group::evening, "2019.06.18", "16:30");
 
-    ASSERT_EQ(result1.getData(), "2019/06/17");
-    ASSERT_EQ(result2.getData(), "2019.06.18");
+    ASSERT_EQ(result1.getDate(), "2019/06/17");
+    ASSERT_EQ(result2.getDate(), "2019.06.18");
 }
 
 TEST_F(CalendarTests, can_add_date_In_revers_order)

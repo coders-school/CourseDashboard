@@ -30,3 +30,57 @@ bool CourseDashboard::login(const std::string& email, const std::string& passwor
 
     return authenticationProvider(*user, email, password);
 }
+
+Calender::Schedules CourseDashboard::viewSchedule(const std::string& email = "")
+{
+    if(!email.compare("")) {
+        return calender_.viewSchedule(User::Group::ALL);
+    }
+
+    auto user = findUser(email);
+    return calender_.viewSchedule(user.getGroup());
+}
+
+void CourseDashboard::reportAbsence(const std::string& email, 
+                                    const std::string& date, 
+                                    const std::string& time, 
+                                    const std::string& comment)
+{
+    auto user = findUser(email);
+    auto lesson = calender_.viewLesson(user.getGroup(), date, time);
+
+    attendanceHandler_.reportAbsence(user, lesson, comment);
+}
+
+void CourseDashboard::reportMakeUp(const std::string& email, 
+                                   const std::string& date, 
+                                   const std::string& time,
+                                   const std::string& absentDate,
+                                   const std::string& comment)
+{
+    auto user = findUser(email);
+    auto lesson = calender_.viewLesson(user.getGroup(), date, time);
+    
+    attendanceHandler_.reportMakeUp(user, lesson, absentDate,  comment);
+}
+
+AttendanceHandler::AttendanceList CourseDashboard::viewAttendance(const std::string& email = "")
+{
+    if(!email.compare("")) {
+        return attendanceHandler_.viewReports(nullptr);
+    }
+
+    auto user = findUser(email);
+    return attendanceHandler_.viewReports(&user);
+}
+
+
+const User& CourseDashboard::findUser(const std::string& email)
+{
+    auto byEmail = [&email](auto user) {
+        return !user.getEmail().compare(email);
+    };
+
+    auto users = userHandler_.getUserDatabase();
+    return *std::find_if(users.begin(), users.end(), byEmail);
+}

@@ -31,8 +31,9 @@ public:
     void setGroup(Group group);
     void setGitHub(std::string_view gitHub);
     void setFirecode(std::string_view firecode);
-    std::string getName() const;
+    const std::string& getName() const;
     std::string getNick() const;
+    const Group& getGroup() const;
     std::string getEmail() const;
     std::string getPassword() const;
 

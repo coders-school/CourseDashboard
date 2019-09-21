@@ -3,17 +3,17 @@
 #include <regex>
 #include <stdexcept>
 
-Lesson::Lesson(const std::string& data,
+Lesson::Lesson(const std::string& date,
                const std::string& time, 
                const std::string& subject) 
                : 
-               data_(data),
+               date_(date),
                time_(time), 
                subject_(subject)
 {}
 
-const std::string& Lesson::getData() const {
-    return data_;
+const std::string& Lesson::getDate() const {
+    return date_;
 }
 
 const std::string& Lesson::getTime() const {

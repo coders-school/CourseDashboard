@@ -57,9 +57,11 @@ void User::setGroup(Group group) { group_ = group; }
 void User::setGitHub(std::string_view gitHub) { gitHub_ = gitHub; }
 void User::setFirecode(std::string_view firecode) { firecode_ = firecode; }
 
-std::string User::getName() const { return name_; }
+const std::string& User::getName() const { return name_; }
 
 std::string User::getNick() const { return nick_; }
+
+const User::Group& User::getGroup() const { return group_; }
 
 bool operator==(const User &lhs, const User &rhs)
 {
