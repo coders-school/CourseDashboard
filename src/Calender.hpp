@@ -15,7 +15,7 @@ private:
     auto findSchedule(User::Group group) const;
 
     auto findLesson(const std::pair<Calender::Schedules::const_iterator, 
-                      Calender::Schedules::const_iterator>& range,
+                          Calender::Schedules::const_iterator>& range,
                     const std::string& date,
                     const std::string& time) const;
 
@@ -32,7 +32,9 @@ public:
                    const std::string& time,
                    const std::string& subject);
 
-    const Lesson& viewLesson(User::Group group, const std::string& date, const std::string& time) const;
+    const Lesson& viewLesson(User::Group group, 
+                             const std::string& date, 
+                             const std::string& time) const;
 
     Calender::Schedules viewSchedule(User::Group group);
     

@@ -11,11 +11,6 @@ class AttendanceHandler
 private:
   auto matchByEmail(const User& userProfile);
 
-  void report(const User& userProfile,
-              const Lesson& Lesson,
-              const std::string& absenceDate,
-              const std::string& comment);
-
 public:
   using AttendanceList = std::unordered_multimap<std::string, Attendance>;
 
@@ -32,6 +27,11 @@ public:
   AttendanceList viewReports(const User * const userProfile);
 
 private:
+  void report(const User& userProfile,
+              const Lesson& Lesson,
+              const std::string& absenceDate,
+              const std::string& comment);
+
   AttendanceList attendanceList_;
 
 };

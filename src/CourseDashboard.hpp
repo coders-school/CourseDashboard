@@ -30,7 +30,7 @@ public:
     AttendanceHandler::AttendanceList viewAttendance(const std::string& email);
 
 private:
-    const User& findUser(const std::string& email);
+    const User& findUserByEmail(const std::string& email);
 
     UserHandler userHandler_;
     Calender calender_;
