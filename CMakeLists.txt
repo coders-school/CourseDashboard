@@ -45,6 +45,11 @@ set(SRC_LIST
     src/User.cpp
     src/UserHandler.cpp
     src/FileHandler.cpp
+    src/Lesson.cpp
+    src/Calender.cpp
+    src/Attendance.cpp
+    src/AttendanceHandler.cpp
+
 )
 
 include_directories(external)
@@ -60,12 +65,17 @@ else (UNIX)
 endif (UNIX)
 
 set(TEST_SRC_LIST
+    
     tests/UtilityTests.cpp
     tests/UserTests.cpp
     tests/UserHandlerTests.cpp
     tests/FileHandlerTests.cpp
     tests/CourseDashboardTests.cpp
     tests/AuthenticationProviderTests.cpp
+    tests/LessonTests.cpp
+    tests/CalendarTests.cpp
+    tests/AttandanceTests.cpp
+    tests/AttendanceHandlerTests.cpp
     tests/test_main.cpp
 )
 

@@ -20,13 +20,62 @@ void CourseDashboard::saveToFile(const std::string& pathTofile)
 
 bool CourseDashboard::login(const std::string& email, const std::string& password)
 {
+    auto user = findUserByEmail(email);
+    AuthenticationProvider authenticationProvider;
+
+    return authenticationProvider(user, email, password);
+}
+
+Calender::Schedules CourseDashboard::viewSchedule(const std::string& email)
+{
+    if(!email.compare("")) {
+        return calender_.viewSchedule(User::Group::ALL);
+    }
+
+    auto user = findUserByEmail(email);
+    return calender_.viewSchedule(user.getGroup());
+}
+
+void CourseDashboard::reportAbsence(const std::string& email, 
+                                    const std::string& date, 
+                                    const std::string& time, 
+                                    const std::string& comment)
+{
+    auto user = findUserByEmail(email);
+    auto lesson = calender_.viewLesson(user.getGroup(), date, time);
+
+    attendanceHandler_.reportAbsence(user, lesson, comment);
+}
+
+void CourseDashboard::reportMakeUp(const std::string& email, 
+                                   const std::string& date, 
+                                   const std::string& time,
+                                   const std::string& absentDate,
+                                   const std::string& comment)
+{
+    auto user = findUserByEmail(email);
+    auto lesson = calender_.viewLesson(user.getGroup(), date, time);
+    
+    attendanceHandler_.reportMakeUp(user, lesson, absentDate,  comment);
+}
+
+AttendanceHandler::AttendanceList CourseDashboard::viewAttendance(const std::string& email)
+{
+    if(!email.compare("")) {
+        return attendanceHandler_.viewReports(nullptr);
+    }
+
+    auto user = findUserByEmail(email);
+    return attendanceHandler_.viewReports(&user);
+}
+
+
+const User& CourseDashboard::findUserByEmail(const std::string& email)
+{
     auto byEmail = [&email](auto user) {
         return !user.getEmail().compare(email);
     };
+
     auto users = userHandler_.getUserDatabase();
-    auto user = std::find_if(users.begin(), users.end(), byEmail);
-
-    AuthenticationProvider authenticationProvider;
-
-    return authenticationProvider(*user, email, password);
+    return *std::find_if(users.begin(), users.end(), byEmail);
 }
