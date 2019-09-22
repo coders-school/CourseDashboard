@@ -45,6 +45,7 @@ set(SRC_LIST
     src/User.cpp
     src/UserHandler.cpp
     src/FileHandler.cpp
+    external/sha512/sha512.cpp
 )
 
 include_directories(external)
