@@ -48,16 +48,19 @@ set(SRC_LIST
     src/Server.cpp
 )
 
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
+
 include_directories(external)
 include_directories(src)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Werror -Wpedantic -Wextra)
+target_compile_options(${PROJECT_NAME}  PUBLIC -Wall -Werror -Wpedantic -Wextra)
 
 if (UNIX)
-    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib pthread ${CURL_LIBRARIES})
 else (UNIX)
-    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib)
+    target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-lib ${CURL_LIBRARIES})
 endif (UNIX)
 
 set(TEST_SRC_LIST

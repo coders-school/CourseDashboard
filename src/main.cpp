@@ -13,10 +13,12 @@ int main()
     {
         std::cout << "OK\n";
         server1.downloadUsers();
-        server1.checkConnection();
+        //server1.checkConnection();
     }
     else
         std::cout << "NOT OK\n";
+
+
     //cdb.saveToFile("userDatabase.txt");
     //cdb.loadFromFile("userDatabase.txt");
 

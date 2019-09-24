@@ -3,30 +3,33 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "curl/curl.h"
 
 void Server::downloadUsers()
 {
-/*
-    CURL* curl = curl_easy_init();
+
+    CURL* curl;
+    curl = curl_easy_init();
     std::string readBuf{};
     
     if (curl)
     {
-        curl_easy_setopt(curl, CURLOPT_URL, "http://coursedashboard.pl/userDatabase.txt");
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, readBuf);
-        curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
+        std::cout<< "I am in curl section :)" << "\n";
+        curl_easy_setopt(curl, CURLOPT_URL, "http://coursedashboard.pl/userDatabase.json");
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuf);
+        //curl_easy_perform(curl);
+        //curl_easy_cleanup(curl);
 
         std::cout << readBuf << "\n";
     }
-*/
+
 /*
     std::string text{};
     std::cout << "path to file: " << this->pathToFile << "\n";   
  
     try
     {
-        std::ifstream file("userDatabase.txt");
+        std::ifstream file(readBuf);
         while (file.is_open())
         {
             std::cout << "i'm here. \n";
