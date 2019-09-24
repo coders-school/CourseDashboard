@@ -3,61 +3,55 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "curl/curl.h"
+#include "Utility.hpp"
+#include "User.hpp"
+
+std::string data;
+
+size_t write_data(char* buf, size_t size, size_t nmemb, void* up)
+{
+    for (size_t c = 0; c < size*nmemb; c++)
+        data.push_back(buf[c]);
+    return size * nmemb;
+}
 
 void Server::downloadUsers()
 {
-
     CURL* curl;
+    curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
-    std::string readBuf{};
-    
+
     if (curl)
     {
-        std::cout<< "I am in curl section :)" << "\n";
-        curl_easy_setopt(curl, CURLOPT_URL, "http://coursedashboard.pl/userDatabase.json");
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuf);
-        //curl_easy_perform(curl);
-        //curl_easy_cleanup(curl);
+        std::string path = serverName + pathToFile;
+        curl_easy_setopt(curl, CURLOPT_URL, path.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &write_data);
+        curl_easy_perform(curl);
 
-        std::cout << readBuf << "\n";
-    }
-
-/*
-    std::string text{};
-    std::cout << "path to file: " << this->pathToFile << "\n";   
- 
-    try
-    {
-        std::ifstream file(readBuf);
-        while (file.is_open())
+        if (checkIfFileExist())
         {
-            std::cout << "i'm here. \n";
-            getline(file, text);
-            if (file.eof())
-            {
-                file.close();
-                std::cout << "File is closed. \n";
-            }
+            Users listOfUsers = convertToArray(data);
+            std::cout << "\nUsers has been uploaded into database ;) \n\n";
+            for (auto user : listOfUsers)
+                std::cout << user.getNick() << "\n";
         }
-        std::cout << "text: " << text << "\n";
-
-    }   
-    catch(std::ios_base::failure& e)
-    {
-        std::cerr << "Read from file: " << this->pathToFile << "\n"
-                  << "Error message: " << e.what() << "\n";
+  
+        curl_easy_cleanup(curl);
+        curl_global_cleanup();
     }
-*/
-}
-
-bool Server::checkConnection()
-{
-    return system("ping www.coursedashboard.pl");
+    else
+        std::cout << "Somethng goes wrong. \n";
 }
 
 bool Server::checkIfFileExist()
 {
-    std::ifstream file(pathToFile);
-    return file.is_open();
+    if (data[0] != '<')
+        return true;
+    else
+    {
+        std::cout << "File not exist \n";
+        return false;
+    }
 }
