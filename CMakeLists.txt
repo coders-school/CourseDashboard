@@ -45,6 +45,7 @@ set(SRC_LIST
     src/User.cpp
     src/UserHandler.cpp
     src/FileHandler.cpp
+    src/Server.cpp
 )
 
 include_directories(external)
