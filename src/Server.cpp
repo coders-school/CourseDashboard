@@ -8,7 +8,7 @@
 #include "Utility.hpp"
 #include "User.hpp"
 
-std::string data;
+std::string Server::data;
 
 Server::Server()
 {
