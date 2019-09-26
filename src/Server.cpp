@@ -10,7 +10,17 @@
 
 std::string data;
 
-size_t write_data(char* buf, size_t size, size_t nmemb, void* up)
+Server::Server()
+{
+    curl_global_init(CURL_GLOBAL_ALL);
+}
+
+Server::~Server()
+{
+    curl_global_cleanup();
+}
+
+size_t Server::write_data(char* buf, size_t size, size_t nmemb, void* up)
 {
     for (size_t c = 0; c < size*nmemb; c++)
         data.push_back(buf[c]);
@@ -19,8 +29,6 @@ size_t write_data(char* buf, size_t size, size_t nmemb, void* up)
 
 void Server::downloadUsers()
 {
-    CURL* curl;
-    curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
 
     if (curl)
@@ -39,19 +47,13 @@ void Server::downloadUsers()
         }
   
         curl_easy_cleanup(curl);
-        curl_global_cleanup();
     }
     else
-        std::cout << "Somethng goes wrong. \n";
+        std::cout << "Initialization has been failed. \n";
 }
 
 bool Server::checkIfFileExist()
 {
-    if (data[0] != '<')
-        return true;
-    else
-    {
-        std::cout << "File not exist \n";
-        return false;
-    }
+    return (data[0] != '<');
 }
+
