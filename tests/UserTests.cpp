@@ -10,8 +10,10 @@ struct UserTests : public ::testing::Test
         "name": "Ewa",
         "nick": "nick",
         "group": 1,
-        "gitHub": "github",
-        "firecod": "firecode"
+        "github": "github",
+        "firecode": "firecode",
+        "email": "ewa@ewa.pl",
+        "password": "tajne"
     }
     )"_json;  // TODO: Change firecod, gitHub
     User ewa{jsonData};

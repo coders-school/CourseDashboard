@@ -65,7 +65,12 @@ void UserHandler::clearUserDatabase()
     users_.clear();
 }
 
-Users UserHandler::getUserDatabase()
+Users UserHandler::getUserDatabase() const
 {
     return users_;
+}
+
+void UserHandler::setUserDatabase(const Users& newContent)
+{
+    users_ = newContent;
 }

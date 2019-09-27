@@ -6,11 +6,15 @@
 class CourseDashboard
 {
 public:
-    void loadFromFile(const std::string& pathTofile);
-    void saveToFile(const std::string& pathTofile);
+    void loadFromJson(const std::string& pathTofile);
+    void saveToJson(const std::string& pathTofile);
+    bool login(const std::string& email, const std::string& password) const;
+    void addUser();
 
-    bool login(const std::string& email, const std::string& password);
+    UserHandler userHandler_;
 
 private:
-    UserHandler userHandler_;
+    std::string provideInputFromKeyboard(std::string_view valueName) const;
+    User::Group provideGroupFromKeyboard() const;
+
 };

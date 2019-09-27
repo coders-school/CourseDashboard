@@ -17,7 +17,8 @@ public:
                     std::string_view github = "",
                     std::string_view firecode = "");
     void clearUserDatabase();
-    Users getUserDatabase();
+    Users getUserDatabase() const;
+    void setUserDatabase(const Users& newContent);
 
 private:
     Users users_;
