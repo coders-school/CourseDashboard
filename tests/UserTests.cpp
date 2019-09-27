@@ -15,7 +15,6 @@ struct UserTests : public ::testing::Test
     }
     )"_json;  // TODO: Change firecod, gitHub
     User ewa{jsonData};
-    User adam{"Adam", "nick", User::Group::evening, "github", "firecode"};
 };
 
 TEST_F(UserTests, toJson)
@@ -28,4 +27,10 @@ TEST_F(UserTests, toString)
     auto expected = "1.Ewa|2.nick|3.evening|4.github|5.firecode|\n";
     auto stringData = ewa.toString();
     EXPECT_EQ(stringData, expected);
+}
+
+TEST_F(UserTests, equality)
+{
+    User copyOfEwa{jsonData};
+    EXPECT_EQ(copyOfEwa, ewa);
 }
