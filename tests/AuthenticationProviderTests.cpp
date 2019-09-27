@@ -4,68 +4,37 @@
 #include <string>
 
 
-TEST(AuthenticationProviderTests, canAuthenticate)
+struct AuthenticationProviderTests : testing::Test
 {
-    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
     AuthenticationProvider authenticator;
-
     std::string email = "alicjaliqui@gmail.com";
     std::string password = "lubieplacki";
+    User user{"Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", email, password};
+};
 
-    EXPECT_EQ(authenticator(user, email, password), true);
+TEST_F(AuthenticationProviderTests, canAuthenticateEmailCaseInsensitivity)
+{
+    EXPECT_TRUE(authenticator.authenticate(user, email, password));
 }
 
-TEST(AuthenticationProviderTests, canAuthenticateEmailCaseInsensitivity)
+TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
 {
-    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
-    AuthenticationProvider authenticator;
-
-    std::string email = "alicjaliqui@gmail.com";
-    std::string password = "lubieplacki";
-
-    EXPECT_EQ(authenticator(user, email, password), true);
+    EXPECT_FALSE(authenticator.authenticate(user, email, "lubiePLACKI"));
 }
 
-TEST(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
+TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
 {
-    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
-    AuthenticationProvider authenticator;
-
-    std::string email = "alicjaliqui@gmail.com";
-    std::string password = "lubiePLACKI";
-
-    EXPECT_EQ(authenticator(user, email, password), false);
+    EXPECT_FALSE(authenticator.authenticate(user, "szymon@gmail.com", password));
 }
 
-TEST(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
+TEST_F(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
 {
-    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "");
-    AuthenticationProvider authenticator;
-
-    std::string email = "alicjaliqui@gmail.com";
-    std::string password = "";
-
-    EXPECT_EQ(authenticator(user, email, password), true);
+    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", email, "");
+    EXPECT_FALSE(authenticator.authenticate(user, email, ""));
 }
 
-TEST(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
+TEST_F(AuthenticationProviderTests, canNotAuthenticateEmptyEmail)
 {
-    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "alicjaliqui@gmail.com", "lubieplacki");
-    AuthenticationProvider authenticator;
-
-    std::string email = "szymon@gmail.com";
-    std::string password = "lubieplacki";
-
-    EXPECT_EQ(authenticator(user, email, password), false);
-}
-
-TEST(AuthenticationProviderTests, canNotAuthenticateEmptyEmail)
-{
-    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "", "lubieplacki");
-    AuthenticationProvider authenticator;
-
-    std::string email = "";
-    std::string password = "lubieplacki";
-
-    EXPECT_EQ(authenticator(user, email, password), false);
+    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", "", password);
+    EXPECT_FALSE(authenticator.authenticate(user, "", password));
 }

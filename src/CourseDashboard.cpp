@@ -29,8 +29,8 @@ bool CourseDashboard::login(const std::string& email, const std::string& passwor
     if (user == users.end())
         return false;
 
-    AuthenticationProvider authenticationProvider;
-    return authenticationProvider(*user, email, password);
+    AuthenticationProvider authenticationProvider;  // TODO: Dependency Injection
+    return authenticationProvider.authenticate(*user, email, password);
 }
 
 void CourseDashboard::addUser()
