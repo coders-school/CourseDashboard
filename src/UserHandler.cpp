@@ -17,7 +17,7 @@ void UserHandler::createUser(const User &user)
     users_.emplace_back(user);
 }
 
-void UserHandler::deleteUserByNick(std::string nick)
+void UserHandler::deleteUserByNick(const std::string& nick)
 {
     auto it = std::find_if(std::begin(users_), std::end(users_), [nick](const auto &user) {
         return user.getNick() == nick;
@@ -29,7 +29,7 @@ void UserHandler::deleteUserByNick(std::string nick)
     }
 }
 
-User* UserHandler::retriveUserByNick(std::string nick)
+User* UserHandler::retriveUserByNick(const std::string& nick)
 {
     auto it = std::find_if(users_.begin(), users_.end(), [nick](const auto &user) {
         return user.getNick() == nick;

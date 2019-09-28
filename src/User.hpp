@@ -21,17 +21,17 @@ public:
 
     User(nlohmann::json userJson);
    
-    std::string toString() const;
-    nlohmann::json toJson() const;
+    [[nodiscard]] std::string toString() const;
+    [[nodiscard]] nlohmann::json toJson() const;
 
     void setName(std::string_view name);
     void setNick(std::string_view nick);
     void setGroup(Group group);
     void setGitHub(std::string_view gitHub);
     void setFirecode(std::string_view firecode);
-    std::string getNick() const;
-    std::string getEmail() const;
-    std::string getPassword() const;
+    [[nodiscard]] std::string getNick() const;
+    [[nodiscard]] std::string getEmail() const;
+    [[nodiscard]] std::string getPassword() const;
 
     friend bool operator==(const User &lhs, const User& rhs);
 

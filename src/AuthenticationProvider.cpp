@@ -18,7 +18,7 @@ bool AuthenticationProvider::validateEmail(
     std::string user_email = user.getEmail();
     
     if(!email.empty() && (email.size() == user_email.size())) {
-        for(unsigned int i=0; i<email.size(); i++) {
+        for(size_t i=0; i<email.size(); i++) {
             if(tolower(email[i]) != tolower(user_email[i]))
                 return false;            
         }

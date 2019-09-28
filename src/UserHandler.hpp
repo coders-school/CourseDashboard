@@ -7,8 +7,8 @@ class UserHandler
 public:
     void showAll() const;
     void createUser(const User & user);
-    void deleteUserByNick(std::string nick);
-    User* retriveUserByNick(std::string nick);
+    void deleteUserByNick(const std::string& nick);
+    User* retriveUserByNick(const std::string& nick);
     void updateUser(User* userIterator,
                     User::Group group,
                     std::string_view name = "",
