@@ -17,20 +17,20 @@ struct AuthenticationProviderTests: public testing::Test
 
 TEST_F(AuthenticationProviderTests, canAuthenticateEmailCaseInsensitivity)
 {
-    EXPECT_TRUE(authenticator(user, email, password));
+    EXPECT_TRUE(authenticator.authenticate(user, email, password));
 }
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
 {
     std::string password = "lubiePLACKI";
-    EXPECT_FALSE(authenticator(user, email, password));
+    EXPECT_FALSE(authenticator.authenticate(user, email, password));
 }
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
 {
     std::string emptyPassword = "";
     User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", email, emptyPassword);
-    EXPECT_FALSE(authenticator(user, email, emptyPassword));
+    EXPECT_FALSE(authenticator.authenticate(user, email, emptyPassword));
 }
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
