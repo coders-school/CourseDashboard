@@ -26,13 +26,6 @@ TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
     EXPECT_FALSE(authenticator.authenticate(user, email, hash.hashPassword(password)));
 }
 
-TEST_F(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
-{
-    std::string emptyPassword = "";
-    User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", email, emptyPassword);
-    EXPECT_FALSE(authenticator.authenticate(user, email, hash.hashPassword(emptyPassword)));
-}
-
 TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
 {
     EXPECT_FALSE(authenticator.authenticate(user, "another@gmail.com", hashedPassword));
