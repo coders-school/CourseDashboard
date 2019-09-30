@@ -2,8 +2,10 @@
 #include "User.hpp"
 #include <vector>
 #include "UserHandler.hpp"
-#include "Calender.hpp"
+#include "Calendar.hpp"
 #include "AttendanceHandler.hpp"
+
+#include "iterator"
 
 class CourseDashboard
 {
@@ -14,25 +16,27 @@ public:
 
     bool login(const std::string& email, const std::string& password);
 
-    Calender::Schedules viewSchedule(const std::string& email);
+    Calendar::Schedules viewSchedule(const std::string& email);
 
     void reportAbsence(const std::string& email, 
                        const std::string& date, 
                        const std::string& time, 
                        const std::string& comment);
 
-    void reportMakeUp(const std::string& email, 
+    void reportMakeUp(const std::string& email,
+                      const User::Group& group,
                       const std::string& date, 
                       const std::string& time,
                       const std::string& absentDate,
+                      const std::string& absentTime,
                       const std::string& comment);
 
     AttendanceHandler::AttendanceList viewAttendance(const std::string& email);
 
 private:
-    const User& findUserByEmail(const std::string& email);
+    const std::shared_ptr<User> findUserByEmail(const std::string& email);
 
     UserHandler userHandler_;
-    Calender calender_;
+    Calendar calender_;
     AttendanceHandler attendanceHandler_;
 };

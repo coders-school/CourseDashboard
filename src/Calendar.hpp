@@ -5,37 +5,41 @@
 #include "User.hpp"
 
 
-
-class Calender
+class Calendar
 {
 public:
     using  Schedules = std::unordered_multimap<User::Group, Lesson>;
 
+    Calendar() = default;
+    ~Calendar() = default;
+
 private:
     auto findSchedule(User::Group group) const;
 
-    auto findLesson(const std::pair<Calender::Schedules::const_iterator, 
-                          Calender::Schedules::const_iterator>& range,
+    auto findLesson(const std::pair<Calendar::Schedules::const_iterator, 
+                          Calendar::Schedules::const_iterator>& range,
                     const std::string& date,
                     const std::string& time) const;
 
-    void validateDate(const std::string& date);
-    void validateTime(const std::string& time);
+
+    bool isOfFormat(std::string str, std::string format) const;
+
+    void validateDate(std::string date) const;
+    void validateTime(std::string time) const;
 
     Schedules schedules_;
+
 public:
-    Calender() = default;
-    ~Calender() = default;
 
     void addLesson(User::Group group,
                    const std::string& date,
                    const std::string& time,
                    const std::string& subject);
 
-    const Lesson& viewLesson(User::Group group, 
+    const Lesson& getLesson(User::Group group, 
                              const std::string& date, 
                              const std::string& time) const;
 
-    Calender::Schedules viewSchedule(User::Group group);
+    Calendar::Schedules getSchedule(User::Group group);
     
 };

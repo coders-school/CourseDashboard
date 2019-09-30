@@ -4,6 +4,7 @@
 #include "User.hpp"
 #include "Attendance.hpp"
 
+#include <memory>
 #include <unordered_map>
 
 class AttendanceHandler
@@ -14,21 +15,21 @@ private:
 public:
   using AttendanceList = std::unordered_multimap<std::string, Attendance>;
 
-  void reportAbsence(const User& userProfile,
-                     const Lesson& Lesson, 
+  void reportAbsence(std::shared_ptr<const User> userProfile,
+                     const Lesson& lesson, 
                      const std::string& comment);
 
-  void reportMakeUp(const User& userProfile,
-                    const Lesson& Lesson,
-                    const std::string& absenceDate,
+  void reportMakeUp(std::shared_ptr<const User> userProfile,
+                    const Lesson& lesson,
+                    const Lesson& absenceLesson,
                     const std::string& comment);
 
 
-  AttendanceList viewReports(const User * const userProfile);
+  AttendanceList getReports(std::shared_ptr<const User> userProfile);
 
 private:
-  void report(const User& userProfile,
-              const Lesson& Lesson,
+  void report(std::shared_ptr<const User> userProfile,
+              const Lesson& lesson,
               const std::string& absenceDate,
               const std::string& comment);
 

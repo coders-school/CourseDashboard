@@ -9,7 +9,7 @@ private:
     std::string name_;
     std::string action_;
     std::string comment_;
-    std::string connectedAction_;
+
 public:
     Attendance(const std::string& email,
                const std::string& name,

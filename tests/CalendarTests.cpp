@@ -1,68 +1,58 @@
 #include <gtest/gtest.h>
-#include <Calender.hpp>
+#include <Calendar.hpp>
 #include <algorithm>
 
 struct CalendarTests : public ::testing::Test
 {
     CalendarTests()
     {
-        calender_.addLesson(User::Group::weekend, "2019-06-15", "16:30", "Environment configuration" );
-        calender_.addLesson(User::Group::evening, "2019-07-06", "16:30", "Programming tools" );
+        calender_.addLesson(User::Group::weekend, "2019-06-15", "10:00", "Environment configuration" );
+        calender_.addLesson(User::Group::evening, "2019-06-15", "10:00", "Environment configuration" );
+        calender_.addLesson(User::Group::weekend, "2019-07-06", "16:30", "Basics of C++" );
         calender_.addLesson(User::Group::evening, "2019-07-07", "16:30", "Basics of C++" );
     }
 
-    Calender calender_;
+    Calendar calender_;
 };
 
 TEST_F(CalendarTests, can_add_and_view_Lesson)
 {
-    const auto& result = calender_.viewLesson(User::Group::evening, "2019-07-07", "16:30");
+    const auto& result = calender_.getLesson(User::Group::evening, "2019-07-07", "16:30");
     EXPECT_EQ(result.getDate(), "2019-07-07");
     EXPECT_EQ(result.getTime(),  "16:30");
     EXPECT_EQ(result.getSubject(), "Basics of C++");
 }
 
-TEST_F(CalendarTests, can_add_date_with_dot_slash_minus)
+TEST_F(CalendarTests, throw_invalid_argument_if_lesson_not_found)
 {
-    calender_.addLesson(User::Group::evening, "2019/06/17", "16:30", "Environment configuration 2" );
-    calender_.addLesson(User::Group::evening, "2019.06.18", "16:30", "Environment configuration 3" );
-
-    const auto& result1 = calender_.viewLesson(User::Group::evening, "2019/06/17", "16:30");
-    const auto& result2 = calender_.viewLesson(User::Group::evening, "2019.06.18", "16:30");
-
-    ASSERT_EQ(result1.getDate(), "2019/06/17");
-    ASSERT_EQ(result2.getDate(), "2019.06.18");
+    EXPECT_THROW(calender_.getLesson(User::Group::evening, "2019-07-09", "16:30"), std::invalid_argument);
+    ASSERT_THROW(calender_.getLesson(User::Group::evening, "2019-07-07", "17:00"), std::invalid_argument);
 }
 
-TEST_F(CalendarTests, can_add_date_In_revers_order)
+TEST_F(CalendarTests, can_not_add_date_or_time_with_incorrect_Format)
 {
-    ASSERT_NO_THROW(calender_.addLesson(User::Group::evening, "16/06/2019", "16:30", "Environment configuration 2" ));
-}
-
-TEST_F(CalendarTests, throw_exception_if_date_or_time_is_in_the_incorrect_format)
-{
-    ASSERT_THROW(calender_.addLesson(User::Group::evening, "2019#06#16", "16:30", "Environment configuration 2" ), std::invalid_argument);
-    ASSERT_THROW(calender_.addLesson(User::Group::evening, "2019.06.16", "16-30", "Environment configuration 2" ), std::invalid_argument);
+    EXPECT_THROW(calender_.addLesson(User::Group::evening, "32/06/2019", "16:30", "sample_lesson" ), std::invalid_argument);
+    ASSERT_THROW(calender_.addLesson(User::Group::evening, "31-13-2019", "16-30", "sample_lesson" ), std::invalid_argument);
 }
 
 TEST_F(CalendarTests, can_Not_Add_Two_Lessons_With_the_same_Group_Date_and_Time)
 {
-    ASSERT_THROW(calender_.addLesson(User::Group::weekend, "2019-06-15", "16:30", "Environment configuration" ), std::invalid_argument);
+    ASSERT_THROW(calender_.addLesson(User::Group::weekend, "2019-06-15", "10:00", "Environment configuration" ), std::invalid_argument);
 }
 
 TEST_F(CalendarTests, can_Add_Two_Lessons_for_the_same_group_one_After_the_other)
 {
-    ASSERT_NO_THROW(calender_.addLesson(User::Group::weekend, "2019-06-16", "17:30", "Environment configuration" ));
+    ASSERT_NO_THROW(calender_.addLesson(User::Group::weekend, "2019-07-06", "17:30", "Basics of C++ l2" ));
 }
 
-TEST_F(CalendarTests, viewAllSchedules)
+TEST_F(CalendarTests, get_All_Schedules)
 {
-    auto result = calender_.viewSchedule(User::Group::ALL);
-    ASSERT_EQ(result.size(), 3);
+    auto result = calender_.getSchedule(User::Group::ALL);
+    ASSERT_EQ(result.size(), 4);
 }
 
-TEST_F(CalendarTests, viewEveningSchedules)
+TEST_F(CalendarTests, get_Evening_Schedules)
 {
-    auto result = calender_.viewSchedule(User::Group::evening);
+    auto result = calender_.getSchedule(User::Group::evening);
     ASSERT_EQ(result.size(), 2);
 }

@@ -46,7 +46,7 @@ set(SRC_LIST
     src/UserHandler.cpp
     src/FileHandler.cpp
     src/Lesson.cpp
-    src/Calender.cpp
+    src/Calendar.cpp
     src/Attendance.cpp
     src/AttendanceHandler.cpp
 
