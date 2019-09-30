@@ -23,8 +23,10 @@ User::User(nlohmann::json userJson)
     : name_(userJson["name"].get<std::string>())
     , nick_(userJson["nick"].get<std::string>())
     , group_(userJson["group"].get<Group>())
-    , gitHub_(userJson["gitHub"].get<std::string>())
-    , firecode_(userJson["firecod"].get<std::string>())
+    , gitHub_(userJson["github"].get<std::string>())
+    , firecode_(userJson["firecode"].get<std::string>())
+    , email_(userJson["email"].get<std::string>())
+    , password_(userJson["password"].get<std::string>())
 {}
 
 std::string User::toString() const
@@ -46,8 +48,11 @@ nlohmann::json User::toJson() const
         {"name", name_},
         {"nick", nick_},
         {"group", group_},
-        {"gitHub", gitHub_},
-        {"firecod", firecode_}};
+        {"github", gitHub_},
+        {"firecode", firecode_},
+        {"email", email_},
+        {"password", password_}
+    };
     return uJson;
 }
 
@@ -65,7 +70,9 @@ bool operator==(const User &lhs, const User &rhs)
             lhs.nick_ == rhs.nick_ &&
             lhs.group_ == rhs.group_ &&
             lhs.gitHub_ == rhs.gitHub_ &&
-            lhs.firecode_ == rhs.firecode_);
+            lhs.firecode_ == rhs.firecode_ &&
+            lhs.email_ == rhs.email_ &&
+            lhs.password_ == rhs.password_);
 }
 
 std::string User::getPassword() const

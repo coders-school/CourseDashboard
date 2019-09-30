@@ -8,7 +8,7 @@ class AuthenticationProvider
     bool validatePassword(const User & user, const std::string & password);
 
 public:
-    bool operator()(
+    bool authenticate(
         const User & user,
         const std::string & email,
         const std::string & password);

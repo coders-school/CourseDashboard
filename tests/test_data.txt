@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Ewa",
+        "nick": "nick",
+        "group": 1,
+        "github": "github",
+        "firecode": "firecode",
+        "email": "",
+        "password": ""
+    },
+    {
+        "name": "Adam",
+        "nick": "adam",
+        "group": 0,
+        "github": "https://github.com/adam",
+        "firecode": "https://firecode.com/profile/1000",
+        "email": "adam@adam.pl",
+        "password": "tajne"
+    },
+    {
+        "name": "Papa Smerf",
+        "nick": "smerf",
+        "group": 1,
+        "github": "https://github.com/papa",
+        "firecode": "https://firecode.com/profile/2000",
+        "email": "papa@smerf.com",
+        "password": "smerfetka"
+    }
+]
+

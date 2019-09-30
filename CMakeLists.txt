@@ -69,6 +69,8 @@ set(TEST_SRC_LIST
     tests/test_main.cpp
 )
 
+configure_file(tests/test_data.txt ${CMAKE_BINARY_DIR}/test_data.txt COPYONLY)
+
 link_libraries(gtest)
 link_libraries(gmock)
 add_executable(${PROJECT_NAME}-ut ${TEST_SRC_LIST})
