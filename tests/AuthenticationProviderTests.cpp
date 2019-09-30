@@ -17,13 +17,13 @@ struct AuthenticationProviderTests: public testing::Test
 
 TEST_F(AuthenticationProviderTests, canAuthenticateEmailCaseInsensitivity)
 {
-    EXPECT_TRUE(authenticator.authenticate(user, email, password));
+    EXPECT_TRUE(authenticator.authenticate(user, email, hashedPassword));
 }
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
 {
     std::string password = "lubiePLACKI";
-    EXPECT_FALSE(authenticator.authenticate(user, email, password));
+    EXPECT_FALSE(authenticator.authenticate(user, email, hashedPassword));
 }
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
@@ -35,12 +35,12 @@ TEST_F(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
 {
-    EXPECT_FALSE(authenticator.authenticate(user, "another@gmail.com", password));
+    EXPECT_FALSE(authenticator.authenticate(user, "another@gmail.com", hashedPassword));
 }
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateEmptyEmail)
 {
     std::string emptyEmail = "";
     User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", emptyEmail, password);
-    EXPECT_FALSE(authenticator.authenticate(user, emptyEmail, password));
+    EXPECT_FALSE(authenticator.authenticate(user, emptyEmail, hashedPassword));
 }
