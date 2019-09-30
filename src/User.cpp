@@ -16,8 +16,10 @@ User::User(const std::string &name,
     , gitHub_(gitHub)
     , firecode_(firecode)
     , email_(email)
-    , password_(password)
+    , password_(h_.hashPassword(password))
 {}
+
+std::string hashPassword(std::string p);
 
 User::User(nlohmann::json userJson)
     : name_(userJson["name"].get<std::string>())
@@ -85,3 +87,4 @@ std::string User::getEmail() const
 {
     return email_;
 }
+
