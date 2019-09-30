@@ -2,17 +2,20 @@
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
+#include <sstream>
 
 
-void UserHandler::showAll() const
+std::string UserHandler::getAll() const
 {
+    std::stringstream ss{};
     for (auto &user : users_)
     {
-        std::cout << user.toString();
+        ss << user.toString();
     }
+    return ss.str();
 }
 
-void UserHandler::createUser(const User &user)
+void UserHandler::addUser(const User &user)
 {
     users_.emplace_back(user);
 }
@@ -62,8 +65,12 @@ void UserHandler::clearUserDatabase()
     users_.clear();
 }
 
-Users& UserHandler::getUserDatabase()
+Users UserHandler::getUserDatabase() const
 {
     return users_;
 }
 
+void UserHandler::setUserDatabase(const Users& newContent)
+{
+    users_ = newContent;
+}

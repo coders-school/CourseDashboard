@@ -9,7 +9,7 @@ class AuthenticationProvider
     std::string hashedPassword_;
     
 public:
-    bool operator()(
+    bool authenticate(
         const User & user,
         const std::string & email,
         const std::string & password);

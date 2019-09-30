@@ -4,40 +4,25 @@
 
 
 FileHandler::FileHandler(const std::string& filePath)
-    :filePath_(filePath)
+    : filePath_(filePath)
 {}
 
 void FileHandler::write(const std::string& content) const
 {
-    try
-    {
-        std::ofstream file(filePath_);
-        file.write(content.c_str(), content.size());
-    }
-    catch(std::ios_base::failure& e)
-    {
-        std::cerr << "Write to file: " << filePath_ << "failed.\n"
-                  << "Error message: " << e.what() << "\n";
-    }
+    std::ofstream file(filePath_);
+    file.write(content.c_str(), content.size());
 }
 
 std::string FileHandler::read() const
 {
+    std::ifstream file(filePath_);
+    if (not file.good())
+        throw std::invalid_argument{"File " + filePath_ + " not found"};
+
     std::string read{};
-
-    try
-    {
-        std::ifstream file(filePath_);
-        while(!file.eof()) {
-            read.push_back(file.get());
-        }
-        read.pop_back();
+    while (not file.eof()) {
+        read.push_back(file.get());
     }
-    catch(std::ios_base::failure& e)
-    {
-        std::cerr << "Read from file: " << filePath_ << "failed.\n"
-                  << "Error message: " << e.what() << "\n";
-    }
-
+    read.pop_back();
     return read;
 }

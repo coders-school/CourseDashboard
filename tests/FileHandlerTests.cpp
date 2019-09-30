@@ -5,35 +5,18 @@
 #include "FileHandler.hpp"
 
 
-using namespace testing;
-
-namespace
+TEST(FileHandlerTests, readReturnsPreviouslyWrittenContent)
 {
-std::string testFilePath = "iotest.txt";
-std::string dummyStr = "dummy";
-
-std::string actual(const std::string& filePath)
-{
-	std::fstream fileStream(filePath);
-	std::string strBuff(
-		(std::istreambuf_iterator<char>(fileStream)), 
-		std::istreambuf_iterator<char>());
-	fileStream.close();
-	return strBuff;
-}
-
-} // namespace
-
-TEST(FileHandlerTests, shouldWriteToFile)
-{
+	std::string testFilePath = "iotest.txt";
+	std::string dummyStr = "line one\nline two\nline|three\n";
 	FileHandler sut(testFilePath);
 	sut.write(dummyStr);
-	EXPECT_EQ(actual(testFilePath), dummyStr);
+	auto read = sut.read();
+	EXPECT_EQ(read, dummyStr);
 }
 
-TEST(FileHandlerTests, shouldReadFromFile)
+TEST(FileHandlerTests, readingFromNotExistingFileThrows)
 {
-	FileHandler sut(testFilePath);
-	sut.write(dummyStr);
-	EXPECT_EQ(sut.read(), dummyStr);
+	FileHandler sut("notExistingFile.txt");
+	ASSERT_THROW(sut.read(), std::invalid_argument);
 }
