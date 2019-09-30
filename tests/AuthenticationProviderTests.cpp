@@ -23,14 +23,14 @@ TEST_F(AuthenticationProviderTests, canAuthenticateEmailCaseInsensitivity)
 TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongPassword)
 {
     std::string password = "lubiePLACKI";
-    EXPECT_FALSE(authenticator.authenticate(user, email, hashedPassword));
+    EXPECT_FALSE(authenticator.authenticate(user, email, hash.hashPassword(password)));
 }
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateEmptyPassword)
 {
     std::string emptyPassword = "";
     User user("Alicja", "AJU", User::Group::evening, "alicjaliQui", "alicjaliQui", email, emptyPassword);
-    EXPECT_FALSE(authenticator.authenticate(user, email, emptyPassword));
+    EXPECT_FALSE(authenticator.authenticate(user, email, hash.hashPassword(emptyPassword)));
 }
 
 TEST_F(AuthenticationProviderTests, canNotAuthenticateWrongEmail)
